@@ -1,3 +1,3 @@
 mod helpers;
-mod person;
 mod mock;
+mod person;

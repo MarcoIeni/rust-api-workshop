@@ -6,7 +6,7 @@ use tracing::instrument;
 
 #[derive(Debug, PartialEq, Deserialize)]
 pub struct Query {
-    results: Vec<Person>
+    results: Vec<Person>,
 }
 
 #[derive(Debug, PartialEq, Deserialize)]
