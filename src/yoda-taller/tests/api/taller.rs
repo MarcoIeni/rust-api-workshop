@@ -1,5 +1,5 @@
 use swapi::Person;
-use swapi_mock::{person_query_result, empty_query_result};
+use swapi_mock::{empty_query_result, person_query_result};
 use yoda_taller::YodaTallerError;
 
 use crate::helpers::TestApp;
@@ -26,6 +26,10 @@ async fn cannot_compare_yoda_and_spock() {
 
     let body = empty_query_result();
     app.swapi_server.mock_people_query(name, body).await;
-    let is_taller = app.yoda_taller_client.is_taller_than(name).await.unwrap_err();
+    let is_taller = app
+        .yoda_taller_client
+        .is_taller_than(name)
+        .await
+        .unwrap_err();
     assert_eq!(is_taller, YodaTallerError::PersonNotFound);
 }
