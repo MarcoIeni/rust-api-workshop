@@ -1,7 +1,7 @@
 use std::time::Duration;
 
-use swapi_mock::SwapiMock;
 use swapi::SwapiClient;
+use swapi_mock::SwapiMock;
 
 pub struct TestApp {
     pub swapi_client: SwapiClient,
