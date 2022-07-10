@@ -11,3 +11,9 @@ fn darth_vader_is_tall() {
         }]
     );
 }
+
+#[test]
+fn spock_is_not_found() {
+    let spock = swapi::people_by_name("Spock");
+    assert!(spock.is_empty());
+}
