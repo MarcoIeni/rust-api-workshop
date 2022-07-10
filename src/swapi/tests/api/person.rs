@@ -1,16 +1,14 @@
 use swapi::Person;
 
-use crate::{
-    helpers::TestApp,
-    mock::{empty_query_result, person_query_result},
-};
+use crate::helpers::TestApp;
+use swapi_mock::{empty_query_result, person_query_result};
 
 #[tokio::test]
 async fn darth_vader_is_tall() {
     let app = TestApp::spawn().await;
     let name = "Darth Vader";
     let expected_person = Person {
-        name: "Darth Vader".to_string(),
+        name: name.to_string(),
         height: "202".to_string(),
     };
     let body = person_query_result(&expected_person);

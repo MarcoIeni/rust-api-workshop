@@ -980,8 +980,18 @@ dependencies = [
  "reqwest",
  "serde",
  "serde_json",
+ "swapi_mock",
  "tokio",
  "tracing",
+ "wiremock",
+]
+
+[[package]]
+name = "swapi_mock"
+version = "0.1.0"
+dependencies = [
+ "serde_json",
+ "swapi",
  "wiremock",
 ]
 
@@ -1463,4 +1473,15 @@ dependencies = [
  "serde",
  "serde_json",
  "tokio",
+]
+
+[[package]]
+name = "yoda-taller"
+version = "0.1.0"
+dependencies = [
+ "reqwest",
+ "swapi",
+ "swapi_mock",
+ "tokio",
+ "wiremock",
 ]
