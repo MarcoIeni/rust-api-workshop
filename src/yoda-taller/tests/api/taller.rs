@@ -13,7 +13,7 @@ async fn yoda_is_not_taller_than_himself() {
         height: "66".to_string(),
     };
     let body = person_query_result(&yoda_mock);
-    let is_taller = app.yoda_taller_client.is_taller_than(name);
     app.swapi_server.mock_people_query(name, body).await;
+    let is_taller = app.yoda_taller_client.is_taller_than(name).await.unwrap();
     assert!(!is_taller);
 }

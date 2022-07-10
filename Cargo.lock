@@ -1482,6 +1482,7 @@ dependencies = [
  "reqwest",
  "swapi",
  "swapi_mock",
+ "thiserror",
  "tokio",
  "wiremock",
 ]
