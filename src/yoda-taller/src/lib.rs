@@ -6,7 +6,7 @@ pub struct YodaTaller {
     swapi_client: SwapiClient,
 }
 
-#[derive(thiserror::Error, Debug)]
+#[derive(thiserror::Error, Debug, PartialEq)]
 pub enum YodaTallerError {
     /// No person with the given name.
     #[error("Person not found")]
