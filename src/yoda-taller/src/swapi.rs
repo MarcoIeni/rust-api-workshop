@@ -15,12 +15,6 @@ pub struct Person {
     pub height: String,
 }
 
-impl Person {
-    pub fn height(&self) -> Option<u32> {
-        self.height.parse::<u32>().ok()
-    }
-}
-
 pub struct SwapiClient {
     http_client: Client,
     base_url: String,

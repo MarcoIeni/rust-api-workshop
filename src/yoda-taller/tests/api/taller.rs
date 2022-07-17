@@ -57,7 +57,7 @@ async fn cannot_compare_yoda_and_spock() {
     let body = empty_query_result();
     app.swapi_server.mock_people_query(name, body).await;
     let is_taller_err = app.yoda_taller.is_taller_than(name).await.unwrap_err();
-    assert!(matches!(is_taller_err, YodaTallerError::PersonNotFound));
+    assert!(matches!(is_taller_err, YodaTallerError::HeightNotFound(_)));
 }
 
 #[tokio::test]
