@@ -1,5 +1,5 @@
-pub mod swapi;
 pub mod startup;
+pub mod swapi;
 
 use std::time::Duration;
 

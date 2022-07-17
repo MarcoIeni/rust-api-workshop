@@ -18,7 +18,7 @@ impl TestApp {
         let swapi_client = SwapiClient::new(swapi_server.uri(), Duration::from_secs(20));
         let yoda_taller = YodaTaller::new(swapi_server.uri(), Duration::from_secs(20));
         let application = Application { port: 3000 };
-        let _ = tokio::spawn(application.run());
+        let _app = tokio::spawn(application.run());
 
         Self {
             swapi_client,
