@@ -20,6 +20,36 @@ async fn yoda_is_not_taller_than_himself() {
 }
 
 #[tokio::test]
+async fn luke_is_taller_than_yoda() {
+    let app = TestApp::spawn().await;
+    let name = "Luke Skywalker";
+
+    let luke_mock = Person {
+        name: name.to_string(),
+        height: "172".to_string(),
+    };
+    let body = person_query_result(&luke_mock);
+    app.swapi_server.mock_people_query(name, body).await;
+    let is_taller = app.yoda_taller.is_taller_than(name).await.unwrap();
+    assert!(!is_taller);
+}
+
+#[tokio::test]
+async fn yaddle_is_shorter_than_yoda() {
+    let app = TestApp::spawn().await;
+    let name = "Yaddle";
+
+    let luke_mock = Person {
+        name: name.to_string(),
+        height: "61".to_string(),
+    };
+    let body = person_query_result(&luke_mock);
+    app.swapi_server.mock_people_query(name, body).await;
+    let is_taller = app.yoda_taller.is_taller_than(name).await.unwrap();
+    assert!(is_taller);
+}
+
+#[tokio::test]
 async fn cannot_compare_yoda_and_spock() {
     let app = TestApp::spawn().await;
     let name = "Spock";

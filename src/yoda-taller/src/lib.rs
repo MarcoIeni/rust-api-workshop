@@ -34,7 +34,8 @@ impl YodaTaller {
             .await
             .map_err(YodaTallerError::UnexpectedError)?;
         let first_match = characters.get(0).ok_or(YodaTallerError::PersonNotFound)?;
-        let is_taller = yoda_height > first_match.height().unwrap();
+        let other_height = first_match.height().unwrap();
+        let is_taller = yoda_height > other_height;
         Ok(is_taller)
     }
 }
