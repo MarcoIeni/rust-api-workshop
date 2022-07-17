@@ -1,10 +1,10 @@
 use std::ops::Deref;
 
-use yoda_taller::swapi::Person;
 use wiremock::{
     matchers::{method, path, query_param},
     Mock, MockServer, ResponseTemplate,
 };
+use yoda_taller::swapi::Person;
 
 pub struct SwapiMock {
     server: MockServer,

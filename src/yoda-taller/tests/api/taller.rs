@@ -26,6 +26,19 @@ async fn cannot_compare_yoda_and_spock() {
 
     let body = empty_query_result();
     app.swapi_server.mock_people_query(name, body).await;
-    let is_taller = app.yoda_taller.is_taller_than(name).await.unwrap_err();
-    assert_eq!(is_taller, YodaTallerError::PersonNotFound);
+    let is_taller_err = app.yoda_taller.is_taller_than(name).await.unwrap_err();
+    assert!(matches!(is_taller_err, YodaTallerError::PersonNotFound));
+}
+
+#[tokio::test]
+async fn return_unexpected_error_if_invalid_response() {
+    let app = TestApp::spawn().await;
+    let name = "Spock";
+
+    let body = serde_json::json!( {
+        "invalid": "response"
+    });
+    app.swapi_server.mock_people_query(name, body).await;
+    let is_taller_err = app.yoda_taller.is_taller_than(name).await.unwrap_err();
+    assert!(matches!(is_taller_err, YodaTallerError::UnexpectedError(_)));
 }
