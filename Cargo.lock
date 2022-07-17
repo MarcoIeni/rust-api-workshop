@@ -974,28 +974,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "swapi"
-version = "0.1.0"
-dependencies = [
- "reqwest",
- "serde",
- "serde_json",
- "swapi_mock",
- "tokio",
- "tracing",
- "wiremock",
-]
-
-[[package]]
-name = "swapi_mock"
-version = "0.1.0"
-dependencies = [
- "serde_json",
- "swapi",
- "wiremock",
-]
-
-[[package]]
 name = "syn"
 version = "1.0.98"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1480,9 +1458,10 @@ name = "yoda-taller"
 version = "0.1.0"
 dependencies = [
  "reqwest",
- "swapi",
- "swapi_mock",
+ "serde",
+ "serde_json",
  "thiserror",
  "tokio",
+ "tracing",
  "wiremock",
 ]

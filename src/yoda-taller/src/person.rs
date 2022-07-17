@@ -1,7 +1,7 @@
 use swapi::Person;
 
 use crate::helpers::TestApp;
-use swapi_mock::{empty_query_result, person_query_result};
+use crate::swapi_mock::{empty_query_result, person_query_result};
 
 #[tokio::test]
 async fn darth_vader_is_tall() {

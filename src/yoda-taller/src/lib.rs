@@ -1,6 +1,8 @@
+pub mod swapi;
+
 use std::time::Duration;
 
-use swapi::SwapiClient;
+use crate::swapi::SwapiClient;
 
 pub struct YodaTaller {
     swapi_client: SwapiClient,

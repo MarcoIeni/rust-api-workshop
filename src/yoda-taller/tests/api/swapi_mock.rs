@@ -1,6 +1,6 @@
 use std::ops::Deref;
 
-use swapi::Person;
+use yoda_taller::swapi::Person;
 use wiremock::{
     matchers::{method, path, query_param},
     Mock, MockServer, ResponseTemplate,
