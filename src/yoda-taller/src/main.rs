@@ -1,6 +1,7 @@
-use yoda_taller::startup;
+use yoda_taller::startup::Application;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    startup::run().await
+    let application = Application { port: 3000 };
+    application.run().await
 }
