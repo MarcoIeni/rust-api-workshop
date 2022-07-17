@@ -6,13 +6,14 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-tracing = "0.1.35"
-serde = { version = "1.0.137", features = ["derive"] }
-reqwest = { version = "0.11.11", features = ["json"] }
-thiserror = "1.0.31"
 anyhow = "1.0.58"
+axum = "0.5.11"
+reqwest = { version = "0.11.11", features = ["json"] }
+serde = { version = "1.0.137", features = ["derive"] }
+thiserror = "1.0.31"
+tracing = "0.1.35"
+tokio = { version = "1.20.0", features = ["macros", "rt-multi-thread"] }
 
 [dev-dependencies]
-tokio = { version = "1.19.2", features = ["macros"] }
-wiremock = "0.5.13"
 serde_json = "1.0.82"
+wiremock = "0.5.13"
