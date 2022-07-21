@@ -3,5 +3,5 @@ use yoda_taller::startup::Application;
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     let application = Application { port: 3000 };
-    application.run().await
+    application.bind()?.run().await
 }
