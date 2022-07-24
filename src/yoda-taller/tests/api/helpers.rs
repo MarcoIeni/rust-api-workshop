@@ -1,7 +1,12 @@
 use std::time::Duration;
 
 use crate::swapi_mock::SwapiMock;
-use yoda_taller::{startup::Application, swapi::SwapiClient, YodaTaller};
+use yoda_taller::{
+    settings::{ApplicationSettings, Settings, SwapiSettings},
+    startup::Application,
+    swapi::SwapiClient,
+    YodaTaller,
+};
 
 pub struct TestApp {
     pub port: u16,
@@ -18,8 +23,14 @@ impl TestApp {
 
         let swapi_client = SwapiClient::new(swapi_server.uri(), Duration::from_secs(20));
         let yoda_taller = YodaTaller::new(swapi_server.uri(), Duration::from_secs(20));
-        let application = Application { port: 0 };
-        let application_bind = application.bind().unwrap();
+        let settings = Settings {
+            application: ApplicationSettings { port: 0 },
+            swapi: SwapiSettings {
+                base_url: swapi_server.uri(),
+                timeout_milliseconds: 111,
+            },
+        };
+        let application_bind = Application::build(settings).unwrap();
         let port = application_bind.tcp_listener().local_addr().unwrap().port();
 
         let _app = tokio::spawn(application_bind.run());
