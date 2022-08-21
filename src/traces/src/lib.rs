@@ -5,7 +5,7 @@ use tracing_log::LogTracer;
 use tracing_subscriber::{layer::SubscriberExt, EnvFilter, Registry};
 
 pub fn init_test_traces() {
-    // Only initialize once logs once
+    // Initialize logs only once
     Lazy::force(&TRACING);
 }
 
