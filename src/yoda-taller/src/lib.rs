@@ -44,12 +44,12 @@ impl YodaTaller {
         let first_match = characters
             .get(0)
             .with_context(|| format!("Person {name} not found"))?;
-        let other_height = &first_match.height;
-        tracing::Span::current().record("height", other_height);
+        let person_height = &first_match.height;
+        tracing::Span::current().record("height", person_height);
 
-        let other_height = other_height
+        let other_height = person_height
             .parse::<u32>()
-            .with_context(|| format!("Height {other_height} is invalid"))?;
+            .with_context(|| format!("Height {person_height} is invalid"))?;
         let is_taller = yoda_height > other_height;
         Ok(is_taller)
     }
