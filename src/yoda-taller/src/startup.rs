@@ -1,10 +1,9 @@
 use std::{io, net::TcpListener, sync::Arc, time::Duration};
 
 use anyhow::Context;
-use axum::{extract::Path, routing::get, Extension, Json, Router};
-use serde::Serialize;
+use axum::{routing::get, Extension, Router};
 
-use crate::{settings::Settings, YodaTaller};
+use crate::{routes, settings::Settings, YodaTaller};
 
 pub struct Application {
     tcp_listener: TcpListener,
@@ -29,8 +28,8 @@ impl Application {
         };
         // build our application with a single route
         let app = Router::new()
-            .route("/health_check", get(health_check))
-            .route("/taller/:name", get(taller_than))
+            .route("/health_check", get(routes::health_check))
+            .route("/taller/:name", get(routes::taller_than))
             .layer(Extension(yoda_taller));
 
         axum::Server::from_tcp(self.tcp_listener)
@@ -45,19 +44,4 @@ impl Application {
     pub fn tcp_listener(&self) -> &TcpListener {
         &self.tcp_listener
     }
-}
-
-async fn health_check() {}
-
-async fn taller_than(
-    Path(person_name): Path<String>,
-    Extension(yoda_taller): Extension<Arc<YodaTaller>>,
-) -> Json<YodaTallerResponse> {
-    let taller = yoda_taller.is_taller_than(&person_name).await.unwrap();
-    YodaTallerResponse { taller }.into()
-}
-
-#[derive(Debug, Serialize)]
-struct YodaTallerResponse {
-    taller: bool,
 }
