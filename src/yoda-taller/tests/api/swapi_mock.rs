@@ -33,7 +33,6 @@ impl SwapiMock {
 }
 
 impl SwapiMock {
-    /// Mock whether a commit belongs to default branch or not.
     pub async fn mock_people_query(&self, search: &str, body: serde_json::Value) {
         Mock::given(method("GET"))
             .and(path("/api/people/"))

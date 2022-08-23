@@ -5,6 +5,9 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[features]
+test_fixture = []
+
 [dependencies]
 anyhow = "1.0.58"
 axum = "0.5.11"
@@ -15,5 +18,6 @@ tracing = "0.1.35"
 tokio = { version = "1.20.0", features = ["macros", "rt-multi-thread"] }
 
 [dev-dependencies]
+yoda-taller = { path = ".", features = ["test_fixture"]}
 serde_json = "1.0.82"
 wiremock = "0.5.13"

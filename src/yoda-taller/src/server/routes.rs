@@ -1,7 +1,6 @@
 use std::sync::Arc;
 
 use axum::{extract::Path, Extension, Json};
-use serde::Serialize;
 
 use crate::YodaTaller;
 
@@ -15,7 +14,9 @@ pub async fn taller_than(
     YodaTallerResponse { taller }.into()
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, serde::Serialize)]
+// derive serialize only on tests
+#[cfg_attr(feature = "test_fixture", derive(serde::Deserialize))]
 pub struct YodaTallerResponse {
-    taller: bool,
+    pub taller: bool,
 }
