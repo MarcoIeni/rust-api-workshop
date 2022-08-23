@@ -1,4 +1,4 @@
-use crate::swapi_mock::person_query_result;
+use crate::helpers::swapi_mock::person_query_result;
 use yoda_taller::{server::routes::YodaTallerResponse, swapi::Person};
 
 use crate::helpers::TestApp;

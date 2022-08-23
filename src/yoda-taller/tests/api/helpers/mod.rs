@@ -1,4 +1,6 @@
-use crate::swapi_mock::SwapiMock;
+pub mod swapi_mock;
+
+use swapi_mock::SwapiMock;
 use yoda_taller::{
     server::startup::Application,
     settings::{ApplicationSettings, Settings, SwapiSettings},

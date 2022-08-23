@@ -1,4 +1,4 @@
-use crate::swapi_mock::{empty_query_result, person_query_result};
+use crate::helpers::swapi_mock::{empty_query_result, person_query_result};
 use yoda_taller::swapi::Person;
 use yoda_taller::YodaTallerError;
 
