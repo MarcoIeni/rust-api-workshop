@@ -5,6 +5,7 @@ use yoda_taller::{
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
+    // TODO read settings from file.
     let settings = Settings {
         application: ApplicationSettings { port: 3000 },
         swapi: SwapiSettings {
@@ -12,5 +13,5 @@ async fn main() -> anyhow::Result<()> {
             timeout_milliseconds: 111,
         },
     };
-    Application::build(settings)?.run().await
+    Application::bind(settings)?.run().await
 }

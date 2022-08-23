@@ -30,7 +30,7 @@ impl TestApp {
                 timeout_milliseconds: 111,
             },
         };
-        let application_bind = Application::build(settings).unwrap();
+        let application_bind = Application::bind(settings).unwrap();
         let port = application_bind.tcp_listener().local_addr().unwrap().port();
 
         let _app = tokio::spawn(application_bind.run());

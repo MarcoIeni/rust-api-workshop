@@ -1,4 +1,4 @@
-use std::{net::TcpListener, sync::Arc, time::Duration};
+use std::{net::TcpListener, sync::Arc, time::Duration, io};
 
 use anyhow::Context;
 use axum::{extract::Path, routing::get, Extension, Json, Router};
@@ -12,7 +12,7 @@ pub struct Application {
 }
 
 impl Application {
-    pub fn build(settings: Settings) -> anyhow::Result<Application> {
+    pub fn bind(settings: Settings) -> io::Result<Application> {
         let address = format!("0.0.0.0:{}", settings.application.port);
         let tcp_listener = TcpListener::bind(&address)?;
         Ok(Application {
