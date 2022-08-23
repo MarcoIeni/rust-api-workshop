@@ -1,4 +1,4 @@
-use std::{net::TcpListener, sync::Arc, time::Duration, io};
+use std::{net::TcpListener, sync::Arc, time::Duration};
 
 use anyhow::Context;
 use axum::{extract::Path, routing::get, Extension, Json, Router};
@@ -37,7 +37,7 @@ impl Application {
             .context("cannot build server")?
             .serve(app.into_make_service())
             .await
-            .unwrap();
+            .context("cannot run server")?;
 
         Ok(())
     }
