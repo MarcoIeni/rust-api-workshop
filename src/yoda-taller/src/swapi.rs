@@ -6,12 +6,12 @@ use reqwest::Client;
 use serde::Deserialize;
 use tracing::instrument;
 
-#[derive(Debug, PartialEq, Deserialize)]
+#[derive(Debug, PartialEq, Eq, Deserialize)]
 pub struct Query {
     results: Vec<Person>,
 }
 
-#[derive(Debug, PartialEq, Deserialize)]
+#[derive(Debug, PartialEq, Eq, Deserialize)]
 pub struct Person {
     pub name: String,
     pub height: String,
