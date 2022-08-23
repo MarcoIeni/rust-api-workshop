@@ -1,9 +1,9 @@
-use std::{io, net::TcpListener, sync::Arc, time::Duration};
+use std::{io, net::TcpListener, sync::Arc};
 
 use anyhow::Context;
 use axum::{routing::get, Extension, Router};
 
-use crate::{server::routes, settings::Settings, YodaTaller};
+use crate::{server::routes, settings::Settings};
 
 pub struct Application {
     tcp_listener: TcpListener,
@@ -22,8 +22,7 @@ impl Application {
 
     pub async fn run(self) -> anyhow::Result<()> {
         let yoda_taller = {
-            let timeout_duration = Duration::from_millis(self.settings.swapi.timeout_milliseconds);
-            let yoda_taller = YodaTaller::new(self.settings.swapi.base_url, timeout_duration);
+            let yoda_taller = self.settings.swapi.yoda_taller();
             Arc::new(yoda_taller)
         };
         // build our application with a single route

@@ -22,14 +22,14 @@ impl TestApp {
         let swapi_server = SwapiMock::start().await;
 
         let swapi_client = SwapiClient::new(swapi_server.uri(), Duration::from_secs(20));
-        let yoda_taller = YodaTaller::new(swapi_server.uri(), Duration::from_secs(20));
         let settings = Settings {
             application: ApplicationSettings { port: 0 },
             swapi: SwapiSettings {
                 base_url: swapi_server.uri(),
-                timeout_milliseconds: 111,
+                timeout_milliseconds: 20000,
             },
         };
+        let yoda_taller = settings.swapi.yoda_taller();
         let application_bind = Application::bind(settings).unwrap();
         let port = application_bind.tcp_listener().local_addr().unwrap().port();
 
