@@ -1,3 +1,5 @@
+//! Client to call the swapi API.
+
 use std::time::Duration;
 
 use reqwest::Client;

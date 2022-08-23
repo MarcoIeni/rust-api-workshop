@@ -1,6 +1,6 @@
 use yoda_taller::{
+    server::startup::Application,
     settings::{ApplicationSettings, Settings, SwapiSettings},
-    startup::Application,
 };
 
 #[tokio::main]

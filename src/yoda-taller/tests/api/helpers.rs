@@ -2,8 +2,8 @@ use std::time::Duration;
 
 use crate::swapi_mock::SwapiMock;
 use yoda_taller::{
+    server::startup::Application,
     settings::{ApplicationSettings, Settings, SwapiSettings},
-    startup::Application,
     swapi::SwapiClient,
     YodaTaller,
 };

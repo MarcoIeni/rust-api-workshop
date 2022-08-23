@@ -3,7 +3,7 @@ use std::{io, net::TcpListener, sync::Arc, time::Duration};
 use anyhow::Context;
 use axum::{routing::get, Extension, Router};
 
-use crate::{routes, settings::Settings, YodaTaller};
+use crate::{server::routes, settings::Settings, YodaTaller};
 
 pub struct Application {
     tcp_listener: TcpListener,
