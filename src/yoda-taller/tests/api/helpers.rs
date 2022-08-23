@@ -1,5 +1,3 @@
-use std::time::Duration;
-
 use crate::swapi_mock::SwapiMock;
 use yoda_taller::{
     server::startup::Application,
@@ -21,7 +19,6 @@ impl TestApp {
         // Launch a mock server to stand in for Postmark's API
         let swapi_server = SwapiMock::start().await;
 
-        let swapi_client = SwapiClient::new(swapi_server.uri(), Duration::from_secs(20));
         let settings = Settings {
             application: ApplicationSettings { port: 0 },
             swapi: SwapiSettings {
@@ -30,6 +27,7 @@ impl TestApp {
             },
         };
         let yoda_taller = settings.swapi.yoda_taller();
+        let swapi_client = settings.swapi.swapi_client();
         let application_bind = Application::bind(settings).unwrap();
         let port = application_bind.tcp_listener().local_addr().unwrap().port();
 
