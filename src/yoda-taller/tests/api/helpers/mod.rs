@@ -1,4 +1,5 @@
 pub mod swapi_mock;
+pub mod people;
 
 use swapi_mock::SwapiMock;
 use yoda_taller::{
