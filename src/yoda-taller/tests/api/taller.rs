@@ -63,7 +63,7 @@ async fn cannot_compare_yoda_and_spock() {
 #[tokio::test]
 async fn return_unexpected_error_if_invalid_response() {
     let app = TestApp::spawn().await;
-    let name = "Spock";
+    let name = "Luke Skywalker";
 
     let body = serde_json::json!( {
         "invalid": "response"
