@@ -25,15 +25,17 @@ pub struct SwapiSettings {
 }
 
 impl SwapiSettings {
+    pub fn timeout(&self) -> Duration {
+        Duration::from_millis(self.timeout_milliseconds)
+    }
+
     pub fn yoda_taller(&self) -> YodaTaller {
-        let timeout_duration = Duration::from_millis(self.timeout_milliseconds);
-        YodaTaller::new(self.base_url.clone(), timeout_duration)
+        YodaTaller::new(self.base_url.clone(), self.timeout())
     }
 
     #[cfg(feature = "test_fixture")]
     pub fn swapi_client(&self) -> SwapiClient {
-        let timeout_duration = Duration::from_millis(self.timeout_milliseconds);
-        SwapiClient::new(self.base_url.clone(), timeout_duration)
+        SwapiClient::new(self.base_url.clone(), self.timeout())
     }
 }
 

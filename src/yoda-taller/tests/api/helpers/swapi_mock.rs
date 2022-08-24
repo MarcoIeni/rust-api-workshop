@@ -1,4 +1,4 @@
-use std::ops::Deref;
+use std::{ops::Deref, time::Duration};
 
 use wiremock::{
     matchers::{method, path, query_param},
@@ -34,10 +34,30 @@ impl SwapiMock {
 
 impl SwapiMock {
     pub async fn mock_people_query(&self, search: &str, body: serde_json::Value) {
+        self.mock_people_query_response(search, ResponseTemplate::new(200).set_body_json(body))
+            .await
+    }
+
+    pub async fn mock_people_query_with_delay(
+        &self,
+        search: &str,
+        body: serde_json::Value,
+        delay: Duration,
+    ) {
+        self.mock_people_query_response(
+            search,
+            ResponseTemplate::new(200)
+                .set_body_json(body)
+                .set_delay(delay),
+        )
+        .await
+    }
+
+    async fn mock_people_query_response(&self, search: &str, response: ResponseTemplate) {
         Mock::given(method("GET"))
             .and(path("/api/people/"))
             .and(query_param("search", search))
-            .respond_with(ResponseTemplate::new(200).set_body_json(body))
+            .respond_with(response)
             .named("mock people query")
             .expect(1)
             .mount(&self.server)

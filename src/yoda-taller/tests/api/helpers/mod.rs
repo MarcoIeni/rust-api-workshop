@@ -14,6 +14,7 @@ pub struct TestApp {
     pub yoda_taller: YodaTaller,
     pub swapi_server: SwapiMock,
     pub api_client: reqwest::Client,
+    pub settings: Settings,
 }
 
 impl TestApp {
@@ -30,7 +31,7 @@ impl TestApp {
         };
         let yoda_taller = settings.swapi.yoda_taller();
         let swapi_client = settings.swapi.swapi_client();
-        let application_bind = Application::bind(settings).unwrap();
+        let application_bind = Application::bind(settings.clone()).unwrap();
         let port = application_bind.tcp_listener().local_addr().unwrap().port();
 
         let _app = tokio::spawn(application_bind.run());
@@ -42,6 +43,7 @@ impl TestApp {
             swapi_server,
             api_client,
             port,
+            settings,
         }
     }
 
