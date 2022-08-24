@@ -15,11 +15,12 @@ pub struct YodaTaller {
 
 #[derive(thiserror::Error, Debug)]
 pub enum YodaTallerError {
-    /// Error returned when:
-    /// - no person with the given name exists.
-    /// - the person doesn't have a valid height.
-    #[error("Person or height not found")]
-    HeightNotFound(#[from] anyhow::Error),
+    /// The person doesn't have a valid height.
+    #[error("Height not found")]
+    HeightNotFound(#[source] anyhow::Error),
+    /// No person with the given name exists.
+    #[error("Person not found")]
+    PersonNotFound(#[source] anyhow::Error),
     /// Unexpected error while calling Swapi API.
     #[error("Unexpected error while retrieving person height")]
     UnexpectedError(#[from] reqwest::Error),
@@ -43,13 +44,15 @@ impl YodaTaller {
             .map_err(YodaTallerError::UnexpectedError)?;
         let first_match = characters
             .get(0)
-            .with_context(|| format!("Person {name} not found"))?;
+            .with_context(|| format!("Person `{name}` not found"))
+            .map_err(YodaTallerError::PersonNotFound)?;
         let person_height = &first_match.height;
         tracing::Span::current().record("height", person_height);
 
         let other_height = person_height
             .parse::<u32>()
-            .with_context(|| format!("Height {person_height} is invalid"))?;
+            .with_context(|| format!("Height `{person_height}` of `{name}` is invalid"))
+            .map_err(YodaTallerError::HeightNotFound)?;
         let is_taller = yoda_height > other_height;
         Ok(is_taller)
     }

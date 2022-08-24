@@ -25,7 +25,9 @@ pub struct YodaTallerResponse {
 impl From<YodaTallerError> for StatusCode {
     fn from(e: YodaTallerError) -> Self {
         match e {
-            YodaTallerError::HeightNotFound(_) => StatusCode::NOT_FOUND,
+            YodaTallerError::HeightNotFound(_) | YodaTallerError::PersonNotFound(_) => {
+                StatusCode::NOT_FOUND
+            }
             YodaTallerError::UnexpectedError(_) => StatusCode::INTERNAL_SERVER_ERROR,
         }
     }
