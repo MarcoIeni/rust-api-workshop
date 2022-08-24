@@ -16,6 +16,7 @@ serde = { version = "1.0.137", features = ["derive"] }
 thiserror = "1.0.31"
 tracing = "0.1.35"
 tokio = { version = "1.20.0", features = ["macros", "rt-multi-thread"] }
+serde_yaml = "0.9.10"
 
 [dev-dependencies]
 yoda-taller = { path = ".", features = ["test_fixture"]}

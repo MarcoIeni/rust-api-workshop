@@ -1,17 +1,8 @@
-use yoda_taller::{
-    server::startup::Application,
-    settings::{ApplicationSettings, Settings, SwapiSettings},
-};
+use anyhow::Context;
+use yoda_taller::{server::startup::Application, settings::Settings};
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    // TODO read settings from file.
-    let settings = Settings {
-        application: ApplicationSettings { port: 3000 },
-        swapi: SwapiSettings {
-            base_url: "url".to_string(),
-            timeout_milliseconds: 111,
-        },
-    };
+    let settings = Settings::read().context("cannot read settings")?;
     Application::bind(settings)?.run().await
 }

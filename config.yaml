@@ -1,0 +1,5 @@
+application:
+  port: 3000
+swapi:
+  base_url: "todo"
+  timeout_milliseconds: 2000

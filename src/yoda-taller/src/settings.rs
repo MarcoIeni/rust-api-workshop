@@ -1,5 +1,7 @@
 use std::time::Duration;
 
+use anyhow::Context;
+
 use crate::YodaTaller;
 
 #[cfg(feature = "test_fixture")]
@@ -32,5 +34,15 @@ impl SwapiSettings {
     pub fn swapi_client(&self) -> SwapiClient {
         let timeout_duration = Duration::from_millis(self.timeout_milliseconds);
         SwapiClient::new(self.base_url.clone(), timeout_duration)
+    }
+}
+
+impl Settings {
+    pub fn read() -> anyhow::Result<Self> {
+        let base_path =
+            std::env::current_dir().context("Failed to determine the current directory")?;
+        let config_file = base_path.join("config.yaml");
+        let f = std::fs::File::open(config_file).context("cannot open config file")?;
+        serde_yaml::from_reader(f).context("invalid config file format")
     }
 }
