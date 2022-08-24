@@ -1,23 +1,17 @@
-use yoda_taller::swapi::Person;
-
 use crate::helpers::swapi_mock::{empty_query_result, person_query_result};
-use crate::helpers::TestApp;
+use crate::helpers::{people, TestApp};
 
-// Call swapi to assert how tall darth vader is.
+// Call swapi to assert how tall Luke is.
 #[tokio::test]
-async fn darth_vader_is_tall() {
+async fn luke_is_tall() {
     let app = TestApp::spawn().await;
-    let name = "Darth Vader";
-    let darth_vader = Person {
-        name: name.to_string(),
-        height: "202".to_string(),
-    };
-    let response_body = person_query_result(&darth_vader);
+    let luke = people::luke();
+    let response_body = person_query_result(&luke);
     app.swapi_server
-        .mock_people_query(name, response_body)
+        .mock_people_query(&luke.name, response_body)
         .await;
-    let people = app.swapi_client.people_by_name(name).await.unwrap();
-    assert_eq!(people, vec![darth_vader]);
+    let people = app.swapi_client.people_by_name(&luke.name).await.unwrap();
+    assert_eq!(people, vec![luke]);
 }
 
 // Spock isn't a Star Wars character.
