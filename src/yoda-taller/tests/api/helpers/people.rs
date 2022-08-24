@@ -18,6 +18,14 @@ pub fn luke() -> Person {
     }
 }
 
+/// A character shorter than Yoda.
+pub fn yaddle() -> Person {
+    Person {
+        name: "Yaddle".to_string(),
+        height: "61".to_string(),
+    }
+}
+
 /// A character with unkown height.
 pub fn arvel() -> Person {
     Person {

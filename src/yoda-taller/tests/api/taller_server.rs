@@ -25,7 +25,7 @@ async fn yoda_is_not_taller_than_himself() {
 }
 
 #[tokio::test]
-async fn luke_is_taller_than_yoda() {
+async fn yoda_is_taller_than_luke() {
     let app = TestApp::spawn().await;
 
     let luke = people::luke();
@@ -36,8 +36,8 @@ async fn luke_is_taller_than_yoda() {
     let response = app.send_taller_req(&luke.name).await;
     assert_eq!(StatusCode::OK, response.status());
 
-    let _body: YodaTallerResponse = response.json().await.unwrap();
-    // TODO assert!(body.taller);
+    let body: YodaTallerResponse = response.json().await.unwrap();
+    assert!(!body.taller);
 }
 
 #[tokio::test]
