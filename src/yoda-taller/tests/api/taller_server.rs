@@ -1,6 +1,6 @@
 use std::time::Duration;
 
-use crate::helpers::swapi_mock::person_query_result;
+use crate::helpers::swapi_mock::{empty_query_result, person_query_result};
 use yoda_taller::{server::routes::YodaTallerResponse, swapi::Person};
 
 use crate::helpers::TestApp;
@@ -40,4 +40,15 @@ async fn return_500_if_timeout() {
         .await;
     let response = app.send_taller_req(name).await;
     assert_eq!(500, response.status().as_u16());
+}
+
+#[tokio::test]
+async fn return_404_if_spock() {
+    let app = TestApp::spawn().await;
+    let name = "Spock";
+
+    let body = empty_query_result();
+    app.swapi_server.mock_people_query(name, body).await;
+    let response = app.send_taller_req(name).await;
+    assert_eq!(404, response.status().as_u16());
 }
