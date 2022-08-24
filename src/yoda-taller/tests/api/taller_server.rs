@@ -12,8 +12,8 @@ async fn yoda_is_not_taller_than_himself() {
         name: name.to_string(),
         height: "66".to_string(),
     };
-    let body = person_query_result(&yoda_mock);
-    app.swapi_server.mock_people_query(name, body).await;
+    let query_body = person_query_result(&yoda_mock);
+    app.swapi_server.mock_people_query(name, query_body).await;
     let response = app.send_taller_req(name).await;
     assert_eq!(200, response.status().as_u16());
 
