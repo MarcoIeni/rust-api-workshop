@@ -26,7 +26,7 @@ impl TestApp {
             application: ApplicationSettings { port: 0 },
             swapi: SwapiSettings {
                 base_url: swapi_server.uri(),
-                timeout_milliseconds: 20000,
+                timeout_milliseconds: 5000,
             },
         };
         let yoda_taller = settings.swapi.yoda_taller();

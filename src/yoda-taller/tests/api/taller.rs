@@ -78,7 +78,6 @@ async fn return_decode_error_if_invalid_response() {
     }
 }
 
-#[ignore = "timeout takes too much"]
 #[tokio::test]
 async fn return_timeout_error_if_timeout() {
     let app = TestApp::spawn().await;

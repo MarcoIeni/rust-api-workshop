@@ -23,7 +23,6 @@ async fn yoda_is_not_taller_than_himself() {
     assert!(!body.taller);
 }
 
-#[ignore = "timeout takes too much"]
 #[tokio::test]
 async fn return_500_if_timeout() {
     let app = TestApp::spawn().await;
