@@ -2,10 +2,9 @@ pub mod server;
 pub mod settings;
 pub mod swapi;
 
-use std::time::Duration;
+use std::{num::ParseIntError, time::Duration};
 
-use anyhow::Context;
-use tracing::instrument;
+use tracing::{info, instrument};
 
 use crate::swapi::SwapiClient;
 
@@ -16,13 +15,18 @@ pub struct YodaTaller {
 #[derive(thiserror::Error, Debug)]
 pub enum YodaTallerError {
     /// The person doesn't have a valid height.
-    #[error("Height not found")]
-    HeightNotFound(#[source] anyhow::Error),
+    #[error("Height `{height}` of `{name}` is invalid: {parse_error}")]
+    HeightNotFound {
+        name: String,
+        height: String,
+        parse_error: ParseIntError,
+    },
+
     /// No person with the given name exists.
-    #[error("Person not found")]
-    PersonNotFound(#[source] anyhow::Error),
+    #[error("Person `{0}` not found")]
+    PersonNotFound(String),
     /// Unexpected error while calling Swapi API.
-    #[error("Unexpected error while retrieving person height")]
+    #[error("Unexpected error while retrieving person height: {0}")]
     UnexpectedError(#[from] reqwest::Error),
 }
 
@@ -44,15 +48,18 @@ impl YodaTaller {
             .map_err(YodaTallerError::UnexpectedError)?;
         let first_match = characters
             .get(0)
-            .with_context(|| format!("Person `{name}` not found"))
-            .map_err(YodaTallerError::PersonNotFound)?;
+            .ok_or_else(|| YodaTallerError::PersonNotFound(name.to_string()))?;
         let person_height = &first_match.height;
         tracing::Span::current().record("height", person_height);
 
-        let other_height = person_height
-            .parse::<u32>()
-            .with_context(|| format!("Height `{person_height}` of `{name}` is invalid"))
-            .map_err(YodaTallerError::HeightNotFound)?;
+        let other_height =
+            person_height
+                .parse::<u32>()
+                .map_err(|e| YodaTallerError::HeightNotFound {
+                    name: name.to_string(),
+                    height: person_height.to_string(),
+                    parse_error: e,
+                })?;
         let is_taller = yoda_height > other_height;
         Ok(is_taller)
     }

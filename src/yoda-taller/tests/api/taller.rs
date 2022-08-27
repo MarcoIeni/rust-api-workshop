@@ -52,8 +52,15 @@ async fn cannot_compare_yoda_and_person_with_invalid_height() {
     let arvel = people::arvel();
     let body = person_query_result(&arvel);
     app.swapi_server.mock_people_query(&arvel.name, body).await;
-    let is_taller_err = app.yoda_taller.is_taller_than(&arvel.name).await.unwrap_err();
-    assert!(matches!(is_taller_err, YodaTallerError::HeightNotFound(_)));
+    let is_taller_err = app
+        .yoda_taller
+        .is_taller_than(&arvel.name)
+        .await
+        .unwrap_err();
+    assert!(matches!(
+        is_taller_err,
+        YodaTallerError::HeightNotFound { .. }
+    ));
 }
 
 #[tokio::test]
