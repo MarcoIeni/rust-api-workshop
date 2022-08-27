@@ -19,6 +19,7 @@ tokio = { version = "1.20.0", features = ["macros", "rt-multi-thread"] }
 serde_yaml = "0.9.10"
 traces ={ path = "../traces" }
 opentelemetry = { version = "0.17.0", features = ["rt-tokio"] }
+axum-tracing-opentelemetry = { version = "0.4", features = ["jaeger", "otlp"] }
 
 [dev-dependencies]
 yoda-taller = { path = ".", features = ["test_fixture"]}

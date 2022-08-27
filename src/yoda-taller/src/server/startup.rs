@@ -2,6 +2,7 @@ use std::{io, net::TcpListener, sync::Arc};
 
 use anyhow::Context;
 use axum::{routing::get, Extension, Router};
+use axum_tracing_opentelemetry::opentelemetry_tracing_layer;
 
 use crate::{server::routes, settings::Settings};
 
@@ -29,7 +30,8 @@ impl Application {
         let app = Router::new()
             .route("/health_check", get(routes::health_check))
             .route("/taller/:name", get(routes::taller_than))
-            .layer(Extension(yoda_taller));
+            .layer(Extension(yoda_taller))
+            .layer(opentelemetry_tracing_layer());
 
         axum::Server::from_tcp(self.tcp_listener)
             .context("cannot build server")?
