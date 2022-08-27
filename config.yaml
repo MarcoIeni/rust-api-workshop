@@ -1,5 +1,5 @@
 application:
   port: 3000
 swapi:
-  base_url: "todo"
+  base_url: "127.0.1.1:9992"
   timeout_milliseconds: 2000
