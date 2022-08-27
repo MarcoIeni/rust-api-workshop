@@ -4,7 +4,7 @@ pub mod swapi;
 
 use std::{num::ParseIntError, time::Duration};
 
-use tracing::{info, instrument};
+use tracing::instrument;
 
 use crate::swapi::SwapiClient;
 
