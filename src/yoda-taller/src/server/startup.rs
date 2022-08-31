@@ -6,7 +6,7 @@ use axum_tracing_opentelemetry::opentelemetry_tracing_layer;
 
 use crate::{server::routes, settings::Settings};
 
-use super::shutdown::shutdown_signal;
+use super::shutdown::shutdown_handler;
 
 pub struct Application {
     tcp_listener: TcpListener,
@@ -38,7 +38,7 @@ impl Application {
         axum::Server::from_tcp(self.tcp_listener)
             .context("cannot build server")?
             .serve(app.into_make_service())
-            .with_graceful_shutdown(shutdown_signal())
+            .with_graceful_shutdown(shutdown_handler())
             .await
             .context("cannot run server")?;
 

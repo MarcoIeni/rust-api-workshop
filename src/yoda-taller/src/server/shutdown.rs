@@ -1,5 +1,5 @@
 // Taken from https://github.com/davidB/sandbox_axum_observability
-pub async fn shutdown_signal() {
+pub async fn shutdown_handler() {
     let ctrl_c = async {
         tokio::signal::ctrl_c()
             .await
