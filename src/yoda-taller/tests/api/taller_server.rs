@@ -21,6 +21,7 @@ async fn yoda_is_not_taller_than_himself() {
     assert_eq!(StatusCode::OK, response.status());
 
     let body: YodaTallerResponse = response.json().await.unwrap();
+    assert_eq!(yoda.name, body.person);
     assert!(!body.taller);
 }
 
@@ -37,6 +38,7 @@ async fn yoda_is_taller_than_luke() {
     assert_eq!(StatusCode::OK, response.status());
 
     let body: YodaTallerResponse = response.json().await.unwrap();
+    assert_eq!(luke.name, body.person);
     assert!(!body.taller);
 }
 

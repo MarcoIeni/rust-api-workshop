@@ -14,7 +14,11 @@ pub async fn taller_than(
 ) -> Result<Json<YodaTallerResponse>, YodaTallerError> {
     match yoda_taller.is_taller_than(&person_name).await {
         Ok(taller) => {
-            let response = YodaTallerResponse { taller }.into();
+            let response = YodaTallerResponse {
+                person: person_name,
+                taller,
+            }
+            .into();
             Ok(response)
         }
         Err(e) => {
@@ -37,6 +41,7 @@ fn log_error(e: &YodaTallerError) {
 // derive deserialize only on tests
 #[cfg_attr(feature = "test_fixture", derive(serde::Deserialize))]
 pub struct YodaTallerResponse {
+    pub person: String,
     pub taller: bool,
 }
 
