@@ -5,7 +5,7 @@ use crate::helpers::{
     swapi_mock::{empty_query_result, person_query_result},
 };
 use reqwest::StatusCode;
-use yoda_taller::server::routes::YodaTallerResponse;
+use yoda_taller::server::routes::{ErrorBody, YodaTallerResponse};
 
 use crate::helpers::TestApp;
 
@@ -64,6 +64,8 @@ async fn return_404_if_spock() {
     app.swapi_server.mock_people_query(name, body).await;
     let response = app.send_taller_req(name).await;
     assert_eq!(StatusCode::NOT_FOUND, response.status());
+    let error_message: ErrorBody = response.json().await.unwrap();
+    assert_eq!("Person `Spock` not found", error_message.error)
 }
 
 #[tokio::test]
@@ -80,4 +82,9 @@ async fn return_404_if_unknown_height() {
     let response = app.send_taller_req(&arvel.name).await;
 
     assert_eq!(StatusCode::NOT_FOUND, response.status());
+    let error_message: ErrorBody = response.json().await.unwrap();
+    assert_eq!(
+        "Height `unknown` of `Arvel Crynyd` is invalid: invalid digit found in string",
+        error_message.error
+    )
 }
