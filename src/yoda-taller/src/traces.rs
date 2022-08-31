@@ -1,24 +1,10 @@
-use once_cell::sync::Lazy;
 use tracing::{subscriber::set_global_default, Subscriber};
 use tracing_bunyan_formatter::{BunyanFormattingLayer, JsonStorageLayer};
 use tracing_log::LogTracer;
 use tracing_subscriber::{layer::SubscriberExt, EnvFilter, Registry};
 
-pub fn init_test_traces() {
-    // Initialize logs only once
-    Lazy::force(&TRACING);
-}
 
-// Initialize the `tracing` stack once, using `once_cell`
-static TRACING: Lazy<()> = Lazy::new(|| {
-    if std::env::var("ENABLE_LOGS").is_ok() {
-        let default_filter_level = "info";
-        let subscriber = get_subscriber(default_filter_level).unwrap();
-        init_subscriber(subscriber);
-    }
-});
-
-fn get_subscriber(env_filter: &str) -> anyhow::Result<impl Subscriber + Sync + Send> {
+pub fn get_subscriber(env_filter: &str) -> anyhow::Result<impl Subscriber + Sync + Send> {
     let tracer =
         opentelemetry_jaeger::new_pipeline().install_batch(opentelemetry::runtime::Tokio)?;
 
@@ -38,7 +24,7 @@ fn get_subscriber(env_filter: &str) -> anyhow::Result<impl Subscriber + Sync + S
 /// Register a subscriber as global default to process span data.
 ///
 /// It should only be called once!
-fn init_subscriber(subscriber: impl Subscriber + Sync + Send) {
+pub fn init_subscriber(subscriber: impl Subscriber + Sync + Send) {
     LogTracer::init().expect("Failed to set logger");
     set_global_default(subscriber).expect("Failed to set subscriber");
 }

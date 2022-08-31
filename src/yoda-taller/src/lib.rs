@@ -1,6 +1,7 @@
 pub mod server;
 pub mod settings;
 pub mod swapi;
+pub mod traces;
 
 use std::{num::ParseIntError, time::Duration};
 

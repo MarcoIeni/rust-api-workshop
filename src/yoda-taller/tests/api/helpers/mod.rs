@@ -1,5 +1,6 @@
 pub mod people;
 pub mod swapi_mock;
+mod test_traces;
 
 use swapi_mock::SwapiMock;
 use yoda_taller::{
@@ -8,6 +9,8 @@ use yoda_taller::{
     swapi::SwapiClient,
     YodaTaller,
 };
+
+use self::test_traces::init_test_traces;
 
 pub struct TestApp {
     pub port: u16,
@@ -20,6 +23,7 @@ pub struct TestApp {
 
 impl TestApp {
     pub async fn spawn() -> Self {
+        init_test_traces();
         // Launch a mock server to stand in for Postmark's API
         let swapi_server = SwapiMock::start().await;
 

@@ -1724,21 +1724,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b6bc1c9ce2b5135ac7f93c72918fc37feb872bdc6a5533a8b85eb4b86bfdae52"
 
 [[package]]
-name = "traces"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "once_cell",
- "opentelemetry",
- "opentelemetry-jaeger",
- "tracing",
- "tracing-bunyan-formatter",
- "tracing-log",
- "tracing-opentelemetry",
- "tracing-subscriber",
-]
-
-[[package]]
 name = "tracing"
 version = "0.1.35"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2123,15 +2108,20 @@ dependencies = [
  "anyhow",
  "axum",
  "axum-tracing-opentelemetry",
+ "once_cell",
  "opentelemetry",
+ "opentelemetry-jaeger",
  "reqwest",
  "serde",
  "serde_json",
  "serde_yaml",
  "thiserror",
  "tokio",
- "traces",
  "tracing",
+ "tracing-bunyan-formatter",
+ "tracing-log",
+ "tracing-opentelemetry",
+ "tracing-subscriber",
  "wiremock",
  "yoda-taller",
 ]

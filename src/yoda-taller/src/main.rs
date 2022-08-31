@@ -1,5 +1,5 @@
 use anyhow::Context;
-use yoda_taller::{server::startup::Application, settings::Settings};
+use yoda_taller::{server::startup::Application, settings::Settings, traces};
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
