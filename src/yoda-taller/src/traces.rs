@@ -3,7 +3,6 @@ use tracing_bunyan_formatter::{BunyanFormattingLayer, JsonStorageLayer};
 use tracing_log::LogTracer;
 use tracing_subscriber::{layer::SubscriberExt, EnvFilter, Registry};
 
-
 pub fn get_subscriber(env_filter: &str) -> anyhow::Result<impl Subscriber + Sync + Send> {
     let tracer =
         opentelemetry_jaeger::new_pipeline().install_batch(opentelemetry::runtime::Tokio)?;
