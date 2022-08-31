@@ -1,3 +1,3 @@
 pub mod routes;
-pub mod startup;
 mod shutdown;
+pub mod startup;
