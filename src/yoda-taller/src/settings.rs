@@ -44,7 +44,8 @@ impl Settings {
         let base_path =
             std::env::current_dir().context("Failed to determine the current directory")?;
         let config_file = base_path.join("config.yaml");
-        let f = std::fs::File::open(config_file).context("cannot open config file")?;
+        let f = std::fs::File::open(&config_file)
+            .with_context(|| format!("cannot open config file {:?}", config_file))?;
         serde_yaml::from_reader(f).context("invalid config file format")
     }
 }
