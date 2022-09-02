@@ -5,7 +5,7 @@ use crate::helpers::{
     swapi_mock::{empty_query_result, person_query_result},
 };
 use reqwest::StatusCode;
-use yoda_taller::server::routes::{ErrorBody, YodaTallerResponse};
+use yoda_taller::{server::routes::ErrorBody, YodaTallerResponse};
 
 use crate::helpers::TestApp;
 

@@ -13,6 +13,16 @@ pub struct YodaTaller {
     swapi_client: SwapiClient,
 }
 
+#[derive(Debug, serde::Serialize)]
+// derive only for tests
+#[cfg_attr(feature = "test_fixture", derive(serde::Deserialize, PartialEq, Eq))]
+pub struct YodaTallerResponse {
+    /// Name of the person to compare with Yoda.
+    pub person: String,
+    /// Whether Yoda is taller than this character or not.
+    pub taller: bool,
+}
+
 #[derive(thiserror::Error, Debug)]
 pub enum YodaTallerError {
     /// The person doesn't have a valid height.
@@ -40,7 +50,7 @@ impl YodaTaller {
 
     /// Is Yoda taller than the person with the given name?
     #[instrument(skip(self), fields(height))]
-    pub async fn is_taller_than(&self, name: &str) -> Result<bool, YodaTallerError> {
+    pub async fn is_taller_than(&self, name: &str) -> Result<YodaTallerResponse, YodaTallerError> {
         let yoda_height = 66;
         let characters = self
             .swapi_client
@@ -61,7 +71,10 @@ impl YodaTaller {
                     height: person_height.to_string(),
                     parse_error: e,
                 })?;
-        let is_taller = yoda_height > other_height;
-        Ok(is_taller)
+        let response = YodaTallerResponse {
+            person: first_match.name.clone(),
+            taller: yoda_height > other_height,
+        };
+        Ok(response)
     }
 }

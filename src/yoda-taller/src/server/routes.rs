@@ -4,7 +4,7 @@ use axum::{extract::Path, http::StatusCode, response::IntoResponse, Extension, J
 use serde::Serialize;
 use tracing::{error, warn};
 
-use crate::{YodaTaller, YodaTallerError};
+use crate::{YodaTaller, YodaTallerError, YodaTallerResponse};
 
 pub async fn health_check() {}
 
@@ -13,13 +13,9 @@ pub async fn taller_than(
     Extension(yoda_taller): Extension<Arc<YodaTaller>>,
 ) -> Result<Json<YodaTallerResponse>, YodaTallerError> {
     match yoda_taller.is_taller_than(&person_name).await {
-        Ok(taller) => {
-            let response = YodaTallerResponse {
-                person: person_name,
-                taller,
-            }
-            .into();
-            Ok(response)
+        Ok(response) => {
+            let json_response = response.into();
+            Ok(json_response)
         }
         Err(e) => {
             log_error(&e);
@@ -35,14 +31,6 @@ fn log_error(e: &YodaTallerError) {
         }
         YodaTallerError::UnexpectedError(_) => error!("{e}"),
     }
-}
-
-#[derive(Debug, serde::Serialize)]
-// derive deserialize only on tests
-#[cfg_attr(feature = "test_fixture", derive(serde::Deserialize))]
-pub struct YodaTallerResponse {
-    pub person: String,
-    pub taller: bool,
 }
 
 impl IntoResponse for YodaTallerError {
