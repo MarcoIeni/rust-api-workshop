@@ -24,7 +24,6 @@ pub struct TestApp {
 impl TestApp {
     pub async fn spawn() -> Self {
         init_test_traces();
-        // Launch a mock server to stand in for Postmark's API
         let swapi_server = SwapiMock::start().await;
 
         let settings = Settings {
