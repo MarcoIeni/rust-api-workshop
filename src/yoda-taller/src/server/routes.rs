@@ -14,10 +14,10 @@ pub async fn health_check() {}
 pub struct YodaTallerResponse {
     /// Name to identify a person.
     /// Parameter originally sent from the user.
-    query: String,
+    pub query: String,
     /// Query result.
     #[serde(flatten)]
-    result: YodaTallerResult,
+    pub result: YodaTallerResult,
 }
 
 pub async fn taller_than(
