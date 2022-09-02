@@ -1,7 +1,7 @@
 use std::time::Duration;
 
 use crate::helpers::swapi_mock::{empty_query_result, person_query_result};
-use yoda_taller::{YodaTallerError, YodaTallerResponse};
+use yoda_taller::{YodaTallerError, YodaTallerResult};
 
 use crate::helpers::{people, TestApp};
 
@@ -13,7 +13,7 @@ async fn yoda_is_not_taller_than_himself() {
     app.swapi_server.mock_people_query(&yoda.name, body).await;
     let is_yoda_taller = app.yoda_taller.is_taller_than(&yoda.name).await.unwrap();
     assert_eq!(
-        YodaTallerResponse {
+        YodaTallerResult {
             person: yoda.name,
             taller: false
         },
@@ -29,7 +29,7 @@ async fn yoda_is_shorter_than_luke() {
     app.swapi_server.mock_people_query(&luke.name, body).await;
     let is_yoda_taller = app.yoda_taller.is_taller_than(&luke.name).await.unwrap();
     assert_eq!(
-        YodaTallerResponse {
+        YodaTallerResult {
             person: luke.name,
             taller: false
         },
@@ -45,7 +45,7 @@ async fn yoda_is_taller_than_yaddle() {
     app.swapi_server.mock_people_query(&yaddle.name, body).await;
     let is_yoda_taller = app.yoda_taller.is_taller_than(&yaddle.name).await.unwrap();
     assert_eq!(
-        YodaTallerResponse {
+        YodaTallerResult {
             person: yaddle.name,
             taller: true
         },

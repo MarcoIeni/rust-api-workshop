@@ -5,7 +5,7 @@ use crate::helpers::{
     swapi_mock::{empty_query_result, person_query_result},
 };
 use reqwest::StatusCode;
-use yoda_taller::{server::routes::ErrorBody, YodaTallerResponse};
+use yoda_taller::{server::routes::ErrorBody, YodaTallerResult};
 
 use crate::helpers::TestApp;
 
@@ -20,7 +20,7 @@ async fn yoda_is_not_taller_than_himself() {
     let response = app.send_taller_req(&yoda.name).await;
     assert_eq!(StatusCode::OK, response.status());
 
-    let body: YodaTallerResponse = response.json().await.unwrap();
+    let body: YodaTallerResult = response.json().await.unwrap();
     assert_eq!(yoda.name, body.person);
     assert!(!body.taller);
 }
@@ -37,7 +37,7 @@ async fn yoda_is_taller_than_luke() {
     let response = app.send_taller_req(&luke.name).await;
     assert_eq!(StatusCode::OK, response.status());
 
-    let body: YodaTallerResponse = response.json().await.unwrap();
+    let body: YodaTallerResult = response.json().await.unwrap();
     assert_eq!(luke.name, body.person);
     assert!(!body.taller);
 }

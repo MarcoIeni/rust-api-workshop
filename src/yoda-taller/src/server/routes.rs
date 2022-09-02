@@ -4,17 +4,33 @@ use axum::{extract::Path, http::StatusCode, response::IntoResponse, Extension, J
 use serde::Serialize;
 use tracing::{error, warn};
 
-use crate::{YodaTaller, YodaTallerError, YodaTallerResponse};
+use crate::{YodaTaller, YodaTallerError, YodaTallerResult};
 
 pub async fn health_check() {}
+
+#[derive(Debug, serde::Serialize)]
+// derive only for tests
+#[cfg_attr(feature = "test_fixture", derive(serde::Deserialize, PartialEq, Eq))]
+pub struct YodaTallerResponse {
+    /// Name to identify a person.
+    /// Parameter originally sent from the user.
+    query: String,
+    /// Query result.
+    #[serde(flatten)]
+    result: YodaTallerResult,
+}
 
 pub async fn taller_than(
     Path(person_name): Path<String>,
     Extension(yoda_taller): Extension<Arc<YodaTaller>>,
 ) -> Result<Json<YodaTallerResponse>, YodaTallerError> {
     match yoda_taller.is_taller_than(&person_name).await {
-        Ok(response) => {
-            let json_response = response.into();
+        Ok(result) => {
+            let json_response = YodaTallerResponse {
+                query: person_name,
+                result,
+            }
+            .into();
             Ok(json_response)
         }
         Err(e) => {
