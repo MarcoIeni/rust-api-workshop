@@ -2,3 +2,6 @@
 
 // #[path = "00_greetings.rs"]
 // mod greetings;
+
+// #[path = "01_swapi.rs"]
+// mod swapi;
