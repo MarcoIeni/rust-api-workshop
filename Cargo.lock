@@ -2102,6 +2102,30 @@ dependencies = [
 ]
 
 [[package]]
+name = "workshop"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "axum",
+ "axum-tracing-opentelemetry",
+ "once_cell",
+ "opentelemetry",
+ "opentelemetry-jaeger",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "serde_yaml",
+ "thiserror",
+ "tokio",
+ "tracing",
+ "tracing-bunyan-formatter",
+ "tracing-log",
+ "tracing-opentelemetry",
+ "tracing-subscriber",
+ "wiremock",
+]
+
+[[package]]
 name = "yoda-taller"
 version = "0.1.0"
 dependencies = [
