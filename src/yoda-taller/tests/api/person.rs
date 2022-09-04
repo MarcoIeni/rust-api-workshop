@@ -1,3 +1,5 @@
+use std::time::Duration;
+
 use crate::helpers::swapi_mock::{empty_query_result, person_query_result};
 use crate::helpers::{people, TestApp};
 
@@ -25,4 +27,21 @@ async fn spock_is_not_found() {
         .await;
     let people = app.swapi_client.people_by_name(name).await.unwrap();
     assert!(people.is_empty());
+}
+
+#[tokio::test]
+async fn swapi_client_returns_timeout_error_if_timeout() {
+    let app = TestApp::spawn().await;
+    let luke = people::luke();
+    let response_body = person_query_result(&luke);
+    let delay = app.settings.swapi.timeout() + Duration::from_secs(1);
+    app.swapi_server
+        .mock_people_query_with_delay(&luke.name, response_body, delay)
+        .await;
+    let err = app
+        .swapi_client
+        .people_by_name(&luke.name)
+        .await
+        .unwrap_err();
+    assert!(err.is_timeout());
 }
