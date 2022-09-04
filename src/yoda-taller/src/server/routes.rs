@@ -42,7 +42,7 @@ pub async fn taller_than(
 
 fn log_error(e: &YodaTallerError) {
     match e {
-        YodaTallerError::HeightNotFound { .. } | YodaTallerError::PersonNotFound(_) => {
+        YodaTallerError::HeightNotFound | YodaTallerError::PersonNotFound(_) => {
             warn!("{e}")
         }
         YodaTallerError::UnexpectedError(_) => error!("{e}"),
@@ -52,7 +52,7 @@ fn log_error(e: &YodaTallerError) {
 impl IntoResponse for YodaTallerError {
     fn into_response(self) -> axum::response::Response {
         let (status_code, error_message) = match self {
-            YodaTallerError::HeightNotFound { .. } | YodaTallerError::PersonNotFound(_) => {
+            YodaTallerError::HeightNotFound | YodaTallerError::PersonNotFound(_) => {
                 (StatusCode::NOT_FOUND, format!("{self}"))
             }
             YodaTallerError::UnexpectedError(_) => (

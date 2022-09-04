@@ -3,7 +3,7 @@ pub mod settings;
 pub mod swapi;
 pub mod traces;
 
-use std::{num::ParseIntError, time::Duration};
+use std::time::Duration;
 
 use tracing::instrument;
 
@@ -25,14 +25,9 @@ pub struct YodaTallerResult {
 
 #[derive(thiserror::Error, Debug)]
 pub enum YodaTallerError {
-    /// The person doesn't have a valid height.
-    #[error("Height `{height}` of `{name}` is invalid: {parse_error}")]
-    HeightNotFound {
-        name: String,
-        height: String,
-        parse_error: ParseIntError,
-    },
-
+    /// The person doesn't have a known or valid height.
+    #[error("Person's height is unknown")]
+    HeightNotFound,
     /// No person with the given name exists.
     #[error("Person `{0}` not found")]
     PersonNotFound(String),
@@ -63,14 +58,10 @@ impl YodaTaller {
         let person_height = &first_match.height;
         tracing::Span::current().record("height", person_height);
 
-        let other_height =
-            person_height
-                .parse::<u32>()
-                .map_err(|e| YodaTallerError::HeightNotFound {
-                    name: name.to_string(),
-                    height: person_height.to_string(),
-                    parse_error: e,
-                })?;
+        let other_height = person_height.parse::<u32>().map_err(|e| {
+            tracing::warn!("invalid height: {}", e);
+            YodaTallerError::HeightNotFound
+        })?;
         let response = YodaTallerResult {
             person: first_match.name.clone(),
             taller: yoda_height > other_height,

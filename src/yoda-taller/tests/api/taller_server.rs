@@ -104,8 +104,5 @@ async fn return_404_if_unknown_height() {
 
     assert_eq!(StatusCode::NOT_FOUND, response.status());
     let error_message: ErrorBody = response.json().await.unwrap();
-    assert_eq!(
-        "Height `unknown` of `Arvel Crynyd` is invalid: invalid digit found in string",
-        error_message.error
-    )
+    assert_eq!("Person's height is unknown", error_message.error)
 }
