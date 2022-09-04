@@ -8,3 +8,6 @@
 
 // #[path = "02_swapi.rs"]
 // mod swapi;
+
+// #[path = "03_swapi_mock.rs"]
+// mod swapi_mock;
