@@ -1,4 +1,4 @@
-use std::time::Duration;
+use std::{num::IntErrorKind, time::Duration};
 
 use crate::helpers::swapi_mock::{empty_query_result, person_query_result};
 use yoda_taller::{YodaTallerError, YodaTallerResult};
@@ -61,7 +61,10 @@ async fn cannot_compare_yoda_and_non_existing_person() {
     let body = empty_query_result();
     app.swapi_server.mock_people_query(name, body).await;
     let is_taller_err = app.yoda_taller.is_taller_than(name).await.unwrap_err();
-    assert!(matches!(is_taller_err, YodaTallerError::PersonNotFound(_)));
+    match is_taller_err {
+        YodaTallerError::PersonNotFound(person_name) => assert_eq!(name, person_name),
+        _ => panic!("unexpected error"),
+    };
 }
 
 #[tokio::test]
@@ -75,10 +78,18 @@ async fn cannot_compare_yoda_and_person_with_invalid_height() {
         .is_taller_than(&arvel.name)
         .await
         .unwrap_err();
-    assert!(matches!(
-        is_taller_err,
-        YodaTallerError::HeightNotFound { .. }
-    ));
+    match is_taller_err {
+        YodaTallerError::HeightNotFound {
+            name,
+            height,
+            parse_error,
+        } => {
+            assert_eq!(name, arvel.name);
+            assert_eq!(height, arvel.height);
+            assert_eq!(parse_error.kind(), &IntErrorKind::InvalidDigit);
+        }
+        _ => panic!("unexpected error"),
+    };
 }
 
 #[tokio::test]
