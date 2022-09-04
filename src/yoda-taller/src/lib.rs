@@ -29,8 +29,8 @@ pub enum YodaTallerError {
     #[error("Person's height is unknown")]
     HeightNotFound,
     /// No person with the given name exists.
-    #[error("Person `{0}` not found")]
-    PersonNotFound(String),
+    #[error("Person not found")]
+    PersonNotFound,
     /// Unexpected error while calling Swapi API.
     #[error("Unexpected error while retrieving person height: {0}")]
     UnexpectedError(#[from] reqwest::Error),
@@ -52,9 +52,7 @@ impl YodaTaller {
             .people_by_name(name)
             .await
             .map_err(YodaTallerError::UnexpectedError)?;
-        let first_match = characters
-            .get(0)
-            .ok_or_else(|| YodaTallerError::PersonNotFound(name.to_string()))?;
+        let first_match = characters.get(0).ok_or(YodaTallerError::PersonNotFound)?;
         let person_height = &first_match.height;
         tracing::Span::current().record("height", person_height);
 

@@ -95,7 +95,7 @@ async fn return_404_if_spock() {
     assert_eq!(
         ErrorBody {
             query: name.to_string(),
-            error: "Person `Spock` not found".to_string()
+            error: "Person not found".to_string()
         },
         response.json().await.unwrap()
     );

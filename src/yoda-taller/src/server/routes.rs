@@ -54,7 +54,7 @@ pub async fn taller_than(
 
 fn log_error(e: &YodaTallerError) {
     match e {
-        YodaTallerError::HeightNotFound | YodaTallerError::PersonNotFound(_) => {
+        YodaTallerError::HeightNotFound | YodaTallerError::PersonNotFound => {
             warn!("{e}")
         }
         YodaTallerError::UnexpectedError(_) => error!("{e}"),
@@ -64,7 +64,7 @@ fn log_error(e: &YodaTallerError) {
 impl IntoResponse for YodaTallerResponseError {
     fn into_response(self) -> axum::response::Response {
         let (status_code, error_message) = match self.error {
-            YodaTallerError::HeightNotFound | YodaTallerError::PersonNotFound(_) => {
+            YodaTallerError::HeightNotFound | YodaTallerError::PersonNotFound => {
                 (StatusCode::NOT_FOUND, format!("{}", self.error))
             }
             YodaTallerError::UnexpectedError(_) => (
@@ -86,7 +86,10 @@ impl IntoResponse for YodaTallerResponseError {
 
 #[derive(Serialize)]
 // derive deserialize only on tests
-#[cfg_attr(feature = "test_fixture", derive(serde::Deserialize, Debug, PartialEq, Eq))]
+#[cfg_attr(
+    feature = "test_fixture",
+    derive(serde::Deserialize, Debug, PartialEq, Eq)
+)]
 pub struct ErrorBody {
     pub query: String,
     /// Error message

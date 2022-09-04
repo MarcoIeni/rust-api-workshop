@@ -61,10 +61,7 @@ async fn cannot_compare_yoda_and_non_existing_person() {
     let body = empty_query_result();
     app.swapi_server.mock_people_query(name, body).await;
     let is_taller_err = app.yoda_taller.is_taller_than(name).await.unwrap_err();
-    match is_taller_err {
-        YodaTallerError::PersonNotFound(person_name) => assert_eq!(name, person_name),
-        _ => panic!("unexpected error"),
-    };
+    assert!(matches!(is_taller_err, YodaTallerError::PersonNotFound));
 }
 
 #[tokio::test]
