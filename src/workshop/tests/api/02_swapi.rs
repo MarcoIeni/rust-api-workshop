@@ -5,16 +5,16 @@ use workshop::swapi::{Person, SwapiClient};
 /// You need to create the structs `SwapiClient` and `Person`
 /// under the `src/workshop/src` directory to re-use them in the next exercises.
 ///
-/// ## Useful resources
+/// ## Useful resources 📚
 /// - [Swapi docs](https://swapi.dev/documentation)
 /// - [Rust HTTP client](https://docs.rs/reqwest/)
 ///
-/// ## Hint 1
+/// ## Hint 1 💡
 /// Always focus on making the test compile and pass first by mocking your functions.
 /// For example, `people_by_name` could just return the expected `Person` struct, without doing any network call at first.
 /// Please make sure to use `reqwest` to retrieve Luke's height before jumping to the next test.
 ///
-/// ## Hint 2
+/// ## Hint 2 💡
 /// This test doesn't have `todo!()`, so you don't have to edit it to make it pass.
 #[tokio::test]
 fn retrieve_luke_height_from_swapi() {

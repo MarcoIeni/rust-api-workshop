@@ -1,9 +1,9 @@
-//! Welcome to workshop!
-//! You will learn how to write Rust HTTP API.
+//! Welcome to the workshop! 👋
+//! You will learn how to write Rust HTTP API. 🦀
 //!
 //! The material is structured as a series of exercises.
 
-/// This is your first exercise!
+/// This is your first exercise! 🤓
 /// In this case, the test contains a `todo!()`.
 /// To make the test pass, you are expected to replace these todos with working code.
 /// Be aware, sometimes a one-liner won't be enough!
