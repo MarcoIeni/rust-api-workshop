@@ -11,3 +11,6 @@
 
 // #[path = "03_swapi_mock.rs"]
 // mod swapi_mock;
+
+// #[path = "04_swapi_tests_cleanup.rs"]
+// mod swapi_tests_cleanup;
