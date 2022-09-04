@@ -1,12 +1,12 @@
-//! You are able to retrieve the height from Swapi, great!
-//! However a docker image of the service you are working with
-//! is not always available.
-//! In these cases you can write a mock, i.e. a piece of software
-//! that mimics like the service you are calling.
-//! Let's practice writing a mock using the
-//! [wiremock](https://docs.rs/wiremock/) library!
-//!
-//! 💡 This test should pass even if you stop the swapi container!
+/// You are able to retrieve the height from Swapi, great!
+/// However a docker image of the service you are working with
+/// is not always available.
+/// In these cases you can write a mock, i.e. a piece of software
+/// that mimics like the service you are calling.
+/// Let's practice writing a mock using the
+/// [wiremock](https://docs.rs/wiremock/) library!
+///
+/// 💡 This test should pass even if you stop the swapi container!
 #[tokio::test]
 fn retrieve_luke_height_from_swapi_mock() {
     let luke = Person {
@@ -27,6 +27,10 @@ fn retrieve_luke_height_from_swapi_mock() {
 
 /// Spock is not a Star Wars character, so the `people_by_name` function
 /// should return an empty vector.
+///
+/// ## Hint 💡
+/// Don't worry too much about copy pasting from the previous test.
+/// We are going to clean in the next exercises.
 #[tokio::test]
 async fn spock_is_not_found_from_swapi_mock() {
     // Start a `MockServer` and mock the GET request you do in the `SwapiClient`.
