@@ -17,3 +17,6 @@
 
 // #[path = "05_taller.rs"]
 // mod taller;
+
+// #[path = "06_taller_error.rs"]
+// mod taller_error;
