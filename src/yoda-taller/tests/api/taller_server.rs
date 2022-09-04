@@ -74,6 +74,13 @@ async fn return_500_if_timeout() {
         .await;
     let response = app.send_taller_req(&luke.name).await;
     assert_eq!(StatusCode::INTERNAL_SERVER_ERROR, response.status());
+    assert_eq!(
+        ErrorBody {
+            query: luke.name,
+            error: "unexpected error".to_string()
+        },
+        response.json().await.unwrap()
+    );
 }
 
 #[tokio::test]
@@ -85,8 +92,13 @@ async fn return_404_if_spock() {
     app.swapi_server.mock_people_query(name, body).await;
     let response = app.send_taller_req(name).await;
     assert_eq!(StatusCode::NOT_FOUND, response.status());
-    let error_message: ErrorBody = response.json().await.unwrap();
-    assert_eq!("Person `Spock` not found", error_message.error)
+    assert_eq!(
+        ErrorBody {
+            query: name.to_string(),
+            error: "Person `Spock` not found".to_string()
+        },
+        response.json().await.unwrap()
+    );
 }
 
 #[tokio::test]
@@ -103,6 +115,11 @@ async fn return_404_if_unknown_height() {
     let response = app.send_taller_req(&arvel.name).await;
 
     assert_eq!(StatusCode::NOT_FOUND, response.status());
-    let error_message: ErrorBody = response.json().await.unwrap();
-    assert_eq!("Person's height is unknown", error_message.error)
+    assert_eq!(
+        ErrorBody {
+            query: arvel.name,
+            error: "Person's height is unknown".to_string()
+        },
+        response.json().await.unwrap()
+    );
 }

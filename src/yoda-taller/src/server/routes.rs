@@ -20,10 +20,19 @@ pub struct YodaTallerResponse {
     pub result: YodaTallerResult,
 }
 
+#[derive(Debug)]
+pub struct YodaTallerResponseError {
+    /// Name to identify a person.
+    /// Parameter originally sent from the user.
+    pub query: String,
+    /// Query error.
+    pub error: YodaTallerError,
+}
+
 pub async fn taller_than(
     Path(person_name): Path<String>,
     Extension(yoda_taller): Extension<Arc<YodaTaller>>,
-) -> Result<Json<YodaTallerResponse>, YodaTallerError> {
+) -> Result<Json<YodaTallerResponse>, YodaTallerResponseError> {
     match yoda_taller.is_taller_than(&person_name).await {
         Ok(result) => {
             let json_response = YodaTallerResponse {
@@ -35,7 +44,10 @@ pub async fn taller_than(
         }
         Err(e) => {
             log_error(&e);
-            Err(e)
+            Err(YodaTallerResponseError {
+                query: person_name,
+                error: e,
+            })
         }
     }
 }
@@ -49,11 +61,11 @@ fn log_error(e: &YodaTallerError) {
     }
 }
 
-impl IntoResponse for YodaTallerError {
+impl IntoResponse for YodaTallerResponseError {
     fn into_response(self) -> axum::response::Response {
-        let (status_code, error_message) = match self {
+        let (status_code, error_message) = match self.error {
             YodaTallerError::HeightNotFound | YodaTallerError::PersonNotFound(_) => {
-                (StatusCode::NOT_FOUND, format!("{self}"))
+                (StatusCode::NOT_FOUND, format!("{}", self.error))
             }
             YodaTallerError::UnexpectedError(_) => (
                 StatusCode::INTERNAL_SERVER_ERROR,
@@ -64,6 +76,7 @@ impl IntoResponse for YodaTallerError {
         (
             status_code,
             Json(ErrorBody {
+                query: self.query,
                 error: error_message,
             }),
         )
@@ -73,8 +86,9 @@ impl IntoResponse for YodaTallerError {
 
 #[derive(Serialize)]
 // derive deserialize only on tests
-#[cfg_attr(feature = "test_fixture", derive(serde::Deserialize))]
+#[cfg_attr(feature = "test_fixture", derive(serde::Deserialize, Debug, PartialEq, Eq))]
 pub struct ErrorBody {
+    pub query: String,
     /// Error message
     pub error: String,
 }
