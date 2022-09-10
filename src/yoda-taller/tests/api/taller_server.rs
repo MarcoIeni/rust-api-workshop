@@ -77,7 +77,7 @@ async fn return_500_if_timeout() {
     assert_eq!(
         ErrorBody {
             query: luke.name,
-            error: "unexpected error".to_string()
+            error: "Unexpected error".to_string()
         },
         response.json().await.unwrap()
     );

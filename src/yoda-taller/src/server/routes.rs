@@ -69,7 +69,7 @@ impl IntoResponse for YodaTallerResponseError {
             }
             YodaTallerError::UnexpectedError(_) => (
                 StatusCode::INTERNAL_SERVER_ERROR,
-                "unexpected error".to_string(),
+                "Unexpected error".to_string(),
             ),
         };
 
