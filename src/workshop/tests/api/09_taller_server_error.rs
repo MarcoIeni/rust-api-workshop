@@ -62,6 +62,14 @@ async fn return_404_if_unknown_height() {
     );
 }
 
+/// Most of the time the Swapi API works well, and returns a response quickly.
+/// However, in backend development, things work until they don't.
+///
+/// What should we do if the Swapi API doesn't respons for a long period of time?
+/// We can't wait forever. At some point we need to fail and communicate to our client
+/// that something is wrong.
+///
+/// If the request is taking longer than the swapi timeout, return a 500 to our users.
 #[tokio::test]
 async fn return_500_if_timeout() {
     let app = TestApp::spawn().await;
