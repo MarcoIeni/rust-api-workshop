@@ -1,4 +1,8 @@
-use std::{io, net::TcpListener, sync::Arc};
+use std::{
+    io,
+    net::{SocketAddr, TcpListener},
+    sync::Arc,
+};
 
 use anyhow::Context;
 use axum::{routing::get, Extension, Router};
@@ -14,10 +18,10 @@ pub struct Application {
 }
 
 impl Application {
-    pub fn bind(settings: Settings) -> io::Result<Application> {
-        let address = format!("0.0.0.0:{}", settings.application.port);
-        let tcp_listener = TcpListener::bind(&address)?;
-        Ok(Application {
+    pub fn bind(settings: Settings) -> io::Result<Self> {
+        let socket_addr = SocketAddr::from(([0, 0, 0, 0], settings.application.port));
+        let tcp_listener = TcpListener::bind(socket_addr)?;
+        Ok(Self {
             tcp_listener,
             settings,
         })
