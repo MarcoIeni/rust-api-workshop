@@ -50,7 +50,7 @@ async fn yoda_is_not_taller_than_luke() {
     );
 }
 
-/// Let's ask to our server is yoda is taller than himself
+/// Let's ask to our server is yoda is taller than himself.
 #[tokio::test]
 async fn yoda_is_not_taller_than_himself() {
     let app = TestApp::spawn().await;
