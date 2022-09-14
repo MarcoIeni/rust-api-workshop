@@ -13,6 +13,9 @@ use yoda_taller::{
     YodaTallerResult,
 };
 
+/// Spock is not part of the Swapi database.
+/// So, if a user asks if Yoda is taller than Spock,
+/// our server should return a 404.
 #[tokio::test]
 async fn return_404_if_spock() {
     let app = TestApp::spawn().await;
@@ -31,6 +34,11 @@ async fn return_404_if_spock() {
     );
 }
 
+/// Some Star Wars characters are mysterious.
+/// Some of them might even have an unknown height. 👀
+///
+/// If Swapi returns an invalid height, such us `unknown`, or `abc`,
+/// our server should return a 404. Think of it as "height now found".
 #[tokio::test]
 async fn return_404_if_unknown_height() {
     let app = TestApp::spawn().await;
