@@ -62,28 +62,6 @@ async fn yoda_is_not_taller_than_himself() {
 }
 
 #[tokio::test]
-async fn return_500_if_timeout() {
-    let app = TestApp::spawn().await;
-
-    let luke = people::luke();
-    let query_body = person_query_result(&luke);
-
-    let delay = app.settings.swapi.timeout() + Duration::from_secs(1);
-    app.swapi_server
-        .mock_people_query_with_delay(&luke.name, query_body, delay)
-        .await;
-    let response = app.send_taller_req(&luke.name).await;
-    assert_eq!(StatusCode::INTERNAL_SERVER_ERROR, response.status());
-    assert_eq!(
-        ErrorBody {
-            query: luke.name,
-            error: "Unexpected error".to_string()
-        },
-        response.json().await.unwrap()
-    );
-}
-
-#[tokio::test]
 async fn return_404_if_spock() {
     let app = TestApp::spawn().await;
     let name = "Spock";
@@ -119,6 +97,28 @@ async fn return_404_if_unknown_height() {
         ErrorBody {
             query: arvel.name,
             error: "Person's height is unknown".to_string()
+        },
+        response.json().await.unwrap()
+    );
+}
+
+#[tokio::test]
+async fn return_500_if_timeout() {
+    let app = TestApp::spawn().await;
+
+    let luke = people::luke();
+    let query_body = person_query_result(&luke);
+
+    let delay = app.settings.swapi.timeout() + Duration::from_secs(1);
+    app.swapi_server
+        .mock_people_query_with_delay(&luke.name, query_body, delay)
+        .await;
+    let response = app.send_taller_req(&luke.name).await;
+    assert_eq!(StatusCode::INTERNAL_SERVER_ERROR, response.status());
+    assert_eq!(
+        ErrorBody {
+            query: luke.name,
+            error: "Unexpected error".to_string()
         },
         response.json().await.unwrap()
     );
