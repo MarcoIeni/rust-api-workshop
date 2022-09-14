@@ -17,6 +17,14 @@ use crate::helpers::TestApp;
 
 /// As usual, let's start with the happy case.
 /// Let's ask our sever if Yoda is taller than Luke.
+/// We expect a response with a status code 200 and the body:
+/// ```json
+/// {
+///   "query": "Luke Skywalker",
+///   "person": "Luke Skywalker",
+///   "taller": false
+/// }
+/// ```
 #[tokio::test]
 async fn yoda_is_not_taller_than_luke() {
     let app = TestApp::spawn().await;
