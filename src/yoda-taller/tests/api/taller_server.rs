@@ -13,30 +13,6 @@ use yoda_taller::{
 use crate::helpers::TestApp;
 
 #[tokio::test]
-async fn yoda_is_not_taller_than_himself() {
-    let app = TestApp::spawn().await;
-    let yoda = people::yoda();
-    let query_body = person_query_result(&yoda);
-    app.swapi_server
-        .mock_people_query(&yoda.name, query_body)
-        .await;
-    let response = app.send_taller_req(&yoda.name).await;
-    assert_eq!(StatusCode::OK, response.status());
-
-    let body = response.json().await.unwrap();
-    assert_eq!(
-        YodaTallerResponse {
-            query: yoda.name.clone(),
-            result: YodaTallerResult {
-                person: yoda.name,
-                taller: false
-            }
-        },
-        body
-    );
-}
-
-#[tokio::test]
 async fn yoda_is_taller_than_luke() {
     let app = TestApp::spawn().await;
 
@@ -54,6 +30,30 @@ async fn yoda_is_taller_than_luke() {
             query: luke.name.clone(),
             result: YodaTallerResult {
                 person: luke.name,
+                taller: false
+            }
+        },
+        body
+    );
+}
+
+#[tokio::test]
+async fn yoda_is_not_taller_than_himself() {
+    let app = TestApp::spawn().await;
+    let yoda = people::yoda();
+    let query_body = person_query_result(&yoda);
+    app.swapi_server
+        .mock_people_query(&yoda.name, query_body)
+        .await;
+    let response = app.send_taller_req(&yoda.name).await;
+    assert_eq!(StatusCode::OK, response.status());
+
+    let body = response.json().await.unwrap();
+    assert_eq!(
+        YodaTallerResponse {
+            query: yoda.name.clone(),
+            result: YodaTallerResult {
+                person: yoda.name,
                 taller: false
             }
         },
