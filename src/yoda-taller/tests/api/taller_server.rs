@@ -13,7 +13,7 @@ use yoda_taller::{
 use crate::helpers::TestApp;
 
 #[tokio::test]
-async fn yoda_is_taller_than_luke() {
+async fn yoda_is_not_taller_than_luke() {
     let app = TestApp::spawn().await;
 
     let luke = people::luke();

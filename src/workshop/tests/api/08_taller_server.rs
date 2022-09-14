@@ -18,7 +18,7 @@ use crate::helpers::TestApp;
 /// As usual, let's start with the happy case.
 /// Let's ask our sever if Yoda is taller than Luke.
 #[tokio::test]
-async fn yoda_is_taller_than_luke() {
+async fn yoda_is_not_taller_than_luke() {
     let app = TestApp::spawn().await;
 
     let luke = people::luke();
