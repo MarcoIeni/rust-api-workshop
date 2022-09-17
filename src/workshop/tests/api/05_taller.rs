@@ -16,6 +16,11 @@ async fn yoda_is_not_taller_than_luke() {
     let luke = people::luke();
     let body = person_query_result(&luke);
     app.swapi_server.mock_people_query(&luke.name, body).await;
+    // Create a new field called `yoda_taller` in the `TestApp`.
+    // This field can be of type `YodaTaller`, which can be initialized
+    // with a `new` function, in the same way as `SwapiClient`.
+    // In this exercise we only care about the happy case, so it's fine to return `reqwest::Error`
+    // as an error and to unwrap in your code.
     let is_yoda_taller = app.yoda_taller.is_taller_than(&luke.name).await.unwrap();
     assert_eq!(
         YodaTallerResult {
@@ -36,11 +41,6 @@ async fn yoda_is_not_taller_than_himself() {
     let yoda = people::yoda();
     let body = person_query_result(&yoda);
     app.swapi_server.mock_people_query(&yoda.name, body).await;
-    // Create a new field called `yoda_taller` in the `TestApp`.
-    // This field can be of type `YodaTaller`, which can be initialized
-    // with a `new` function, in the same way as `SwapiClient`.
-    // In this exercise we only care about the happy case, so it's fine to return `reqwest::Error`
-    // as an error and to unwrap in your code.
     let is_yoda_taller: YodaTallerResult = app.yoda_taller.is_taller_than(&yoda.name).await.unwrap();
     assert_eq!(
         YodaTallerResult {
