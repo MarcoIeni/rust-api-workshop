@@ -9,11 +9,12 @@
 /// Be aware, sometimes a one-liner won't be enough!
 ///
 /// Now:
+/// - Comment out this module in the `src/workshop/tests/api/main.rs` file
 /// - Open your terminal
 /// - cd into the `src/workshop` directory
 /// - Solve the exercise
 /// - Run `cargo test` to check if tests pass or not.
-/// - Comment out the next module in the `src/workshop/tests/api/main.rs` files to progress.
+/// - Comment out the next module in the `src/workshop/tests/api/main.rs` file to progress.
 #[test]
 fn first_exercise() {
     let i_am_ready_to_start = todo!();
