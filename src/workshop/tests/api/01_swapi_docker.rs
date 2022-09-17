@@ -13,7 +13,8 @@
 /// # Build the docker image
 /// docker image build -t swapi .
 ///
-/// # Run the docker image
+/// # Run the docker image.
+/// # The port 9992 must be free. You can use a different port if 9992 isn't free.
 /// docker run  -p 9992:8000 -it swapi
 ///
 /// # You should see info about Luke Skywalker
