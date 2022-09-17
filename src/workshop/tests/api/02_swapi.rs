@@ -17,7 +17,8 @@ use workshop::swapi::{Person, SwapiClient};
 /// ## Hint 1 💡
 /// Always focus on making the test compile and pass first by mocking your functions.
 /// For example, `people_by_name` could just return the expected `Person` struct, without doing any network call at first.
-/// Please make sure to use `reqwest` to retrieve Luke's height before jumping to the next test.
+/// Please make sure to use `reqwest` to create the HTTP client and retrieve
+/// Luke's height before jumping to the next test.
 ///
 /// ## Hint 2 💡
 /// This test doesn't have `todo!()`, so you don't have to edit it to make it pass.
@@ -26,7 +27,7 @@ async fn retrieve_luke_height_from_swapi() {
     let base_url = "http://127.0.0.1:9992";
     // You can ignore the timeout for this exercise.
     let timeout = Duration::from_secs(2);
-    let swapi_client = SwapiClient::new(base_url, timeout);
+    let swapi_client = SwapiClient::new(base_url.to_string(), timeout);
     let luke = Person {
         name: "Luke Skywalker".to_string(),
         height: "172".to_string(),
