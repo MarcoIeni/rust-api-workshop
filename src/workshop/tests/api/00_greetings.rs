@@ -5,7 +5,7 @@
 
 /// This is your first exercise! 🤓
 /// In this case, the test contains a `todo!()`.
-/// To make the test pass, you are expected to replace these todos with working code.
+/// If a `todo!()` is present in a test, you are expected to replace it with working code.
 /// Be aware, sometimes a one-liner won't be enough!
 ///
 /// Now:
