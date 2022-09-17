@@ -43,7 +43,7 @@ async fn spock_is_not_found() {
     let base_url = "http://127.0.0.1:9992";
     // You can ignore the timeout for this exercise.
     let timeout = Duration::from_secs(2);
-    let swapi_client = SwapiClient::new(base_url, timeout);
+    let swapi_client = SwapiClient::new(base_url.to_string(), timeout);
     let people: Vec<Person> = swapi_client.people_by_name("Spock").await.unwrap();
     assert!(people.is_empty());
 }
