@@ -6,22 +6,6 @@ use yoda_taller::{YodaTallerError, YodaTallerResult};
 use crate::helpers::{people, TestApp};
 
 #[tokio::test]
-async fn yoda_is_not_taller_than_himself() {
-    let app = TestApp::spawn().await;
-    let yoda = people::yoda();
-    let body = person_query_result(&yoda);
-    app.swapi_server.mock_people_query(&yoda.name, body).await;
-    let is_yoda_taller = app.yoda_taller.is_taller_than(&yoda.name).await.unwrap();
-    assert_eq!(
-        YodaTallerResult {
-            person: yoda.name,
-            taller: false
-        },
-        is_yoda_taller
-    );
-}
-
-#[tokio::test]
 async fn yoda_is_not_taller_than_luke() {
     let app = TestApp::spawn().await;
     let luke = people::luke();
@@ -31,6 +15,22 @@ async fn yoda_is_not_taller_than_luke() {
     assert_eq!(
         YodaTallerResult {
             person: luke.name,
+            taller: false
+        },
+        is_yoda_taller
+    );
+}
+
+#[tokio::test]
+async fn yoda_is_not_taller_than_himself() {
+    let app = TestApp::spawn().await;
+    let yoda = people::yoda();
+    let body = person_query_result(&yoda);
+    app.swapi_server.mock_people_query(&yoda.name, body).await;
+    let is_yoda_taller = app.yoda_taller.is_taller_than(&yoda.name).await.unwrap();
+    assert_eq!(
+        YodaTallerResult {
+            person: yoda.name,
             taller: false
         },
         is_yoda_taller
