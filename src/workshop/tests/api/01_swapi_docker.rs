@@ -6,7 +6,7 @@
 /// To avoid calling directly https://swapi.dev/,
 /// run the swapi docker image locally.
 ///
-/// ```
+/// ```sh
 /// # Change directory to where you cloned https://github.com/MarcoIeni/swapi
 /// cd swapi
 ///
