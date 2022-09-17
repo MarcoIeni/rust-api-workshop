@@ -1,5 +1,8 @@
 use std::time::Duration;
 
+// The swapi module doesn't exist yet, create it under
+// `src/workshop/src/swapi.rs`.
+// Then add the module to the `src/workshop/src/lib.rs` file.
 use workshop::swapi::{Person, SwapiClient};
 
 /// Query the swapi instance running in docker to retrieve
