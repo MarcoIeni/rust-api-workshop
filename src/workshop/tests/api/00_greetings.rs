@@ -5,15 +5,17 @@
 
 /// This is your first exercise! 🤓
 /// In this case, the test contains a `todo!()`.
-/// To make the test pass, you are expected to replace these todos with working code.
+/// If a `todo!()` is present in a test, you are expected to replace it with working code.
 /// Be aware, sometimes a one-liner won't be enough!
 ///
 /// Now:
-/// - Open your terminal
-/// - cd into the `src/workshop` directory
-/// - Solve the exercise
-/// - Run `cargo test` to check if tests pass or not.
-/// - Comment out the next module in the `src/workshop/tests/api/main.rs` files to progress.
+/// - Comment out this module in the `src/workshop/tests/api/main.rs` file.
+/// - Open your terminal.
+/// - cd into the `src/workshop` directory.
+/// - Run `cargo test`: you should see some errors.
+/// - Make the test pass.
+/// - Run `cargo test` to check if the test works.
+/// - Comment out the next module in the `src/workshop/tests/api/main.rs` file to progress.
 #[test]
 fn first_exercise() {
     let i_am_ready_to_start = todo!();
