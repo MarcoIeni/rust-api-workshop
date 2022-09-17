@@ -9,11 +9,12 @@
 /// Be aware, sometimes a one-liner won't be enough!
 ///
 /// Now:
-/// - Comment out this module in the `src/workshop/tests/api/main.rs` file
-/// - Open your terminal
-/// - cd into the `src/workshop` directory
-/// - Solve the exercise
-/// - Run `cargo test` to check if tests pass or not.
+/// - Comment out this module in the `src/workshop/tests/api/main.rs` file.
+/// - Open your terminal.
+/// - cd into the `src/workshop` directory.
+/// - Run `cargo test`: you should see some errors.
+/// - Make the test pass.
+/// - Run `cargo test` to check if the test works.
 /// - Comment out the next module in the `src/workshop/tests/api/main.rs` file to progress.
 #[test]
 fn first_exercise() {
