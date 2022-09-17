@@ -19,7 +19,10 @@ async fn retrieve_luke_height_from_swapi_mock() {
     };
 
     // Start a [`MockServer`](https://docs.rs/wiremock/0.5.14/wiremock/struct.MockServer.html)
-    // and mock the GET request you do in the `SwapiClient`.
+    // and mock the GET response you get in the `SwapiClient`.
+    // You should return the response we have seen in the previous exercise
+    // when looking for Luke: a 200 status code and Luke's name and height
+    // in the `results` of the body.
 
     // Use the [uri](https://docs.rs/wiremock/0.5.14/wiremock/struct.MockServer.html#method.uri)
     // method to retrieve the base url.
@@ -39,7 +42,9 @@ async fn retrieve_luke_height_from_swapi_mock() {
 /// We are going to clean in the next exercises.
 #[tokio::test]
 async fn spock_is_not_found_from_swapi_mock() {
-    // Start a `MockServer` and mock the GET request you do in the `SwapiClient`.
+    // Start a `MockServer` and mock the GET response you get in the `SwapiClient`.
+    // You should return the response we have seen in the previous exercise
+    // when looking for Spock: a 200 status code and an empty `results` in the body.
     todo!();
 
     let base_url = todo!();
