@@ -1,10 +1,14 @@
+//! We have successfully mocked the swapi call we use.
+//! Now that we have mocked Swapi, we can even comment the module
+//! `swapi` in the `src/workshop/tests/api/main.rs` file and stop
+//! the swapi docker image if you prefer!
+//!
+//! Anyway, our tests contain a lot of setup code.
+//! Let's clean it up before it becomes too messy!
+
 use std::time::Duration;
 use crate::helpers::swapi_mock::{empty_query_result, person_query_result};
 use crate::helpers::{people, TestApp};
-
-//! We have successfully mocked the swapi call we use.
-//! However, our tests contain a lot of setup code.
-//! Let's clean it up before it becomes too messy!
 
 /// We are going to use the Luke's example many times.
 /// Let's save data of people we are going to use in an helper module.
