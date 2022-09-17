@@ -18,3 +18,48 @@ $ curl 127.0.0.1:3000/taller/luke
   "taller": false
 }
 ```
+
+## Architecture
+
+This is the architecture of our system:
+
+```mermaid
+graph TD;
+    C(HTTP Client)-->S(HTTP Server);
+    S-->Swapi;
+```
+
+- The HTTP Client can be anything: curl, [Insomnia](https://github.com/Kong/insomnia), and so on. It's the software you can use to interact with your API
+- The HTTP Server it's the component you will implement
+- [Swapi](https://swapi.dev/) is the service you are going to use to retrieve
+  info about the Star Wars characters.
+
+## Sequence diagram
+
+This is the flow of the system:
+
+```mermaid
+sequenceDiagram
+    participant C as HTTP Client
+    participant S as HTTP Server
+    participant Swapi
+    C->>S: Is Yoda taller than Luke?
+    S->>Swapi: How tall is Luke?
+    Swapi->>S: Luke is *this* tall
+    S->>S: Compare Luke vs Yoda height
+    S->>C: Yoda is not taller than Luke
+```
+
+Let's translate some high-level details from the previous diagram:
+
+```mermaid
+sequenceDiagram
+    participant C as HTTP Client
+    participant S as HTTP Server
+    participant Swapi
+    C->>S: GET /taller/luke
+    S->>Swapi: Give me info about Luke
+    Swapi->>S: Luke info in JSON
+    S->>S: Compare Luke vs Yoda height
+    S->>C: {"query":"luke", person":"Luke Skywalker", "taller":false}
+```
