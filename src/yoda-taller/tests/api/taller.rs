@@ -22,7 +22,7 @@ async fn yoda_is_not_taller_than_himself() {
 }
 
 #[tokio::test]
-async fn yoda_is_shorter_than_luke() {
+async fn yoda_is_not_taller_than_luke() {
     let app = TestApp::spawn().await;
     let luke = people::luke();
     let body = person_query_result(&luke);

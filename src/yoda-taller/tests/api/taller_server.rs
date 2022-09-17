@@ -62,6 +62,30 @@ async fn yoda_is_not_taller_than_himself() {
 }
 
 #[tokio::test]
+async fn yoda_is_taller_than_yaddle() {
+    let app = TestApp::spawn().await;
+    let yaddle = people::yaddle();
+    let query_body = person_query_result(&yaddle);
+    app.swapi_server
+        .mock_people_query(&yaddle.name, query_body)
+        .await;
+    let response = app.send_taller_req(&yaddle.name).await;
+    assert_eq!(StatusCode::OK, response.status());
+
+    let body = response.json().await.unwrap();
+    assert_eq!(
+        YodaTallerResponse {
+            query: yaddle.name.clone(),
+            result: YodaTallerResult {
+                person: yaddle.name,
+                taller: true
+            }
+        },
+        body
+    );
+}
+
+#[tokio::test]
 async fn return_404_if_spock() {
     let app = TestApp::spawn().await;
     let name = "Spock";
