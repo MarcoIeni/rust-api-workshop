@@ -4,7 +4,7 @@ use workshop::swapi::{Person, SwapiClient};
 
 /// Query the swapi instance running in docker to retrieve
 /// Luke's height.
-/// You need to create the structs `SwapiClient` and `Person`
+/// You need to create the structs [`SwapiClient`] and [`Person`]
 /// under the `src/workshop/src` directory to re-use them in the next exercises.
 ///
 /// ## Useful resources 📚
