@@ -21,6 +21,8 @@ async fn retrieve_luke_height_from_swapi_mock() {
     // Start a [`MockServer`](https://docs.rs/wiremock/0.5.14/wiremock/struct.MockServer.html)
     // and mock the GET request you do in the `SwapiClient`.
 
+    // Use the [uri](https://docs.rs/wiremock/0.5.14/wiremock/struct.MockServer.html#method.uri)
+    // method to retrieve the base url.
     let base_url = todo!();
     // You can ignore the timeout for this exercise.
     let timeout = Duration::from_secs(2);
