@@ -1,14 +1,18 @@
-/// You are able to retrieve the height from Swapi, great!
-/// However a docker image of the service you are working with
-/// is not always available.
-/// In these cases you can write a mock, i.e. a piece of software
-/// that mimics like the service you are calling.
-/// Let's practice writing a mock using the
-/// [wiremock](https://docs.rs/wiremock/) library!
-///
+//! You are able to retrieve the height from Swapi, great!
+//! However a docker image of the service you are working with
+//! is not always available.
+//! In these cases you can write a mock, i.e. a piece of software
+//! that mimics like the service you are calling.
+//! Let's practice writing a mock using the
+//! [wiremock](https://docs.rs/wiremock/) library!
+
+use std::time::Duration;
+
+use workshop::swapi::{Person, SwapiClient};
+
 /// 💡 This test should pass even if you stop the swapi container!
 #[tokio::test]
-fn retrieve_luke_height_from_swapi_mock() {
+async fn retrieve_luke_height_from_swapi_mock() {
     let luke = Person {
         name: "Luke Skywalker".to_string(),
         height: "172".to_string(),
