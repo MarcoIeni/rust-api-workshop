@@ -15,7 +15,7 @@
 ///
 /// # Run the docker image.
 /// # The port 9992 must be free. You can use a different port if 9992 isn't free.
-/// docker run  -p 9992:8000 -it swapi
+/// docker run -p 9992:8000 -it swapi
 ///
 /// # You should see info about Luke Skywalker
 /// curl http://127.0.0.1:9992/api/people/1/
