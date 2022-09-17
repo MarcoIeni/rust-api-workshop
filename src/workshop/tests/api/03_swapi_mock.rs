@@ -18,8 +18,8 @@ async fn retrieve_luke_height_from_swapi_mock() {
         height: "172".to_string(),
     };
 
-    // Start a `MockServer` and mock the GET request you do in the `SwapiClient`.
-    todo!();
+    // Start a [`MockServer`](https://docs.rs/wiremock/0.5.14/wiremock/struct.MockServer.html)
+    // and mock the GET request you do in the `SwapiClient`.
 
     let base_url = todo!();
     // You can ignore the timeout for this exercise.
