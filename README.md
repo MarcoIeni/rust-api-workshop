@@ -63,3 +63,17 @@ sequenceDiagram
     S->>S: Compare Luke vs Yoda height
     S->>C: {"query":"luke", person":"Luke Skywalker", "taller":false}
 ```
+
+## Get started
+
+```sh
+mkdir workshop
+cd workshop
+# Clone this fork of swapi (it contains an additional person)
+git clone https://github.com/MarcoIeni/swapi
+# Clone this repo
+git clone https://github.com/MarcoIeni/rust-api-workshop
+cd rust-api-workshop
+# Create your branch
+git checkout -b workshop
+```
