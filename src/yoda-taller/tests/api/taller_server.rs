@@ -10,7 +10,7 @@ use yoda_taller::{
     YodaTallerResult,
 };
 
-use crate::helpers::TestApp;
+use crate::helpers::test_app::TestApp;
 
 #[tokio::test]
 async fn yoda_is_not_taller_than_luke() {

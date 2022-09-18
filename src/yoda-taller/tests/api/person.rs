@@ -1,7 +1,7 @@
 use std::time::Duration;
 
 use crate::helpers::swapi_mock::{empty_query_result, person_query_result};
-use crate::helpers::{people, TestApp};
+use crate::helpers::{people, test_app::TestApp};
 
 // Call swapi to assert how tall Luke is.
 #[tokio::test]
