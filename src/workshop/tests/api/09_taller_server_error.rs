@@ -11,7 +11,6 @@ use {
     std::time::Duration,
     workshop::{
         server::routes::{ErrorBody, YodaTallerResponse},
-        YodaTallerResult,
     },
 };
 

@@ -2,10 +2,10 @@ use {
     crate::helpers::{
         people,
         swapi_mock::{empty_query_result, person_query_result},
-        test_app::{TestApp,SWAPI_TIMEOUT},
+        test_app::{TestApp, SWAPI_TIMEOUT},
     },
     std::time::Duration,
-    yoda_taller::{YodaTallerError, YodaTallerResult},
+    yoda_taller::{YodaTallerError, YodaTallerOutcome},
 };
 
 #[tokio::test]
@@ -16,7 +16,7 @@ async fn yoda_is_not_taller_than_luke() {
     app.swapi_server.mock_people_query(&luke.name, body).await;
     let is_yoda_taller = app.yoda_taller.is_taller_than(&luke.name).await.unwrap();
     assert_eq!(
-        YodaTallerResult {
+        YodaTallerOutcome {
             person: luke.name,
             taller: false
         },
@@ -32,7 +32,7 @@ async fn yoda_is_not_taller_than_himself() {
     app.swapi_server.mock_people_query(&yoda.name, body).await;
     let is_yoda_taller = app.yoda_taller.is_taller_than(&yoda.name).await.unwrap();
     assert_eq!(
-        YodaTallerResult {
+        YodaTallerOutcome {
             person: yoda.name,
             taller: false
         },
@@ -48,7 +48,7 @@ async fn yoda_is_taller_than_yaddle() {
     app.swapi_server.mock_people_query(&yaddle.name, body).await;
     let is_yoda_taller = app.yoda_taller.is_taller_than(&yaddle.name).await.unwrap();
     assert_eq!(
-        YodaTallerResult {
+        YodaTallerOutcome {
             person: yaddle.name,
             taller: true
         },

@@ -10,7 +10,7 @@ use {
     reqwest::StatusCode,
     workshop::{
         server::routes::{ErrorBody, YodaTallerResponse},
-        YodaTallerResult,
+        YodaTallerOutcome,
     },
 };
 
@@ -40,7 +40,7 @@ async fn yoda_is_not_taller_than_luke() {
     assert_eq!(
         YodaTallerResponse {
             query: luke.name.clone(),
-            result: YodaTallerResult {
+            result: YodaTallerOutcome {
                 person: luke.name,
                 taller: false
             }
@@ -65,7 +65,7 @@ async fn yoda_is_not_taller_than_himself() {
     assert_eq!(
         YodaTallerResponse {
             query: yoda.name.clone(),
-            result: YodaTallerResult {
+            result: YodaTallerOutcome {
                 person: yoda.name,
                 taller: false
             }

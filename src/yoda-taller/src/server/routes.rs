@@ -1,5 +1,5 @@
 use {
-    crate::{YodaTaller, YodaTallerError, YodaTallerResult},
+    crate::{YodaTaller, YodaTallerError, YodaTallerOutcome},
     axum::{extract::Path, http::StatusCode, response::IntoResponse, Extension, Json},
     serde::Serialize,
     std::sync::Arc,
@@ -17,7 +17,7 @@ pub struct YodaTallerResponse {
     pub query: String,
     /// Query result.
     #[serde(flatten)]
-    pub result: YodaTallerResult,
+    pub result: YodaTallerOutcome,
 }
 
 #[derive(Debug)]

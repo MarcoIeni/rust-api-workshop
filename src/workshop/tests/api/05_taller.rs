@@ -6,7 +6,7 @@
 
 use {
     crate::helpers::{people, swapi_mock::person_query_result, test_app::TestApp},
-    workshop::YodaTallerResult,
+    workshop::YodaTallerOutcome,
 };
 
 #[tokio::test]
@@ -22,7 +22,7 @@ async fn yoda_is_not_taller_than_luke() {
     // as an error and to unwrap in your code.
     let is_yoda_taller = app.yoda_taller.is_taller_than(&luke.name).await.unwrap();
     assert_eq!(
-        YodaTallerResult {
+        YodaTallerOutcome {
             person: luke.name,
             taller: false
         },
@@ -41,10 +41,10 @@ async fn yoda_is_not_taller_than_himself() {
     let yoda = people::yoda();
     let body = person_query_result(&yoda);
     app.swapi_server.mock_people_query(&yoda.name, body).await;
-    let is_yoda_taller: YodaTallerResult =
+    let is_yoda_taller: YodaTallerOutcome =
         app.yoda_taller.is_taller_than(&yoda.name).await.unwrap();
     assert_eq!(
-        YodaTallerResult {
+        YodaTallerOutcome {
             person: yoda.name,
             taller: false
         },
@@ -65,7 +65,7 @@ async fn yoda_is_taller_than_yaddle() {
     app.swapi_server.mock_people_query(&yaddle.name, body).await;
     let is_yoda_taller = app.yoda_taller.is_taller_than(&yaddle.name).await.unwrap();
     assert_eq!(
-        YodaTallerResult {
+        YodaTallerOutcome {
             person: yaddle.name,
             taller: true
         },
