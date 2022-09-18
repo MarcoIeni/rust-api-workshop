@@ -2,6 +2,7 @@ use {
     crate::helpers::{
         people,
         swapi_mock::{empty_query_result, person_query_result},
+        test_app::TestApp,
     },
     reqwest::StatusCode,
     std::time::Duration,
@@ -10,8 +11,6 @@ use {
         YodaTallerResult,
     },
 };
-
-use crate::helpers::test_app::TestApp;
 
 #[tokio::test]
 async fn yoda_is_not_taller_than_luke() {
