@@ -10,8 +10,7 @@
 
 // Create the `helpers` module, by adding the `helpers` folder and
 // adding it to the `src/workshop/tests/api/main.rs` file.
-use crate::helpers::people;
-use workshop::swapi::Person;
+use {crate::helpers::people, workshop::swapi::Person};
 
 /// We are going to use the Luke's example many times.
 /// Let's save data of people we are going to use in an helper module.
