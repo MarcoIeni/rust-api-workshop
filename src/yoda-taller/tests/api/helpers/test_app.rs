@@ -5,7 +5,7 @@ use {
         server::startup::Application,
         settings::{ApplicationSettings, Settings, SwapiSettings},
         swapi::SwapiClient,
-        YodaTaller,
+        taller::YodaTaller,
     },
 };
 

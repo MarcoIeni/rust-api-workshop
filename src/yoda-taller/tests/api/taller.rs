@@ -5,7 +5,7 @@ use {
         test_app::{TestApp, SWAPI_TIMEOUT},
     },
     std::time::Duration,
-    yoda_taller::{YodaTallerError, YodaTallerOutcome},
+    yoda_taller::taller::{YodaTallerError, YodaTallerOutcome},
 };
 
 #[tokio::test]

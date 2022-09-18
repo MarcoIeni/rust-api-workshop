@@ -1,4 +1,4 @@
-use {crate::YodaTaller, anyhow::Context, std::time::Duration};
+use {crate::taller::YodaTaller, anyhow::Context, std::time::Duration};
 
 #[cfg(feature = "test_fixture")]
 use crate::swapi::SwapiClient;

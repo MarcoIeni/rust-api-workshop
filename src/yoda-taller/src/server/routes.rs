@@ -1,5 +1,5 @@
 use {
-    crate::{YodaTaller, YodaTallerError, YodaTallerOutcome},
+    crate::taller::{YodaTaller, YodaTallerError, YodaTallerOutcome},
     axum::{extract::Path, http::StatusCode, response::IntoResponse, Extension, Json},
     serde::Serialize,
     std::sync::Arc,

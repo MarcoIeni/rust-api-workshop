@@ -8,7 +8,7 @@ use {
     std::time::Duration,
     yoda_taller::{
         server::routes::{ErrorBody, YodaTallerResponse},
-        YodaTallerOutcome,
+        taller::YodaTallerOutcome,
     },
 };
 
