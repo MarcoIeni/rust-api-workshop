@@ -1,3 +1,7 @@
+//! Let's clean tests up!
+//!
+//! 💡 Remember: first make all the tests compile, than work on the implementation
+//! by making the test pass one by one.
 use {
     crate::helpers::{
         people,
@@ -34,7 +38,7 @@ async fn luke_is_tall() {
     assert_eq!(people, vec![luke]);
 }
 
-// Spock isn't a Star Wars character.
+// Let's also clean the test with Spock.
 #[tokio::test]
 async fn spock_is_not_found() {
     let swapi_server = SwapiMock::start().await;
@@ -49,4 +53,21 @@ async fn spock_is_not_found() {
     let swapi_client = SwapiClient::new(base_url, timeout).unwrap();
     let people = swapi_client.people_by_name(name).await.unwrap();
     assert!(people.is_empty());
+}
+
+#[tokio::test]
+async fn swapi_client_returns_timeout_error_if_timeout() {
+    let swapi_server = SwapiMock::start().await;
+    let luke = people::luke();
+    let response_body = person_query_result(&luke);
+    let timeout = Duration::from_secs(1);
+    let delay = timeout + Duration::from_secs(1);
+    swapi_server
+        .mock_people_query_with_delay(&luke.name, response_body, delay)
+        .await;
+
+    let base_url = swapi_server.uri();
+    let swapi_client = SwapiClient::new(base_url, timeout).unwrap();
+    let err = swapi_client.people_by_name(&luke.name).await.unwrap_err();
+    assert!(err.is_timeout());
 }
