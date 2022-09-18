@@ -3,7 +3,9 @@
 //! so we can comment the module `swapi` in the `src/workshop/tests/api/main.rs`
 //! file and stop the swapi docker image.
 //!
-//! Anyway, our tests contain a lot of setup code.
+//! Now, before implementing the next feature, let's look once again
+//! at the file `03_swapi_mock.rs`.
+//! As you can see, those tests contain a lot of setup code.
 //! Let's clean it up before it becomes too messy!
 
 use crate::helpers::swapi_mock::{empty_query_result, person_query_result};
