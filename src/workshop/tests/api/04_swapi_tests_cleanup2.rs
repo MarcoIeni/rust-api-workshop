@@ -44,7 +44,7 @@ async fn spock_is_not_found() {
     let swapi_server = SwapiMock::start().await;
     // The `empty_query_result` function generates the body of the response
     // you get when you query with a person that doesn't exist.
-    let response_body = empty_query_result();
+    let response_body: serde_json::Value = empty_query_result();
     let name = "Spock";
     swapi_server.mock_people_query(name, response_body).await;
 
