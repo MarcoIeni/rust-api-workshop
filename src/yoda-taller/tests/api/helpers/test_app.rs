@@ -1,5 +1,6 @@
 use {
     super::{swapi_mock::SwapiMock, test_traces::init_test_traces},
+    std::time::Duration,
     yoda_taller::{
         server::startup::Application,
         settings::{ApplicationSettings, Settings, SwapiSettings},
@@ -8,13 +9,14 @@ use {
     },
 };
 
+pub const SWAPI_TIMEOUT: Duration = Duration::from_secs(2);
+
 pub struct TestApp {
     pub port: u16,
     pub swapi_client: SwapiClient,
     pub yoda_taller: YodaTaller,
     pub swapi_server: SwapiMock,
     pub api_client: reqwest::Client,
-    pub settings: Settings,
 }
 
 impl TestApp {
@@ -31,7 +33,7 @@ impl TestApp {
         };
         let yoda_taller = settings.swapi.yoda_taller().unwrap();
         let swapi_client = settings.swapi.swapi_client().unwrap();
-        let application_bind = Application::bind(settings.clone()).unwrap();
+        let application_bind = Application::bind(settings).unwrap();
         let port = application_bind.tcp_listener().local_addr().unwrap().port();
 
         let _app = tokio::spawn(application_bind.run());
@@ -43,7 +45,6 @@ impl TestApp {
             swapi_server,
             api_client,
             port,
-            settings,
         }
     }
 

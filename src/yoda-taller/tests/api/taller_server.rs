@@ -2,7 +2,7 @@ use {
     crate::helpers::{
         people,
         swapi_mock::{empty_query_result, person_query_result},
-        test_app::TestApp,
+        test_app::{TestApp, SWAPI_TIMEOUT},
     },
     reqwest::StatusCode,
     std::time::Duration,
@@ -133,7 +133,7 @@ async fn return_500_if_timeout() {
     let luke = people::luke();
     let query_body = person_query_result(&luke);
 
-    let delay = app.settings.swapi.timeout() + Duration::from_secs(1);
+    let delay = SWAPI_TIMEOUT + Duration::from_secs(1);
     app.swapi_server
         .mock_people_query_with_delay(&luke.name, query_body, delay)
         .await;
