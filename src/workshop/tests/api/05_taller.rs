@@ -16,7 +16,7 @@ async fn yoda_is_not_taller_than_luke() {
     let body = person_query_result(&luke);
     app.swapi_server.mock_people_query(&luke.name, body).await;
     // Create a new field called `yoda_taller` in the `TestApp`.
-    // This field can be of type `YodaTaller`, which can be initialized
+    // This field is of a new type `YodaTaller`, which can be initialized
     // with a `new` function, in the same way as `SwapiClient`.
     // In this exercise we only care about the happy case, so it's fine to return `reqwest::Error`
     // as an error and to unwrap in your code.
