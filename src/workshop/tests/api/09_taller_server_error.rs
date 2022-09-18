@@ -1,16 +1,18 @@
 //! When stars are aligned, our server works!
 //! However, what happens when something is wrong?
 
-use std::time::Duration;
-
-use crate::helpers::{
-    people,
-    swapi_mock::{empty_query_result, person_query_result},
-};
-use reqwest::StatusCode;
-use yoda_taller::{
-    server::routes::{ErrorBody, YodaTallerResponse},
-    YodaTallerResult,
+use {
+    crate::helpers::{
+        people,
+        swapi_mock::{empty_query_result, person_query_result},
+        test_app::TestApp,
+    },
+    reqwest::StatusCode,
+    std::time::Duration,
+    workshop::{
+        server::routes::{ErrorBody, YodaTallerResponse},
+        YodaTallerResult,
+    },
 };
 
 /// Spock is not part of the Swapi database.
