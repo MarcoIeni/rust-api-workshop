@@ -18,6 +18,9 @@
 // #[path = "04_swapi_tests_cleanup2.rs"]
 // mod swapi_tests_cleanup2;
 
+// #[path = "04_swapi_tests_cleanup3.rs"]
+// mod swapi_tests_cleanup3;
+
 // #[path = "05_taller.rs"]
 // mod taller;
 
