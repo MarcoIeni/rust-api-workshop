@@ -9,6 +9,7 @@
 use crate::helpers::swapi_mock::{empty_query_result, person_query_result};
 use crate::helpers::{people, TestApp};
 use std::time::Duration;
+use workshop::swapi::Person;
 
 /// We are going to use the Luke's example many times.
 /// Let's save data of people we are going to use in an helper module.
