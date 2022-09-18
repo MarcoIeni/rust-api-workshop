@@ -1,19 +1,18 @@
 //! We have written the first endpoint of our server!
 //! Now let's write the `/taller/` endpoint.
 
-use std::time::Duration;
-
-use crate::helpers::{
-    people,
-    swapi_mock::{empty_query_result, person_query_result},
+use {
+    crate::helpers::{
+        people,
+        swapi_mock::{empty_query_result, person_query_result},
+        test_app::TestApp,
+    },
+    reqwest::StatusCode,
+    workshop::{
+        server::routes::{ErrorBody, YodaTallerResponse},
+        YodaTallerResult,
+    },
 };
-use reqwest::StatusCode;
-use yoda_taller::{
-    server::routes::{ErrorBody, YodaTallerResponse},
-    YodaTallerResult,
-};
-
-use crate::helpers::test_app::TestApp;
 
 /// As usual, let's start with the happy case.
 /// Let's ask our sever if Yoda is taller than Luke.
