@@ -9,7 +9,7 @@ use {
     },
 };
 
-pub const SWAPI_TIMEOUT: Duration = Duration::from_secs(2);
+pub const SWAPI_TIMEOUT: Duration = Duration::from_secs(5);
 
 pub struct TestApp {
     pub port: u16,
@@ -28,7 +28,7 @@ impl TestApp {
             application: ApplicationSettings { port: 0 },
             swapi: SwapiSettings {
                 base_url: swapi_server.uri(),
-                timeout_milliseconds: 5000,
+                timeout_milliseconds: SWAPI_TIMEOUT.as_millis().try_into().unwrap(),
             },
         };
         let yoda_taller = settings.swapi.yoda_taller().unwrap();
