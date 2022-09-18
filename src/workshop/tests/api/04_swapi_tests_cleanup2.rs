@@ -1,6 +1,11 @@
-use crate::helpers::swapi_mock::{empty_query_result, person_query_result};
-use crate::helpers::{people, test_app::TestApp};
-use std::time::Duration;
+use {
+    crate::helpers::{
+        people,
+        swapi_mock::{empty_query_result, person_query_result},
+        test_app::TestApp,
+    },
+    std::time::Duration,
+};
 
 /// Let's rewrite the basic test where we retrieve Luke's height.
 /// This time by extracting some duplicate code from the test.
