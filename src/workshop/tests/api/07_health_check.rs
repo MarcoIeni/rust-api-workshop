@@ -7,7 +7,7 @@
 //! However, our job is not done yet!
 //! We want to expose this information to our user via an HTTP API.
 
-use crate::helpers::TestApp;
+use crate::helpers::test_app::TestApp;
 
 /// Let's start by creating a single HTTP server that exposes a single endpoint:
 /// `/health_check`, which simply returns a 200.

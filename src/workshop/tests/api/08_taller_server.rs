@@ -13,7 +13,7 @@ use yoda_taller::{
     YodaTallerResult,
 };
 
-use crate::helpers::TestApp;
+use crate::helpers::test_app::TestApp;
 
 /// As usual, let's start with the happy case.
 /// Let's ask our sever if Yoda is taller than Luke.

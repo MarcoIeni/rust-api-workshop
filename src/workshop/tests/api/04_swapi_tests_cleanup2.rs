@@ -1,5 +1,5 @@
 use crate::helpers::swapi_mock::{empty_query_result, person_query_result};
-use crate::helpers::{people, TestApp};
+use crate::helpers::{people, test_app::TestApp};
 use std::time::Duration;
 
 /// Let's rewrite the basic test where we retrieve Luke's height.
