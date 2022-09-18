@@ -3,11 +3,7 @@ pub mod settings;
 pub mod swapi;
 pub mod traces;
 
-use std::time::Duration;
-
-use tracing::instrument;
-
-use crate::swapi::SwapiClient;
+use {crate::swapi::SwapiClient, std::time::Duration, tracing::instrument};
 
 pub struct YodaTaller {
     swapi_client: SwapiClient,

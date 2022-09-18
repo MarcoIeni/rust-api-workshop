@@ -1,7 +1,9 @@
-use tracing::{subscriber::set_global_default, Subscriber};
-use tracing_bunyan_formatter::{BunyanFormattingLayer, JsonStorageLayer};
-use tracing_log::LogTracer;
-use tracing_subscriber::{layer::SubscriberExt, EnvFilter, Registry};
+use {
+    tracing::{subscriber::set_global_default, Subscriber},
+    tracing_bunyan_formatter::{BunyanFormattingLayer, JsonStorageLayer},
+    tracing_log::LogTracer,
+    tracing_subscriber::{layer::SubscriberExt, EnvFilter, Registry},
+};
 
 pub fn get_subscriber(env_filter: &str) -> anyhow::Result<impl Subscriber + Sync + Send> {
     let service_name = "yoda-taller";

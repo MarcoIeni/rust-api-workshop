@@ -1,11 +1,8 @@
 //! Client to call the swapi API.
 
-use std::time::Duration;
-
-use anyhow::Context;
-use reqwest::Client;
-use serde::Deserialize;
-use tracing::instrument;
+use {
+    anyhow::Context, reqwest::Client, serde::Deserialize, std::time::Duration, tracing::instrument,
+};
 
 #[derive(Debug, PartialEq, Eq, Deserialize)]
 pub struct Query {

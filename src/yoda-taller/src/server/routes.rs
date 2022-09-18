@@ -1,10 +1,10 @@
-use std::sync::Arc;
-
-use axum::{extract::Path, http::StatusCode, response::IntoResponse, Extension, Json};
-use serde::Serialize;
-use tracing::{error, warn};
-
-use crate::{YodaTaller, YodaTallerError, YodaTallerResult};
+use {
+    crate::{YodaTaller, YodaTallerError, YodaTallerResult},
+    axum::{extract::Path, http::StatusCode, response::IntoResponse, Extension, Json},
+    serde::Serialize,
+    std::sync::Arc,
+    tracing::{error, warn},
+};
 
 pub async fn health_check() {}
 

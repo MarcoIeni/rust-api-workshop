@@ -1,16 +1,15 @@
-use std::{
-    io,
-    net::{SocketAddr, TcpListener},
-    sync::Arc,
+use {
+    super::shutdown::shutdown_handler,
+    crate::{server::routes, settings::Settings},
+    anyhow::Context,
+    axum::{routing::get, Extension, Router},
+    axum_tracing_opentelemetry::opentelemetry_tracing_layer,
+    std::{
+        io,
+        net::{SocketAddr, TcpListener},
+        sync::Arc,
+    },
 };
-
-use anyhow::Context;
-use axum::{routing::get, Extension, Router};
-use axum_tracing_opentelemetry::opentelemetry_tracing_layer;
-
-use crate::{server::routes, settings::Settings};
-
-use super::shutdown::shutdown_handler;
 
 pub struct Application {
     tcp_listener: TcpListener,
