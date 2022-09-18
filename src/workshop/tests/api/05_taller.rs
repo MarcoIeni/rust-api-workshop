@@ -3,12 +3,14 @@
 //! of the character with the height of Yoda.
 //! Create a new module called `YodaTaller` to compare the heights.
 
-use std::time::Duration;
-
-use crate::helpers::swapi_mock::{empty_query_result, person_query_result};
-use yoda_taller::YodaTallerResult;
-
-use crate::helpers::{people, test_app::TestApp};
+use {
+    crate::helpers::{
+        people,
+        swapi_mock::{empty_query_result, person_query_result},
+        test_app::TestApp,
+    },
+    workshop::YodaTallerResult,
+};
 
 #[tokio::test]
 async fn yoda_is_not_taller_than_luke() {
@@ -41,7 +43,8 @@ async fn yoda_is_not_taller_than_himself() {
     let yoda = people::yoda();
     let body = person_query_result(&yoda);
     app.swapi_server.mock_people_query(&yoda.name, body).await;
-    let is_yoda_taller: YodaTallerResult = app.yoda_taller.is_taller_than(&yoda.name).await.unwrap();
+    let is_yoda_taller: YodaTallerResult =
+        app.yoda_taller.is_taller_than(&yoda.name).await.unwrap();
     assert_eq!(
         YodaTallerResult {
             person: yoda.name,
