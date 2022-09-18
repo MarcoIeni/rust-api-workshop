@@ -62,7 +62,7 @@ async fn spock_is_not_found_from_swapi_mock() {
 ///
 /// Use wiremock to simulate a delay from Swapi.
 ///
-/// 💡 Have a look at [ResponseTemplate](https://docs.rs/wiremock/0.5.14/wiremock/struct.ResponseTemplate.html)
+/// 💡 Have a look at [ResponseTemplate](https://docs.rs/wiremock/0.5.14/wiremock/struct.ResponseTemplate.html#method.set_delay)
 #[tokio::test]
 async fn swapi_client_returns_timeout_error_if_timeout() {
     let luke = Person {
@@ -74,7 +74,8 @@ async fn swapi_client_returns_timeout_error_if_timeout() {
     todo!();
 
     let base_url = todo!();
-    // You can ignore the timeout for this exercise.
+    // For this test to pass, you need to edit the `SwapiClient` to
+    // take into account this timeout.
     let timeout = Duration::from_secs(2);
     let swapi_client = SwapiClient::new(base_url, timeout);
     let err: reqwest::Error = swapi_client.people_by_name(&luke.name).await.unwrap_err();
