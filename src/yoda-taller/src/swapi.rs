@@ -2,6 +2,7 @@
 
 use std::time::Duration;
 
+use anyhow::Context;
 use reqwest::Client;
 use serde::Deserialize;
 use tracing::instrument;
@@ -23,12 +24,15 @@ pub struct SwapiClient {
 }
 
 impl SwapiClient {
-    pub fn new(base_url: String, timeout: Duration) -> Self {
-        let http_client = Client::builder().timeout(timeout).build().unwrap();
-        Self {
+    pub fn new(base_url: String, timeout: Duration) -> anyhow::Result<Self> {
+        let http_client = Client::builder()
+            .timeout(timeout)
+            .build()
+            .context("can't build http client")?;
+        Ok(Self {
             http_client,
             base_url,
-        }
+        })
     }
 
     #[instrument(skip(self))]

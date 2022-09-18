@@ -37,10 +37,9 @@ pub enum YodaTallerError {
 }
 
 impl YodaTaller {
-    pub fn new(swapi_base_url: String, swapi_timeout: Duration) -> Self {
-        Self {
-            swapi_client: SwapiClient::new(swapi_base_url, swapi_timeout),
-        }
+    pub fn new(swapi_base_url: String, swapi_timeout: Duration) -> anyhow::Result<Self> {
+        let swapi_client = SwapiClient::new(swapi_base_url, swapi_timeout)?;
+        Ok(Self { swapi_client })
     }
 
     /// Is Yoda taller than the person with the given name?

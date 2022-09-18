@@ -29,12 +29,12 @@ impl SwapiSettings {
         Duration::from_millis(self.timeout_milliseconds)
     }
 
-    pub fn yoda_taller(&self) -> YodaTaller {
+    pub fn yoda_taller(&self) -> anyhow::Result<YodaTaller> {
         YodaTaller::new(self.base_url.clone(), self.timeout())
     }
 
     #[cfg(feature = "test_fixture")]
-    pub fn swapi_client(&self) -> SwapiClient {
+    pub fn swapi_client(&self) -> anyhow::Result<SwapiClient> {
         SwapiClient::new(self.base_url.clone(), self.timeout())
     }
 }

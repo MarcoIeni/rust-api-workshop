@@ -33,8 +33,8 @@ impl TestApp {
                 timeout_milliseconds: 5000,
             },
         };
-        let yoda_taller = settings.swapi.yoda_taller();
-        let swapi_client = settings.swapi.swapi_client();
+        let yoda_taller = settings.swapi.yoda_taller().unwrap();
+        let swapi_client = settings.swapi.swapi_client().unwrap();
         let application_bind = Application::bind(settings.clone()).unwrap();
         let port = application_bind.tcp_listener().local_addr().unwrap().port();
 
