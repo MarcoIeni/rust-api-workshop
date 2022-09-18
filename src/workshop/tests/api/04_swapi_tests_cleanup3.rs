@@ -1,3 +1,10 @@
+//! We now have `SwapiMock`, a struct which exposes convenient methods
+//! to mock the Swapi API.
+//! However, tests have still some duplication, such as the setup of
+//! `SwapiMock` and a `SwapiClient`.
+//!
+//! Let's do one last iteration and create a new struct `TestApp` that
+//! initializes both `SwapiMock` and `SwapiClient`
 use {
     crate::helpers::{
         people,
