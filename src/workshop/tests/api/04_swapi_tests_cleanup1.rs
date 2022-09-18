@@ -8,7 +8,8 @@
 //! As you can see, those tests contain a lot of setup code.
 //! Let's clean it up before it becomes too messy!
 
-// Create the `helpers` module
+// Create the `helpers` module, by adding the `helpers` folder and
+// adding it to the `src/workshop/tests/api/main.rs` file.
 use crate::helpers::people;
 use workshop::swapi::Person;
 
