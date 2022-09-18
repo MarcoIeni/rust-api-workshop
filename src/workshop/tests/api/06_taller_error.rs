@@ -1,7 +1,13 @@
 //! The happy case is done!
 //! Now let's think about what could go wrong: how do we handle errors?
 
-use crate::helpers::swapi_mock::{empty_query_result, person_query_result};
+use {
+    crate::helpers::{
+        people,
+        swapi_mock::{empty_query_result, person_query_result},
+        test_app::TestApp,
+    },
+};
 
 /// What happens when the user looks for a person that doesn't exist?
 /// Our server should return a 404 HTTP status code with an helpful message.
