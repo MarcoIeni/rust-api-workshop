@@ -3,7 +3,7 @@ use crate::helpers::{people, TestApp};
 use std::time::Duration;
 
 /// Let's rewrite the basic test where we retrieve Luke's height.
-/// This time by extracting the logic away.
+/// This time by extracting some duplicate code from the test.
 #[tokio::test]
 async fn luke_is_tall() {
     // The `spawn` function is used to initialize the `SwapiClient` and start the mock.
