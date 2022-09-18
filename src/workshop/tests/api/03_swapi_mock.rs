@@ -29,7 +29,7 @@ async fn retrieve_luke_height_from_swapi_mock() {
     let base_url = todo!();
     // You can ignore the timeout for this exercise.
     let timeout = Duration::from_secs(2);
-    let swapi_client = SwapiClient::new(base_url, timeout);
+    let swapi_client = SwapiClient::new(base_url, timeout).unwrap();
     let people: Vec<Person> = swapi_client.people_by_name(&luke.name).await.unwrap();
     assert_eq!(people, vec![luke])
 }
