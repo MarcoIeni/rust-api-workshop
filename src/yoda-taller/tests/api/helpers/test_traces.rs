@@ -1,5 +1,7 @@
-use once_cell::sync::Lazy;
-use yoda_taller::traces::{get_subscriber, init_subscriber};
+use {
+    once_cell::sync::Lazy,
+    yoda_taller::traces::{get_subscriber, init_subscriber},
+};
 
 pub fn init_test_traces() {
     // Initialize logs only once

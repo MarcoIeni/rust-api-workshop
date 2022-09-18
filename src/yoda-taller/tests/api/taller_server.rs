@@ -1,13 +1,14 @@
-use std::time::Duration;
-
-use crate::helpers::{
-    people,
-    swapi_mock::{empty_query_result, person_query_result},
-};
-use reqwest::StatusCode;
-use yoda_taller::{
-    server::routes::{ErrorBody, YodaTallerResponse},
-    YodaTallerResult,
+use {
+    crate::helpers::{
+        people,
+        swapi_mock::{empty_query_result, person_query_result},
+    },
+    reqwest::StatusCode,
+    std::time::Duration,
+    yoda_taller::{
+        server::routes::{ErrorBody, YodaTallerResponse},
+        YodaTallerResult,
+    },
 };
 
 use crate::helpers::test_app::TestApp;

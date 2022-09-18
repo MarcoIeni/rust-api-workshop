@@ -1,10 +1,11 @@
-use std::{ops::Deref, time::Duration};
-
-use wiremock::{
-    matchers::{method, path, query_param},
-    Mock, MockServer, ResponseTemplate,
+use {
+    std::{ops::Deref, time::Duration},
+    wiremock::{
+        matchers::{method, path, query_param},
+        Mock, MockServer, ResponseTemplate,
+    },
+    yoda_taller::swapi::Person,
 };
-use yoda_taller::swapi::Person;
 
 pub struct SwapiMock {
     server: MockServer,

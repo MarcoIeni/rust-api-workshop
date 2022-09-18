@@ -1,10 +1,11 @@
-use super::swapi_mock::SwapiMock;
-use super::test_traces::init_test_traces;
-use yoda_taller::{
-    server::startup::Application,
-    settings::{ApplicationSettings, Settings, SwapiSettings},
-    swapi::SwapiClient,
-    YodaTaller,
+use {
+    super::{swapi_mock::SwapiMock, test_traces::init_test_traces},
+    yoda_taller::{
+        server::startup::Application,
+        settings::{ApplicationSettings, Settings, SwapiSettings},
+        swapi::SwapiClient,
+        YodaTaller,
+    },
 };
 
 pub struct TestApp {

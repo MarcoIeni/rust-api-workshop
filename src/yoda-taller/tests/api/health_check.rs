@@ -1,6 +1,4 @@
-use reqwest::StatusCode;
-
-use crate::helpers::test_app::TestApp;
+use {crate::helpers::test_app::TestApp, reqwest::StatusCode};
 
 #[tokio::test]
 async fn health_check_works() {
