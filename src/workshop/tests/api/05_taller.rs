@@ -18,8 +18,9 @@ async fn yoda_is_not_taller_than_luke() {
     // Create a new field called `yoda_taller` in the `TestApp`.
     // This field is of a new type `YodaTaller`, which can be initialized
     // with a `new` function, in the same way as `SwapiClient`.
-    // In this exercise we only care about the happy case, so it's fine to return `reqwest::Error`
-    // as an error and to unwrap in your code.
+    // In this exercise, we only care about the happy case, so it's fine if
+    // the function `is_taller_than` returns `reqwest::Error`
+    // as an error and uses `unwrap` in the code.
     let is_yoda_taller: YodaTallerOutcome =
         app.yoda_taller.is_taller_than(&luke.name).await.unwrap();
     assert_eq!(
