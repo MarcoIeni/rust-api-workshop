@@ -11,12 +11,6 @@ pub struct SwapiMock {
     server: MockServer,
 }
 
-impl AsRef<MockServer> for SwapiMock {
-    fn as_ref(&self) -> &MockServer {
-        &self.server
-    }
-}
-
 impl Deref for SwapiMock {
     type Target = MockServer;
 
