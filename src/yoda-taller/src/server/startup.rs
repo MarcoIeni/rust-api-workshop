@@ -29,7 +29,7 @@ impl Application {
 
     pub async fn run(self) -> anyhow::Result<()> {
         let yoda_taller = {
-            let yoda_taller = self.settings.swapi.yoda_taller();
+            let yoda_taller = self.settings.swapi.yoda_taller()?;
             Arc::new(yoda_taller)
         };
         // build our application with a single route
