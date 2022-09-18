@@ -51,7 +51,7 @@ async fn spock_is_not_found_from_swapi_mock() {
 
     // You can ignore the timeout for this exercise.
     let timeout = Duration::from_secs(2);
-    let swapi_client = SwapiClient::new(base_url, timeout);
+    let swapi_client = SwapiClient::new(base_url, timeout).unwrap();
     let people: Vec<Person> = swapi_client.people_by_name("Spock").await.unwrap();
     assert!(people.is_empty());
 }
@@ -79,7 +79,7 @@ async fn swapi_client_returns_timeout_error_if_timeout() {
     // For this test to pass, you need to edit the `SwapiClient` to
     // take into account this timeout.
     let timeout = Duration::from_secs(2);
-    let swapi_client = SwapiClient::new(base_url, timeout);
+    let swapi_client = SwapiClient::new(base_url, timeout).unwrap();
     let err: reqwest::Error = swapi_client.people_by_name(&luke.name).await.unwrap_err();
     assert!(err.is_timeout());
 }

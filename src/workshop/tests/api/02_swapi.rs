@@ -27,7 +27,7 @@ async fn retrieve_luke_height_from_swapi() {
     let base_url = "http://127.0.0.1:9992";
     // You can ignore the timeout for this exercise.
     let timeout = Duration::from_secs(2);
-    let swapi_client = SwapiClient::new(base_url.to_string(), timeout);
+    let swapi_client = SwapiClient::new(base_url.to_string(), timeout).unwrap();
     let luke = Person {
         name: "Luke Skywalker".to_string(),
         height: "172".to_string(),
@@ -43,7 +43,7 @@ async fn spock_is_not_found() {
     let base_url = "http://127.0.0.1:9992";
     // You can ignore the timeout for this exercise.
     let timeout = Duration::from_secs(2);
-    let swapi_client = SwapiClient::new(base_url.to_string(), timeout);
+    let swapi_client = SwapiClient::new(base_url.to_string(), timeout).unwrap();
     let people: Vec<Person> = swapi_client.people_by_name("Spock").await.unwrap();
     assert!(people.is_empty());
 }
