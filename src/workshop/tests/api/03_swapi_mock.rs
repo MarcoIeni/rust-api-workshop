@@ -71,14 +71,14 @@ async fn swapi_client_returns_timeout_error_if_timeout() {
         name: "Luke Skywalker".to_string(),
         height: "172".to_string(),
     };
+    // For this test to pass, you need to edit the `SwapiClient` to
+    // take into account this timeout.
+    let timeout = Duration::from_secs(2);
 
     // Start a `MockServer` and mock the GET request you do in the `SwapiClient`.
     todo!();
 
     let base_url = todo!();
-    // For this test to pass, you need to edit the `SwapiClient` to
-    // take into account this timeout.
-    let timeout = Duration::from_secs(2);
     let swapi_client = SwapiClient::new(base_url, timeout).unwrap();
     let err: reqwest::Error = swapi_client.people_by_name(&luke.name).await.unwrap_err();
     assert!(err.is_timeout());
