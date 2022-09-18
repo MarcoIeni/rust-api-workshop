@@ -1,14 +1,11 @@
 //! We have a `SwapiClient` to retrieve the height from Swapi.
 //! However, our original goal was to compare the height
 //! of the character with the height of Yoda.
+//!
 //! Create a new module called `YodaTaller` to compare the heights.
 
 use {
-    crate::helpers::{
-        people,
-        swapi_mock::{empty_query_result, person_query_result},
-        test_app::TestApp,
-    },
+    crate::helpers::{people, swapi_mock::person_query_result, test_app::TestApp},
     workshop::YodaTallerResult,
 };
 
@@ -36,6 +33,7 @@ async fn yoda_is_not_taller_than_luke() {
 #[tokio::test]
 async fn yoda_is_not_taller_than_himself() {
     let app = TestApp::spawn().await;
+    // Create the function `yoda`, which returns this `Person`:
     // Person {
     //     name: "Yoda".to_string(),
     //     height: "66".to_string(),
@@ -57,6 +55,11 @@ async fn yoda_is_not_taller_than_himself() {
 #[tokio::test]
 async fn yoda_is_taller_than_yaddle() {
     let app = TestApp::spawn().await;
+    // Create the function `yaddle`, which returns this `Person`:
+    // Person {
+    //     name: "Yaddle".to_string(),
+    //     height: "61".to_string(),
+    // }
     let yaddle = people::yaddle();
     let body = person_query_result(&yaddle);
     app.swapi_server.mock_people_query(&yaddle.name, body).await;
