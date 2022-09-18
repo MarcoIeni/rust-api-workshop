@@ -6,9 +6,10 @@
 //! Let's practice writing a mock using the
 //! [wiremock](https://docs.rs/wiremock/) library!
 
-use std::time::Duration;
-
-use workshop::swapi::{Person, SwapiClient};
+use {
+    std::time::Duration,
+    workshop::swapi::{Person, SwapiClient},
+};
 
 /// 💡 This test should pass even if you stop the swapi container!
 #[tokio::test]
