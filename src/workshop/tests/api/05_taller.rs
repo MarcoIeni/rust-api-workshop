@@ -6,7 +6,7 @@
 
 use {
     crate::helpers::{people, swapi_mock::person_query_result, test_app::TestApp},
-    workshop::YodaTallerOutcome,
+    workshop::taller::YodaTallerOutcome,
 };
 
 #[tokio::test]
