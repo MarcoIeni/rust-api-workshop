@@ -40,10 +40,13 @@ async fn cannot_compare_yoda_and_non_existing_person() {
 #[tokio::test]
 async fn cannot_compare_yoda_and_person_with_invalid_height() {
     let app = TestApp::spawn().await;
+    // Create the function `arvel`, which returns this `Person`:
     // Person {
     //     name: "Arvel Crynyd".to_string(),
     //     height: "unknown".to_string(),
     // }
+    // As you can see, Arvel has an unknown height.
+    // As Luke and Yoda, This person is present in Swapi.
     let arvel = people::arvel();
     let body = person_query_result(&arvel);
     app.swapi_server.mock_people_query(&arvel.name, body).await;
