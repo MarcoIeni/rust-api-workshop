@@ -1,5 +1,5 @@
 //! Our crate is able to determine if Yoda is taller than a given person,
-//! by also dealing with corner cases.
+//! by also dealing with some corner cases.
 //!
 //! If we publish our crate as it is on crates.io, other developers
 //! could use it as a library in their projects!
@@ -9,8 +9,8 @@
 
 use {crate::helpers::test_app::TestApp, reqwest::StatusCode};
 
-/// Let's start by creating a single HTTP server that exposes a single endpoint:
-/// `/health_check`, which simply returns a 200.
+/// Let's start by creating an HTTP server that exposes a single endpoint:
+/// `/health_check`, which returns a 200 Status Code, without body.
 ///
 /// This kind of endpoint is often used to check if the application is healthy
 /// or if it needs to be restarted.
