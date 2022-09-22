@@ -5,15 +5,16 @@
 //! This kind of endpoint is often used to check if the application is healthy
 //! or if it needs to be restarted.
 
-use workshop::{
-    // - Create a `server` module as a folder.
-    // - Create the `server/startup.rs` file.
-    // - Declare the `startup` module in the `server/mod.rs` file.
-    server::startup::Application,
-    settings::{ApplicationSettings, Settings, SwapiSettings},
+use {
+    reqwest::StatusCode,
+    workshop::{
+        // - Create a `server` module as a folder.
+        // - Create the `server/startup.rs` file.
+        // - Declare the `startup` module in the `server/mod.rs` file.
+        server::startup::Application,
+        settings::{ApplicationSettings, Settings, SwapiSettings},
+    },
 };
-
-use reqwest::StatusCode;
 
 #[tokio::test]
 async fn health_check_works() {
