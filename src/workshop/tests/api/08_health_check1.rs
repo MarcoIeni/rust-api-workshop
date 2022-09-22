@@ -41,6 +41,8 @@ async fn health_check_works() {
     //
     // Also,create the function `tcp_listener()` to retrieve it.
     let port = application_bind.tcp_listener().local_addr().unwrap().port();
+    // Create the `Application::run` function to run an
+    // [axum](https://docs.rs/axum/0.5.16/axum/index.html) server.
     let _app = tokio::spawn(application_bind.run());
     let client = reqwest::Client::new();
 
