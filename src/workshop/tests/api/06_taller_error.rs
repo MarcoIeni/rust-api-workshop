@@ -22,11 +22,7 @@ use {
 /// Our server should return a 404 HTTP status code with an helpful message.
 /// Therefore the `is_taller_than` method should clearly distinguish this
 /// error case.
-/// We will use `YodaTallerError::PersonNotFound`.
-///
-/// ## Hint 💡
-/// Use the [thiserror](https://docs.rs/thiserror/) library to
-/// model the error.
+/// We will call this type of error `YodaTallerError::PersonNotFound`.
 #[tokio::test]
 async fn cannot_compare_yoda_and_non_existing_person() {
     let app = TestApp::spawn().await;
