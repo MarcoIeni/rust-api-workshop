@@ -4,7 +4,8 @@
 //!
 //! Create a new module called `YodaTaller` to compare the heights.
 //!
-//! 💡 In this exercise, we only care about the happy case, so it's fine if
+//! ## Hint 💡
+//! In this exercise, we only care about the happy case, so it's fine if
 //! the function `is_taller_than` returns `reqwest::Error`
 //! as an error and uses `unwrap` in the code.
 use {
