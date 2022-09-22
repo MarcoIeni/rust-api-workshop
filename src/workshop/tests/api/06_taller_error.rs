@@ -7,6 +7,8 @@ use {
         swapi_mock::{empty_query_result, person_query_result},
         test_app::{TestApp, SWAPI_TIMEOUT},
     },
+    std::time::Duration,
+    workshop::taller::YodaTallerError,
 };
 
 /// What happens when the user looks for a person that doesn't exist?
