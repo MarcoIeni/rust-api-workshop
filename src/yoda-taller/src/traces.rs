@@ -7,7 +7,7 @@ use {
 
 pub fn get_subscriber(env_filter: &str) -> anyhow::Result<impl Subscriber + Sync + Send> {
     let service_name = "yoda-taller";
-    let tracer = opentelemetry_jaeger::new_pipeline()
+    let tracer = opentelemetry_jaeger::new_agent_pipeline()
         .with_service_name(service_name)
         .install_batch(opentelemetry::runtime::Tokio)?;
 
