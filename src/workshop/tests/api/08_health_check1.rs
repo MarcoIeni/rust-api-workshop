@@ -33,6 +33,13 @@ async fn health_check_works() {
     // to bind to the address `0.0.0.0:port`.
     // The port needs to be read from the settings (in this case is 0).
     let application_bind = Application::bind(settings).unwrap();
+    // Save `tcp_lintener` returned from the `TcpListener::bind` method:
+    // pub struct Application {
+    //     tcp_listener: TcpListener,
+    //     pub settings: Settings,
+    // }
+    //
+    // Also,create the function `tcp_listener()` to retrieve it.
     let port = application_bind.tcp_listener().local_addr().unwrap().port();
     let _app = tokio::spawn(application_bind.run());
     let client = reqwest::Client::new();
