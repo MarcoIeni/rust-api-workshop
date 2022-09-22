@@ -1,5 +1,12 @@
 //! The happy case is done!
 //! Now let's think about what could go wrong: how do we handle errors?
+//!
+//! Change the `is_taller_than` function to return
+//! `Result<YodaTallerOutcome, YodaTallerError>`.
+//! `YodaTallerError` is an enum that derives `thiserror::Error`.
+//!
+//! ## Useful resources 📚
+//! - [thiserror](https://docs.rs/thiserror/1.0.35/thiserror/index.html)
 
 use {
     crate::helpers::{
