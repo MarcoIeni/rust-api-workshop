@@ -16,11 +16,9 @@ use {crate::helpers::test_app::TestApp, reqwest::StatusCode};
 /// or if it needs to be restarted.
 #[tokio::test]
 async fn health_check_works() {
-    // Arrange
     let app = TestApp::spawn().await;
     let client = reqwest::Client::new();
 
-    // Act
     let response = client
         // The `server_address` function returns the address of the application server.
         // You should run the server from the `TestApp`, by using a random port
@@ -30,7 +28,6 @@ async fn health_check_works() {
         .await
         .expect("Failed to execute request.");
 
-    // Assert
     assert_eq!(StatusCode::OK, response.status());
     // There's no body in the response.
     assert_eq!(Some(0), response.content_length());

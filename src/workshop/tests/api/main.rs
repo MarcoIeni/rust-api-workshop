@@ -27,11 +27,17 @@
 // #[path = "06_taller_error.rs"]
 // mod taller_error;
 
-// #[path = "07_health_check1.rs"]
+// #[path = "07_server_settings1.rs"]
+// mod server_settings1;
+
+// #[path = "07_server_settings2.rs"]
+// mod server_settings2;
+
+// #[path = "08_health_check1.rs"]
 // mod health_check1;
 
-// #[path = "07_server_settings.rs"]
-// mod server_settings;
+// #[path = "08_health_check2.rs"]
+// mod health_check2;
 
 // #[path = "08_taller_server.rs"]
 // mod taller_server;
