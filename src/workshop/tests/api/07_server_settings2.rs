@@ -1,3 +1,4 @@
+//! Let's use the settings to create our application!
 
 use workshop::{
     // - Create a `server` module as a folder.
@@ -7,27 +8,23 @@ use workshop::{
     settings::{ApplicationSettings, Settings, SwapiSettings},
 };
 
-use reqwest::StatusCode;
-
-/// Let's start by creating an HTTP server that exposes a single endpoint:
-/// `/health_check`, which returns a 200 Status Code, without body.
-///
-/// This kind of endpoint is often used to check if the application is healthy
-/// or if it needs to be restarted.
 #[tokio::test]
-async fn health_check_works() {
+async fn application_uses_passed_settings() {
     let settings = Settings {
-        // With port 0, the operating system chooses a random port
-        // among the free ones.
         application: ApplicationSettings { port: 0 },
-        // swapi settings are not important for this test
         swapi: SwapiSettings {
             base_url: "http://127.0.0.1:9992".to_string(),
             timeout_milliseconds: 2000,
         },
     };
 
-    // the `Application::bind` method calls the `TcpListener::bind`
-    let app = Application::bind(settings).unwrap();
-    assert_eq!(application.settings, settings);
+    // Create the `Application` type:
+    // pub struct Application {
+    //     pub settings: Settings,
+    // }
+    let app = Application::bind(settings.clone()).unwrap();
+    assert_eq!(app.settings, settings);
 }
+
+// For now the bind application only assigns the settings.
+// But don't worry. In the next test we will do the actual binding operation! 😎
