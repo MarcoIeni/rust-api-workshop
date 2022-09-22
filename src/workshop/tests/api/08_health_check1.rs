@@ -1,3 +1,9 @@
+//! Now, let's create our HTTP server!
+//! We will start by exposing just a single endpoint:
+//! `/health_check`, which returns a 200 Status Code, without body.
+//!
+//! This kind of endpoint is often used to check if the application is healthy
+//! or if it needs to be restarted.
 
 use workshop::{
     // - Create a `server` module as a folder.
@@ -9,11 +15,6 @@ use workshop::{
 
 use reqwest::StatusCode;
 
-/// Let's start by creating an HTTP server that exposes a single endpoint:
-/// `/health_check`, which returns a 200 Status Code, without body.
-///
-/// This kind of endpoint is often used to check if the application is healthy
-/// or if it needs to be restarted.
 #[tokio::test]
 async fn health_check_works() {
     let settings = Settings {
