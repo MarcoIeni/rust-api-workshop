@@ -1,11 +1,3 @@
-//! Our crate is able to determine if Yoda is taller than a given person,
-//! by also dealing with some corner cases.
-//!
-//! If we publish our crate as it is on crates.io, other developers
-//! could use it as a library in their projects!
-//!
-//! However, our job is not done yet!
-//! We want to expose this information to our user via an HTTP API.
 
 use workshop::{
     // - Create a `server` module as a folder.
