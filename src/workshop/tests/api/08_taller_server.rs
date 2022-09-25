@@ -1,17 +1,11 @@
 //! We have written the first endpoint of our server!
-//! Now let's write the `/taller/` endpoint.
+//! Now let's write the `/taller/` endpoint, that tells whether
+//! Yoda is taller then the given characters or not.
 
 use {
-    crate::helpers::{
-        people,
-        swapi_mock::{empty_query_result, person_query_result},
-        test_app::TestApp,
-    },
+    crate::helpers::{people, swapi_mock::person_query_result, test_app::TestApp},
     reqwest::StatusCode,
-    workshop::{
-        server::routes::{ErrorBody, YodaTallerResponse},
-        YodaTallerOutcome,
-    },
+    workshop::{server::routes::YodaTallerResponse, YodaTallerOutcome},
 };
 
 /// As usual, let's start with the happy case.
