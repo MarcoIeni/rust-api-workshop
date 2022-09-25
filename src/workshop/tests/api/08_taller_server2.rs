@@ -6,7 +6,7 @@
 use {
     crate::helpers::{people, swapi_mock::person_query_result, test_app::TestApp},
     reqwest::StatusCode,
-    workshop::{server::routes::YodaTallerResponse, YodaTallerOutcome},
+    workshop::{server::taller_route::YodaTallerResponse, YodaTallerOutcome},
 };
 
 /// As usual, let's start with the happy case.
