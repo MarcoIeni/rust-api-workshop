@@ -1,6 +1,9 @@
 //! You have created an HTTP server in Rust using `axum`, congrats! 👏
 //! Now, let's clean our test suite, by integrating our `Application`
-//! into the `TestApp`.
+//! into the `TestApp`:
+//! - Move the `Application::bind` function in `TestApp::spawn`.
+//! - save the `port` in a new field of the `TestApp` struct.
+//! - run the app with `tokio::spawn` in `TestApp::spawn`.
 
 use {crate::helpers::test_app::TestApp, reqwest::StatusCode};
 
