@@ -51,8 +51,8 @@ async fn health_check_works() {
     // Use [axum::Server::from_tcp](https://docs.rs/hyper/latest/hyper/server/struct.Server.html#method.from_tcp)
     // to create the server from the `tcp_listener`.
     let _app = tokio::spawn(application_bind.run());
-    let client = reqwest::Client::new();
 
+    let client = reqwest::Client::new();
     let response = client
         .get(&format!("http://localhost:{}/health_check", port))
         .send()

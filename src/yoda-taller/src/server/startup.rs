@@ -1,6 +1,6 @@
 use {
     super::shutdown::shutdown_handler,
-    crate::{server::routes, settings::Settings},
+    crate::{server::taller_route, settings::Settings},
     anyhow::Context,
     axum::{routing::get, Extension, Router},
     axum_tracing_opentelemetry::opentelemetry_tracing_layer,
@@ -33,8 +33,8 @@ impl Application {
         };
         // build our application with a single route
         let app = Router::new()
-            .route("/health_check", get(routes::health_check))
-            .route("/taller/:name", get(routes::taller_than))
+            .route("/health_check", get(health_check))
+            .route("/taller/:name", get(taller_route::taller_than))
             .layer(Extension(yoda_taller))
             .layer(opentelemetry_tracing_layer());
 
@@ -52,3 +52,5 @@ impl Application {
         &self.tcp_listener
     }
 }
+
+pub async fn health_check() {}

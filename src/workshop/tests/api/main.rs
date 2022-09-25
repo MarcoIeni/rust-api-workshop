@@ -39,8 +39,14 @@
 // #[path = "08_health_check2.rs"]
 // mod health_check2;
 
-// #[path = "08_taller_server.rs"]
-// mod taller_server;
+// #[path = "08_taller_server1.rs"]
+// mod taller_server1;
+
+// #[path = "08_taller_server2.rs"]
+// mod taller_server2;
+
+// #[path = "08_taller_server3.rs"]
+// mod taller_server3;
 
 // #[path = "09_taller_server_error.rs"]
 // mod taller_server_error;

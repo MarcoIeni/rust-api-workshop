@@ -6,8 +6,6 @@ use {
     tracing::{error, warn},
 };
 
-pub async fn health_check() {}
-
 #[derive(Debug, serde::Serialize)]
 // derive only for tests
 #[cfg_attr(feature = "test_fixture", derive(serde::Deserialize, PartialEq, Eq))]

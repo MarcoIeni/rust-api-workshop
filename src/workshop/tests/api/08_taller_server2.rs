@@ -1,5 +1,6 @@
-//! We have written the first endpoint of our server!
-//! Now let's write the `/taller/` endpoint, that tells whether
+//! We have the response of the `/taller/` endpoint.
+//! Now we are ready to build the endpoint!
+//! This endpoint tells whether
 //! Yoda is taller then the given characters or not.
 
 use {
@@ -27,7 +28,14 @@ async fn yoda_is_not_taller_than_luke() {
     app.swapi_server
         .mock_people_query(&luke.name, query_body)
         .await;
-    let response = app.send_taller_req(&luke.name).await;
+
+    let client = reqwest::Client::new();
+    let response = client
+        .get(&format!("{}/taller/{}", &app.server_address(), &luke.name))
+        .send()
+        .await
+        .expect("Failed to execute request.");
+
     assert_eq!(StatusCode::OK, response.status());
 
     let body = response.json().await.unwrap();
@@ -36,31 +44,6 @@ async fn yoda_is_not_taller_than_luke() {
             query: luke.name.clone(),
             result: YodaTallerOutcome {
                 person: luke.name,
-                taller: false
-            }
-        },
-        body
-    );
-}
-
-/// Let's ask to our server is yoda is taller than himself.
-#[tokio::test]
-async fn yoda_is_not_taller_than_himself() {
-    let app = TestApp::spawn().await;
-    let yoda = people::yoda();
-    let query_body = person_query_result(&yoda);
-    app.swapi_server
-        .mock_people_query(&yoda.name, query_body)
-        .await;
-    let response = app.send_taller_req(&yoda.name).await;
-    assert_eq!(StatusCode::OK, response.status());
-
-    let body = response.json().await.unwrap();
-    assert_eq!(
-        YodaTallerResponse {
-            query: yoda.name.clone(),
-            result: YodaTallerOutcome {
-                person: yoda.name,
                 taller: false
             }
         },

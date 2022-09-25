@@ -7,7 +7,7 @@ use {
     reqwest::StatusCode,
     std::time::Duration,
     yoda_taller::{
-        server::routes::{ErrorBody, YodaTallerResponse},
+        server::taller_route::{ErrorBody, YodaTallerResponse},
         taller::YodaTallerOutcome,
     },
 };
