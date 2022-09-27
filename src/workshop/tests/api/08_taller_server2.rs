@@ -19,6 +19,10 @@ use {
 ///   "taller": false
 /// }
 /// ```
+///
+/// ## Hint 💡
+/// The "taller" server should call the Swapi mock, so make sure to set
+/// the swapi `base_url` of the settings to the wiremock server address.
 #[tokio::test]
 async fn yoda_is_not_taller_than_luke() {
     let app = TestApp::spawn().await;
