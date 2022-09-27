@@ -10,7 +10,8 @@ async fn yoda_taller_response_serializes_to_expected_json() {
     // This is an example of the json we want to return in the body.
     // It contains the following fields:
     // - query: the string inserted by the user in the url.
-    //   E.g. `curl 127.0.0.1:3000/taller/luke`
+    //   E.g. in the request `curl 127.0.0.1:3000/taller/luke` the query
+    // is `luke`
     // - person: the name of the first person found in Swapi
     // - taller: whether Yoda is taller than the person found or not.
     //
