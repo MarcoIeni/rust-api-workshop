@@ -9,9 +9,7 @@ use {
     },
     reqwest::StatusCode,
     std::time::Duration,
-    workshop::{
-        server::taller_route::{ErrorBody, YodaTallerResponse},
-    },
+    workshop::server::taller_route::ErrorBody,
 };
 
 /// Spock is not part of the Swapi database.
