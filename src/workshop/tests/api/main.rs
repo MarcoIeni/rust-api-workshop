@@ -33,6 +33,9 @@
 // #[path = "07_server_settings2.rs"]
 // mod server_settings2;
 
+// #[path = "07_server_settings3.rs"]
+// mod server_settings3;
+
 // #[path = "08_health_check1.rs"]
 // mod health_check1;
 

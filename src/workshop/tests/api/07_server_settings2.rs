@@ -1,30 +1,34 @@
-//! Let's use the settings to create our application!
+//! Let's create a function to read the settings from a file.
+//! It will be mainly useful for our main, i.e.
+//! `src/workshop/src/main.rs`.
 
-use workshop::{
-    // - Create a `server` module as a folder.
-    // - Create the `server/startup.rs` file.
-    // - Declare the `startup` module in the `server/mod.rs` file.
-    server::startup::Application,
-    settings::{ApplicationSettings, Settings, SwapiSettings},
+use {
+    std::{io::Write, path::Path},
+    workshop::settings::{ApplicationSettings, Settings, SwapiSettings},
 };
 
 #[tokio::test]
 async fn application_uses_passed_settings() {
-    let settings = Settings {
-        application: ApplicationSettings { port: 0 },
+    let settings_yaml = r#"
+application:
+  port: 3000
+swapi:
+  base_url: "http://127.0.0.1:9992"
+  timeout_milliseconds: 2000
+"#;
+
+    // create a file that will be deleted after the test.
+    let mut config_file = tempfile::NamedTempFile::new().unwrap();
+    config_file.write_all(settings_yaml.as_bytes()).unwrap();
+    let config_file: &Path = config_file.path();
+    let actual_settings = Settings::read(config_file).unwrap();
+
+    let expected_settings = Settings {
+        application: ApplicationSettings { port: 3000 },
         swapi: SwapiSettings {
             base_url: "http://127.0.0.1:9992".to_string(),
             timeout_milliseconds: 2000,
         },
     };
-
-    // Create the `Application` type:
-    // pub struct Application {
-    //     pub settings: Settings,
-    // }
-    let app = Application::bind(settings.clone()).unwrap();
-    assert_eq!(app.settings, settings);
+    assert_eq!(actual_settings, expected_settings);
 }
-
-// For now the bind application only assigns the settings.
-// But don't worry. In the next test we will do the actual binding operation! 😎
