@@ -1,8 +1,7 @@
-#![allow(unused_imports)]
-use {
-    anyhow::Context,
-    workshop::{server::startup::Application, settings::Settings},
-};
+// use {
+//     anyhow::Context,
+//     workshop::{server::startup::Application, settings::Settings},
+// };
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
