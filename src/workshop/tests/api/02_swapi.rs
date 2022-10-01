@@ -33,7 +33,7 @@ async fn retrieve_luke_height_from_swapi() {
         height: "172".to_string(),
     };
     let people: Vec<Person> = swapi_client.people_by_name(&luke.name).await.unwrap();
-    assert_eq!(people, vec![luke])
+    assert_eq!(people, vec![luke]);
 }
 
 /// Spock is not a Star Wars character, so the `people_by_name` function
