@@ -20,6 +20,9 @@
 /// # You should see info about Luke Skywalker
 /// curl http://127.0.0.1:9992/api/people/1/
 /// ```
+///
+/// Now you can also see Swapi docs by opening
+/// `http://127.0.0.1:9992/` in your browser.
 #[test]
 fn run_the_swapi_docker_image() {
     let is_swapi_running = todo!();
