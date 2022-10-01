@@ -17,7 +17,7 @@ use {
 #[tokio::test]
 async fn luke_is_tall() {
     // The `spawn` function is used to initialize the `SwapiClient` and start the mock.
-    let swapi_server = SwapiMock::start().await;
+    let swapi_server: SwapiMock = SwapiMock::start().await;
     let luke = people::luke();
     // The `person_query_result` function generates the body of the response
     // taking `name` and `height` from the `Person` given as argument.
