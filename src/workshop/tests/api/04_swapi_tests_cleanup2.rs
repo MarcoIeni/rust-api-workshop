@@ -1,6 +1,7 @@
 //! Let's clean tests up!
 //!
-//! 💡 Remember: first make all the tests compile, than work on the implementation
+//! ## Hint 💡
+//! First, make all the tests compile, than work on the implementation
 //! by making the test pass one by one.
 use {
     crate::helpers::{
