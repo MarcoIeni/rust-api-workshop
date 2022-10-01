@@ -9,10 +9,10 @@ edition = "2021"
 anyhow = "1.0.65"
 axum = "0.5.16"
 reqwest = { version = "0.11.12", features = ["json"] }
-serde = { version = "1.0.144", features = ["derive"] }
-thiserror = "1.0.35"
+serde = { version = "1.0.145", features = ["derive"] }
+thiserror = "1.0.37"
 tracing = "0.1.36"
-tokio = { version = "1.21.1", features = ["macros", "rt-multi-thread"] }
+tokio = { version = "1.21.2", features = ["macros", "rt-multi-thread"] }
 serde_yaml = "0.9.13"
 opentelemetry = { version = "0.18.0", features = ["rt-tokio"] }
 axum-tracing-opentelemetry = { version = "0.4", features = ["jaeger", "otlp"] }
