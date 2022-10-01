@@ -1,14 +1,14 @@
 use std::time::Duration;
 
-// The swapi module doesn't exist yet, create it under
-// `src/workshop/src/swapi.rs`.
-// Then add the module to the `src/workshop/src/lib.rs` file.
+// The swapi module doesn't exist yet:
+// - create it under `src/workshop/src/swapi.rs`.
+// - Add the `swapi` module to the `src/workshop/src/lib.rs` file.
+// - Create the structs `SwapiClient` and `Person`
+//   in `src/workshop/src/swapi.rs` to re-use them in the next exercises.
 use workshop::swapi::{Person, SwapiClient};
 
 /// Query the swapi instance running in docker to retrieve
 /// Luke's height.
-/// You need to create the structs [`SwapiClient`] and [`Person`]
-/// under the `src/workshop/src` directory to re-use them in the next exercises.
 ///
 /// ## Useful resources 📚
 /// - [Swapi docs](https://swapi.dev/documentation)
