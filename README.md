@@ -76,7 +76,7 @@ cd rust-api-workshop
 # Create your branch
 git checkout -b workshop
 # Run the tests to make sure your rust installation works
-cargo t
+cargo test
 ```
 
 ## Get started

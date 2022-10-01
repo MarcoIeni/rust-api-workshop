@@ -1,4 +1,6 @@
-//! Comment out the modules of this file one by one, to progress in the workshop.
+//! To progress in the workshop:
+//! - Comment out the modules of this file one by one, starting from the module `greetings`.
+//! - Run `cargo test` and solve the exercises of each module.
 
 // #[path = "00_greetings.rs"]
 // mod greetings;
