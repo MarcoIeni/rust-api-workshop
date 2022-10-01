@@ -16,6 +16,13 @@
 /// - Make the test pass.
 /// - Run `cargo test` to check if the test works.
 /// - Comment out the next module in the `src/workshop/tests/api/main.rs` file to progress.
+///
+/// ## Hint 💡
+/// You can use [cargo-watch](https://crates.io/crates/cargo-watch)
+/// to continuously run the test suite:
+/// ```
+/// cargo watch -x test
+/// ```
 #[test]
 fn first_exercise() {
     let i_am_ready_to_start = todo!();
