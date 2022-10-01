@@ -3,8 +3,7 @@
 
 use {
     crate::helpers::{
-        people,
-        swapi_mock::{empty_query_result, person_query_result},
+        people, swapi_mock,
         test_app::{TestApp, SWAPI_TIMEOUT},
     },
     reqwest::StatusCode,
@@ -20,7 +19,7 @@ async fn return_404_if_spock() {
     let app = TestApp::spawn().await;
     let name = "Spock";
 
-    let body = empty_query_result();
+    let body = swapi_mock::empty_query_result();
     app.swapi_server.mock_people_query(name, body).await;
     let response = app.send_taller_req(name).await;
     assert_eq!(StatusCode::NOT_FOUND, response.status());
@@ -45,7 +44,7 @@ async fn return_404_if_unknown_height() {
     // Arvel height is unknown.
     let arvel = people::arvel();
 
-    let query_body = person_query_result(&arvel);
+    let query_body = swapi_mock::person_query_result(&arvel);
     app.swapi_server
         .mock_people_query(&arvel.name, query_body)
         .await;
@@ -74,7 +73,7 @@ async fn return_500_if_timeout() {
     let app = TestApp::spawn().await;
 
     let luke = people::luke();
-    let query_body = person_query_result(&luke);
+    let query_body = swapi_mock::person_query_result(&luke);
 
     let delay = SWAPI_TIMEOUT + Duration::from_secs(1);
     app.swapi_server

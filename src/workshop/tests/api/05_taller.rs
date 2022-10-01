@@ -9,7 +9,7 @@
 //! the function `is_taller_than` returns `reqwest::Error`
 //! as an error and uses `unwrap` in the code.
 use {
-    crate::helpers::{people, swapi_mock::person_query_result, test_app::TestApp},
+    crate::helpers::{people, swapi_mock, test_app::TestApp},
     workshop::taller::YodaTallerOutcome,
 };
 
@@ -17,7 +17,7 @@ use {
 async fn yoda_is_not_taller_than_luke() {
     let app = TestApp::spawn().await;
     let luke = people::luke();
-    let body = person_query_result(&luke);
+    let body = swapi_mock::person_query_result(&luke);
     app.swapi_server.mock_people_query(&luke.name, body).await;
     // Create a new field called `yoda_taller` in the `TestApp`.
     // This field is of a new type `YodaTaller`, which can be initialized
@@ -42,7 +42,7 @@ async fn yoda_is_not_taller_than_himself() {
     //     height: "66".to_string(),
     // }
     let yoda = people::yoda();
-    let body = person_query_result(&yoda);
+    let body = swapi_mock::person_query_result(&yoda);
     app.swapi_server.mock_people_query(&yoda.name, body).await;
     let is_yoda_taller: YodaTallerOutcome =
         app.yoda_taller.is_taller_than(&yoda.name).await.unwrap();
@@ -64,7 +64,7 @@ async fn yoda_is_taller_than_yaddle() {
     //     height: "61".to_string(),
     // }
     let yaddle = people::yaddle();
-    let body = person_query_result(&yaddle);
+    let body = swapi_mock::person_query_result(&yaddle);
     app.swapi_server.mock_people_query(&yaddle.name, body).await;
     let is_yoda_taller = app.yoda_taller.is_taller_than(&yaddle.name).await.unwrap();
     assert_eq!(

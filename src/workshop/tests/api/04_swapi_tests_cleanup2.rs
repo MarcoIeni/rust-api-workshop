@@ -5,7 +5,7 @@
 use {
     crate::helpers::{
         people,
-        swapi_mock::{empty_query_result, person_query_result, SwapiMock},
+        swapi_mock::{self, SwapiMock},
     },
     std::time::Duration,
     workshop::swapi::SwapiClient,
@@ -20,7 +20,7 @@ async fn luke_is_tall() {
     let luke = people::luke();
     // The `person_query_result` function generates the body of the response
     // taking `name` and `height` from the `Person` given as argument.
-    let response_body: serde_json::Value = person_query_result(&luke);
+    let response_body: serde_json::Value = swapi_mock::person_query_result(&luke);
     // Mount a [Mock](https://docs.rs/wiremock/0.5.14/wiremock/struct.Mock.html)
     // to the `swapi_server` to return Luke's query result.
     swapi_server
@@ -44,7 +44,7 @@ async fn spock_is_not_found() {
     let swapi_server = SwapiMock::start().await;
     // The `empty_query_result` function generates the body of the response
     // you get when you query with a person that doesn't exist.
-    let response_body: serde_json::Value = empty_query_result();
+    let response_body: serde_json::Value = swapi_mock::empty_query_result();
     let name = "Spock";
     swapi_server.mock_people_query(name, response_body).await;
 
@@ -59,7 +59,7 @@ async fn spock_is_not_found() {
 async fn swapi_client_returns_timeout_error_if_timeout() {
     let swapi_server = SwapiMock::start().await;
     let luke = people::luke();
-    let response_body = person_query_result(&luke);
+    let response_body = swapi_mock::person_query_result(&luke);
     let timeout = Duration::from_secs(1);
     let delay = timeout + Duration::from_secs(1);
     swapi_server

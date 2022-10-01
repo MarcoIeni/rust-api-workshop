@@ -10,8 +10,7 @@
 
 use {
     crate::helpers::{
-        people,
-        swapi_mock::{empty_query_result, person_query_result},
+        people, swapi_mock,
         test_app::{TestApp, SWAPI_TIMEOUT},
     },
     std::time::Duration,
@@ -28,7 +27,7 @@ async fn cannot_compare_yoda_and_non_existing_person() {
     let app = TestApp::spawn().await;
     let name = "Spock";
 
-    let body = empty_query_result();
+    let body = swapi_mock::empty_query_result();
     app.swapi_server.mock_people_query(name, body).await;
     let is_taller_err = app.yoda_taller.is_taller_than(name).await.unwrap_err();
     assert!(matches!(is_taller_err, YodaTallerError::PersonNotFound));
@@ -51,7 +50,7 @@ async fn cannot_compare_yoda_and_person_with_invalid_height() {
     // As you can see, Arvel has an unknown height.
     // As Luke and Yoda, This person is present in Swapi.
     let arvel = people::arvel();
-    let body = person_query_result(&arvel);
+    let body = swapi_mock::person_query_result(&arvel);
     app.swapi_server.mock_people_query(&arvel.name, body).await;
     let is_taller_err = app
         .yoda_taller
@@ -86,7 +85,7 @@ async fn return_decode_error_if_invalid_response() {
 async fn return_timeout_error_if_timeout() {
     let app = TestApp::spawn().await;
     let luke = people::luke();
-    let body = person_query_result(&luke);
+    let body = swapi_mock::person_query_result(&luke);
     let delay = SWAPI_TIMEOUT + Duration::from_secs(1);
     app.swapi_server
         .mock_people_query_with_delay(&luke.name, body, delay)

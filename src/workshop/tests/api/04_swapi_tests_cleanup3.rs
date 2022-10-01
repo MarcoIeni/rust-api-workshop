@@ -9,7 +9,7 @@
 use {
     crate::helpers::{
         people,
-        swapi_mock::{empty_query_result, person_query_result},
+        swapi_mock,
         // Create the `test_app` module.
         test_app::{TestApp, SWAPI_TIMEOUT},
     },
@@ -24,7 +24,7 @@ async fn luke_is_tall() {
     let app = TestApp::spawn().await;
     let luke = people::luke();
     // Take the body of the response starting from name and height.
-    let response_body: serde_json::Value = person_query_result(&luke);
+    let response_body: serde_json::Value = swapi_mock::person_query_result(&luke);
     // Add a `swapi_server` field of type `SwapiMock` to `TestApp`.
     // The `swapi_server` field should be initialized in the `spawn` method.
     app.swapi_server
@@ -40,7 +40,7 @@ async fn luke_is_tall() {
 #[tokio::test]
 async fn spock_is_not_found() {
     let app = TestApp::spawn().await;
-    let response_body = empty_query_result();
+    let response_body = swapi_mock::empty_query_result();
     let name = "Spock";
     app.swapi_server
         .mock_people_query(name, response_body)
@@ -53,7 +53,7 @@ async fn spock_is_not_found() {
 async fn swapi_client_returns_timeout_error_if_timeout() {
     let app = TestApp::spawn().await;
     let luke = people::luke();
-    let response_body = person_query_result(&luke);
+    let response_body = swapi_mock::person_query_result(&luke);
     // To avoid repeating the timeout of the `SwapiClient` for every test,
     // we configure the `SwapiClient` timeout once, in the `spawn` function.
     // However, some tests need to read this timeout.

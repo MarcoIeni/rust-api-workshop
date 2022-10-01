@@ -2,7 +2,7 @@
 //! Now let's refactor the test.
 
 use {
-    crate::helpers::{people, swapi_mock::person_query_result, test_app::TestApp},
+    crate::helpers::{people, swapi_mock, test_app::TestApp},
     reqwest::StatusCode,
     workshop::{server::taller_route::YodaTallerResponse, taller::YodaTallerOutcome},
 };
@@ -15,7 +15,7 @@ async fn yoda_is_not_taller_than_luke() {
     let app = TestApp::spawn().await;
 
     let luke = people::luke();
-    let query_body = person_query_result(&luke);
+    let query_body = swapi_mock::person_query_result(&luke);
     app.swapi_server
         .mock_people_query(&luke.name, query_body)
         .await;
@@ -40,7 +40,7 @@ async fn yoda_is_not_taller_than_luke() {
 async fn yoda_is_not_taller_than_himself() {
     let app = TestApp::spawn().await;
     let yoda = people::yoda();
-    let query_body = person_query_result(&yoda);
+    let query_body = swapi_mock::person_query_result(&yoda);
     app.swapi_server
         .mock_people_query(&yoda.name, query_body)
         .await;
