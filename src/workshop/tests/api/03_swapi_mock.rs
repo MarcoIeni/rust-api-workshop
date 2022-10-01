@@ -44,6 +44,7 @@ async fn retrieve_luke_height_from_swapi_mock() {
 /// We are going to clean in the next exercises.
 #[tokio::test]
 async fn spock_is_not_found_from_swapi_mock() {
+    let spock = "Spock";
     // Start a `MockServer` and mock the GET response you get in the `SwapiClient`.
     // You should return the response we have seen in the previous exercise
     // when looking for Spock: a 200 status code and an empty `results` in the body.
@@ -54,7 +55,7 @@ async fn spock_is_not_found_from_swapi_mock() {
     // You can ignore the timeout for this exercise.
     let timeout = Duration::from_secs(2);
     let swapi_client = SwapiClient::new(base_url, timeout).unwrap();
-    let people: Vec<Person> = swapi_client.people_by_name("Spock").await.unwrap();
+    let people: Vec<Person> = swapi_client.people_by_name(spock).await.unwrap();
     assert!(people.is_empty());
 }
 
