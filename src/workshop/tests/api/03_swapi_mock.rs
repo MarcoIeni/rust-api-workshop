@@ -60,8 +60,8 @@ async fn spock_is_not_found_from_swapi_mock() {
 }
 
 /// Mocks allow to simulate edge cases of your dependencies.
-/// - What happens if Swapi doesn't respond?
-/// - Does your application return the right error?
+/// For example, what happens if Swapi doesn't respond?
+/// Does your application return the right error?
 ///
 /// Use wiremock to simulate a delay from Swapi.
 ///
