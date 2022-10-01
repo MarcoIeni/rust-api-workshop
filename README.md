@@ -28,9 +28,9 @@ graph TD;
     S-->Swapi;
 ```
 
-- The HTTP Client can be anything: curl, [Insomnia](https://github.com/Kong/insomnia), and so on. It's the software you can use to interact with your API.
-- The HTTP Server it's the component you will implement.
-- [Swapi](https://swapi.dev/) is the service you are going to use to retrieve
+- HTTP Client: the software you can use to interact with your API. It can be anything: curl, [Insomnia](https://github.com/Kong/insomnia), and so on.
+- HTTP Server:  the component you will implement.
+- [Swapi](https://swapi.dev/): the service you are going to use to retrieve
   info about the Star Wars characters.
 
 ## Sequence diagram
