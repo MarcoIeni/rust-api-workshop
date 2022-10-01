@@ -63,7 +63,7 @@ sequenceDiagram
     S->>C: {"query":"luke", person":"Luke Skywalker", "taller":false}
 ```
 
-## Get started
+## Setup
 
 ```sh
 mkdir workshop
@@ -75,7 +75,19 @@ git clone https://github.com/MarcoIeni/rust-api-workshop
 cd rust-api-workshop
 # Create your branch
 git checkout -b workshop
+# Run the tests to make sure your rust installation works
+cargo t
 ```
+
+## Get started
+
+Open the `rust-api-workshop` project in your favorite editor.
+By looking at the main [`Cargo.toml`](./Cargo.toml), you can see there are two crates:
+- [`workshop`](./src/workshop): the crate you will use to implement the HTTP API.
+- [`yoda-taller`](./src/yoda-taller): the crate that contains a possible implementation of the HTTP API.
+  Please, don't look inside this folder before trying to solve the exercises by yourself, first.
+
+To start the workshop, jump on the file [`src/workshop/tests/api/main.rs`](src/workshop/tests/api/main.rs).
 
 ## Credits
 
