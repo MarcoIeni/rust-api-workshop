@@ -1,7 +1,6 @@
-# rust-api-workshop
-Write a production-ready Rust HTTP API
+# Rust API workshop
 
-Some pieces of code, names or conventions are inspired by [zero-to-production](https://github.com/LukeMathWalker/zero-to-production).
+Write an HTTP API in Rust through a series of test-driven exercises.
 
 ## What will you build?
 
@@ -77,3 +76,9 @@ cd rust-api-workshop
 # Create your branch
 git checkout -b workshop
 ```
+
+## Credits
+
+Some pieces of code, names or conventions are inspired by:
+- [zero-to-production](https://github.com/LukeMathWalker/zero-to-production)
+- [build-your-own-jira-with-rust](https://github.com/LukeMathWalker/build-your-own-jira-with-rust)
