@@ -1,7 +1,6 @@
 use {
     crate::helpers::{
-        people,
-        swapi_mock::{empty_query_result, person_query_result},
+        people, swapi_mock,
         test_app::{TestApp, SWAPI_TIMEOUT},
     },
     std::time::Duration,
@@ -12,7 +11,7 @@ use {
 async fn luke_is_tall() {
     let app = TestApp::spawn().await;
     let luke = people::luke();
-    let response_body = person_query_result(&luke);
+    let response_body = swapi_mock::person_query_result(&luke);
     app.swapi_server
         .mock_people_query(&luke.name, response_body)
         .await;
@@ -24,7 +23,7 @@ async fn luke_is_tall() {
 #[tokio::test]
 async fn spock_is_not_found() {
     let app = TestApp::spawn().await;
-    let response_body = empty_query_result();
+    let response_body = swapi_mock::empty_query_result();
     let name = "Spock";
     app.swapi_server
         .mock_people_query(name, response_body)
@@ -37,7 +36,7 @@ async fn spock_is_not_found() {
 async fn swapi_client_returns_timeout_error_if_timeout() {
     let app = TestApp::spawn().await;
     let luke = people::luke();
-    let response_body = person_query_result(&luke);
+    let response_body = swapi_mock::person_query_result(&luke);
     let delay = SWAPI_TIMEOUT + Duration::from_secs(1);
     app.swapi_server
         .mock_people_query_with_delay(&luke.name, response_body, delay)
