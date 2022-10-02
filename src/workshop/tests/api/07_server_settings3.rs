@@ -22,9 +22,10 @@ async fn application_uses_passed_settings() {
     // pub struct Application {
     //     pub settings: Settings,
     // }
-    let app = Application::bind(settings.clone()).unwrap();
+    //
+    // Create the `bind` function.
+    // For now, implement the `bind` application so that it only creates an instance of the `Application` struct.
+    // Don't worry: In the next test we will do the actual binding operation! 😎
+    let app: Application = Application::bind(settings.clone()).unwrap();
     assert_eq!(app.settings, settings);
 }
-
-// For now the bind application only assigns the settings.
-// But don't worry. In the next test we will do the actual binding operation! 😎
