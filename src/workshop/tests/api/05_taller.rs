@@ -2,15 +2,16 @@
 //! However, our original goal was to compare the height
 //! of the character with the height of Yoda.
 //!
-//! Create a new module called `YodaTaller` to compare the heights.
+//! Create a new struct `taller::YodaTaller` to compare the heights.
 //!
 //! ## Hint 💡
 //! In this exercise, we only care about the happy case, so it's fine if
 //! the function `is_taller_than` returns `reqwest::Error`
 //! as an error and uses `unwrap` in the code.
+
 use {
     crate::helpers::{people, swapi_mock, test_app::TestApp},
-    workshop::taller::YodaTallerOutcome,
+    workshop::taller::{YodaTaller, YodaTallerOutcome},
 };
 
 #[tokio::test]
@@ -19,11 +20,13 @@ async fn yoda_is_not_taller_than_luke() {
     let luke = people::luke();
     let body = swapi_mock::person_query_result(&luke);
     app.swapi_server.mock_people_query(&luke.name, body).await;
-    // Create a new field called `yoda_taller` in the `TestApp`.
+    // In `TestApp`, create a new field called `yoda_taller` .
     // This field is of a new type `YodaTaller`, which can be initialized
     // with a `new` function, in the same way as `SwapiClient`.
-    let is_yoda_taller: YodaTallerOutcome =
-        app.yoda_taller.is_taller_than(&luke.name).await.unwrap();
+    // `YodaTaller` needs to have `SwapiClient` as field of the struct, to call
+    // the Swapi api.
+    let yoda_taller: &YodaTaller = &app.yoda_taller;
+    let is_yoda_taller: YodaTallerOutcome = yoda_taller.is_taller_than(&luke.name).await.unwrap();
     assert_eq!(
         YodaTallerOutcome {
             person: luke.name,
