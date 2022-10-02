@@ -25,3 +25,9 @@ async fn health_check_works() {
     // There's no body in the response.
     assert_eq!(Some(0), response.content_length());
 }
+
+// We now have a server running!
+// Let's try to run our app:
+// - uncomment the code in `src/workshop/src/main.rs`
+// - run your app with `cargo run -p workshop
+// - ping your endpoint: `curl -v 127.0.0.1:3000/health_check`
