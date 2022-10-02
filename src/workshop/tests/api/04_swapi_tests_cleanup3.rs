@@ -24,7 +24,7 @@ use {
 #[tokio::test]
 async fn luke_is_tall() {
     // The `spawn` function is used to initialize the `SwapiClient` and start the mock.
-    let app = TestApp::spawn().await;
+    let app: TestApp = TestApp::spawn().await;
     let luke = people::luke();
     // Take the body of the response starting from name and height.
     let response_body: serde_json::Value = swapi_mock::person_query_result(&luke);
