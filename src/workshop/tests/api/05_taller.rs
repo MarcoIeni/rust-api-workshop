@@ -26,6 +26,11 @@ async fn yoda_is_not_taller_than_luke() {
     // `YodaTaller` needs to have `SwapiClient` as field of the struct, to call
     // the Swapi api.
     let yoda_taller: &YodaTaller = &app.yoda_taller;
+    // The `is_taller_then` function retrieves the height of the person in input
+    // (in this case Luke) from Swapi and compares it with the height of Yoda.
+    // If Yoda is taller than the person, return true, otherwise false.
+    // Hardcode the height of Yoda instead of retrieving it from Swapi
+    // everytime the `is_taller_than` function is invoked.
     let is_yoda_taller: YodaTallerOutcome = yoda_taller.is_taller_than(&luke.name).await.unwrap();
     assert_eq!(
         YodaTallerOutcome {
