@@ -16,8 +16,10 @@ use workshop::settings::{ApplicationSettings, Settings, SwapiSettings};
 fn settings_are_read_correctly() {
     let settings_yaml = r#"
 application:
+  # The port of our server.
   port: 3000
 swapi:
+  # Base url of swapi.
   base_url: "http://127.0.0.1:9992"
   timeout_milliseconds: 2000
 "#;
