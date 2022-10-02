@@ -61,7 +61,7 @@ async fn swapi_client_returns_timeout_error_if_timeout() {
     let swapi_server = SwapiMock::start().await;
     let luke = people::luke();
     let response_body = swapi_mock::person_query_result(&luke);
-    let timeout = Duration::from_secs(1);
+    let timeout = Duration::from_secs(2);
     let delay = timeout + Duration::from_secs(1);
     swapi_server
         .mock_people_query_with_delay(&luke.name, response_body, delay)

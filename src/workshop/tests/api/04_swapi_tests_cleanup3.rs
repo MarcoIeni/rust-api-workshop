@@ -11,6 +11,9 @@ use {
         people,
         swapi_mock,
         // Create the `test_app` module.
+        // Inside this module, create:
+        // - `TestApp` struct
+        // - `SWAPI_TIMEOUT` constant, which is a `Duration` of 2 seconds.
         test_app::{TestApp, SWAPI_TIMEOUT},
     },
     std::time::Duration,
