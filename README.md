@@ -79,6 +79,22 @@ git checkout -b workshop
 cargo test
 ```
 
+## Run jaeger
+
+Run [jaeger](https://www.jaegertracing.io/) to see the traces produced
+by your application:
+
+```sh
+# start jaeger (and auto remove on stop)
+docker run --name jaeger --rm -d -p6831:6831/udp -p6832:6832/udp -p16686:16686 jaegertracing/all-in-one:latest
+
+# check if it's running
+docker ps
+
+# open the web ui
+open http://localhost:16686/
+```
+
 ## Get started
 
 Open the `rust-api-workshop` project in your favorite editor.
