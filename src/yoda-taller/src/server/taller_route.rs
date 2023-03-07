@@ -1,6 +1,11 @@
 use {
     crate::taller::{YodaTaller, YodaTallerError, YodaTallerOutcome},
-    axum::{extract::Path, http::StatusCode, response::IntoResponse, Extension, Json},
+    axum::{
+        extract::{Path, State},
+        http::StatusCode,
+        response::IntoResponse,
+        Json,
+    },
     serde::Serialize,
     std::sync::Arc,
     tracing::{error, warn},
@@ -29,7 +34,7 @@ pub struct YodaTallerResponseError {
 
 pub async fn taller_than(
     Path(person_name): Path<String>,
-    Extension(yoda_taller): Extension<Arc<YodaTaller>>,
+    State(yoda_taller): State<Arc<YodaTaller>>,
 ) -> Result<Json<YodaTallerResponse>, YodaTallerResponseError> {
     match yoda_taller.is_taller_than(&person_name).await {
         Ok(result) => {

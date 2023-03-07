@@ -2,7 +2,7 @@ use {
     super::shutdown::shutdown_handler,
     crate::{server::taller_route, settings::Settings},
     anyhow::Context,
-    axum::{routing::get, Extension, Router},
+    axum::{routing::get, Router},
     axum_tracing_opentelemetry::opentelemetry_tracing_layer,
     std::{
         io,
@@ -35,7 +35,7 @@ impl Application {
         let app = Router::new()
             .route("/health_check", get(health_check))
             .route("/taller/:name", get(taller_route::taller_than))
-            .layer(Extension(yoda_taller))
+            .with_state(yoda_taller)
             .layer(opentelemetry_tracing_layer());
 
         axum::Server::from_tcp(self.tcp_listener)
