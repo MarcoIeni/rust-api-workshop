@@ -41,7 +41,7 @@ impl SwapiSettings {
 
 impl Settings {
     pub fn read(config_file: &Path) -> anyhow::Result<Self> {
-        let f = std::fs::File::open(&config_file)
+        let f = std::fs::File::open(config_file)
             .with_context(|| format!("cannot open config file {:?}", config_file))?;
         serde_yaml::from_reader(f).context("invalid config file format")
     }
