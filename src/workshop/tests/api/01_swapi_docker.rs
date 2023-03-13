@@ -27,8 +27,10 @@
 ///   docker run -p 9992:8000 -it swapi
 ///   ```
 ///
-/// You should see info about Luke Skywalker
+/// You should be able to see info about Luke Skywalker by running:
+/// ```sh
 /// curl http://127.0.0.1:9992/api/people/1/
+/// ```
 ///
 /// Now you can also see Swapi docs by opening
 /// `http://127.0.0.1:9992/` in your browser.
