@@ -23,10 +23,8 @@ jobs:
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
-      - uses: actions-rs/cargo@v1
-        with:
-          command: test
-          args: --all-features --workspace
+      - name: Run tests
+        run: cargo test --all-features --workspace
 
   rustfmt:
     name: Rustfmt
@@ -40,10 +38,7 @@ jobs:
           components: rustfmt
       - uses: Swatinem/rust-cache@v2
       - name: Check formatting
-        uses: actions-rs/cargo@v1
-        with:
-          command: fmt
-          args: --all -- --check
+        run: cargo fmt --all --check
 
   clippy:
     name: Clippy
