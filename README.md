@@ -6,8 +6,8 @@ Write an HTTP API in Rust through a series of test-driven exercises.
 
 A simple HTTP API that checks if Yoda is taller than a given Star Wars character.
 
-For example, if we want to check if Yoda is taller than Luke Skywalker,
-we can do this GET request with `curl`:
+For example, if you want to check if Yoda is taller than Luke Skywalker,
+you can do this GET request with `curl`:
 
 ```sh
 $ curl 127.0.0.1:3000/taller/luke
@@ -20,7 +20,7 @@ $ curl 127.0.0.1:3000/taller/luke
 
 ## Architecture
 
-This is the architecture of our system:
+This is the architecture of the system:
 
 ```mermaid
 graph TD;
@@ -28,10 +28,10 @@ graph TD;
     S-->Swapi;
 ```
 
-- HTTP Client: the software you can use to interact with your API. It can be anything: curl, [Insomnia](https://github.com/Kong/insomnia), and so on.
+- HTTP Client: the software you can use to interact with your API. It can be anything: `curl`, [Insomnia](https://github.com/Kong/insomnia), and so on.
 - HTTP Server:  the component you will implement.
 - [Swapi](https://swapi.dev/): the service you are going to use to retrieve
-  info about the Star Wars characters.
+  info about Star Wars characters.
 
 ## Sequence diagram
 
@@ -79,9 +79,19 @@ git checkout -b workshop
 cargo test
 ```
 
+## Get started
+
+Open the `rust-api-workshop` project in your favorite editor.
+By looking at the main [`Cargo.toml`](./Cargo.toml), you can see there are two crates:
+- [`workshop`](./src/workshop): the crate you will use to implement the HTTP API.
+- [`yoda-taller`](./src/yoda-taller): the crate that contains a possible implementation of the HTTP API.
+  Please, don't look inside this folder before trying to solve the exercises by yourself, first.
+
+To start the workshop, open the file [`src/workshop/tests/api/main.rs`](src/workshop/tests/api/main.rs).
+
 ## Run jaeger
 
-Run [jaeger](https://www.jaegertracing.io/) to see the traces produced
+After you finished the workshop, nun [jaeger](https://www.jaegertracing.io/) to see the traces produced
 by your application:
 
 ```sh
@@ -94,16 +104,6 @@ docker ps
 # open the web ui
 open http://localhost:16686/
 ```
-
-## Get started
-
-Open the `rust-api-workshop` project in your favorite editor.
-By looking at the main [`Cargo.toml`](./Cargo.toml), you can see there are two crates:
-- [`workshop`](./src/workshop): the crate you will use to implement the HTTP API.
-- [`yoda-taller`](./src/yoda-taller): the crate that contains a possible implementation of the HTTP API.
-  Please, don't look inside this folder before trying to solve the exercises by yourself, first.
-
-To start the workshop, jump on the file [`src/workshop/tests/api/main.rs`](src/workshop/tests/api/main.rs).
 
 ## Credits
 
