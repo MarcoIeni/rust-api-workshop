@@ -1,5 +1,5 @@
 use {
-    std::{ops::Deref, time::Duration},
+    std::time::Duration,
     wiremock::{
         matchers::{method, path, query_param},
         Mock, MockServer, ResponseTemplate,
@@ -11,19 +11,15 @@ pub struct SwapiMock {
     server: MockServer,
 }
 
-impl Deref for SwapiMock {
-    type Target = MockServer;
-
-    fn deref(&self) -> &Self::Target {
-        &self.server
-    }
-}
-
 impl SwapiMock {
     pub async fn start() -> Self {
         Self {
             server: MockServer::start().await,
         }
+    }
+
+    pub fn uri(&self) -> String {
+        self.server.uri()
     }
 }
 

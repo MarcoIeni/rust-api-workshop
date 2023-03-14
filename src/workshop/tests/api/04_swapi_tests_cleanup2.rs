@@ -28,9 +28,9 @@ async fn luke_is_tall() {
         .mock_people_query(&luke.name, response_body)
         .await;
 
-    // Implement [Deref](https://doc.rust-lang.org/std/ops/trait.Deref.html) for `SwapiMock`
-    // to be able to call the [uri](https://docs.rs/wiremock/0.5.14/wiremock/struct.MockServer.html#method.uri)
-    // function from here.
+    // Implement the `uri()` function for `SwapiMock` to expose the
+    // [uri](https://docs.rs/wiremock/0.5.14/wiremock/struct.MockServer.html#method.uri)
+    // function.
     let base_url = swapi_server.uri();
 
     let timeout = Duration::from_secs(2);
