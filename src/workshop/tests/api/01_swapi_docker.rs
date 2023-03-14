@@ -27,9 +27,12 @@
 ///   docker run -p 9992:8000 -it swapi
 ///   ```
 ///
-/// You should be able to see info about Luke Skywalker by running:
+/// You should be able to see info about Luke Skywalker by sending a GET request to
+/// `http://127.0.0.1:9992/api/people/?search=luke`.
+///
+/// Note that in curl you need to escape the `?` character:
 /// ```sh
-/// curl http://127.0.0.1:9992/api/people/1/
+/// curl http://127.0.0.1:9992/api/people/\?search=luke
 /// ```
 ///
 /// Now you can also see Swapi docs by opening
@@ -37,7 +40,7 @@
 ///
 /// If you don't want to use docker, you can still call the Swapi API directly:
 /// ```sh
-/// curl https://swapi.dev/api/people/1/
+/// curl https://swapi.dev/api/people/\?search=luke
 /// ```
 #[test]
 fn run_the_swapi_docker_image() {

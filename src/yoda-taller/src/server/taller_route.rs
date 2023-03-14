@@ -16,7 +16,7 @@ use {
 #[cfg_attr(feature = "test_fixture", derive(serde::Deserialize, PartialEq, Eq))]
 pub struct YodaTallerResponse {
     /// Name to identify a person.
-    /// Parameter originally sent from the user.
+    /// Parameter originally sent from the user in the request.
     pub query: String,
     /// Query result.
     #[serde(flatten)]
@@ -26,7 +26,7 @@ pub struct YodaTallerResponse {
 #[derive(Debug)]
 pub struct YodaTallerResponseError {
     /// Name to identify a person.
-    /// Parameter originally sent from the user.
+    /// Parameter originally sent from the user in the request.
     pub query: String,
     /// Query error.
     pub error: YodaTallerError,

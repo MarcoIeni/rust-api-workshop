@@ -31,7 +31,6 @@ impl Application {
             let yoda_taller = self.settings.swapi.yoda_taller()?;
             Arc::new(yoda_taller)
         };
-        // build our application with a single route
         let app = Router::new()
             .route("/health_check", get(health_check))
             .route("/taller/:name", get(taller_route::taller_than))
@@ -53,4 +52,5 @@ impl Application {
     }
 }
 
+/// Endpoint that returns 200. Used to check if the server is up.
 pub async fn health_check() {}
