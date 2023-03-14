@@ -3,6 +3,7 @@
 //! ## Hint 💡
 //! First, make all the tests compile, than work on the implementation
 //! by making the test pass one by one.
+
 use {
     crate::helpers::{
         people,
@@ -16,7 +17,6 @@ use {
 /// This time by extracting some duplicate code from the test.
 #[tokio::test]
 async fn luke_is_tall() {
-    // The `spawn` function is used to initialize the `SwapiClient` and start the mock.
     let swapi_server: SwapiMock = SwapiMock::start().await;
     let luke = people::luke();
     // The `person_query_result` function generates the body of the response
