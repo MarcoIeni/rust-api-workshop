@@ -6,7 +6,7 @@
 //! `YodaTallerError` is an enum that derives `thiserror::Error`.
 //!
 //! ## Useful resources 📚
-//! - [thiserror](https://docs.rs/thiserror/1.0.35/thiserror/index.html)
+//! - [thiserror](https://docs.rs/thiserror/1.0.39/thiserror/index.html)
 
 use {
     crate::helpers::{

@@ -22,14 +22,14 @@ async fn luke_is_tall() {
     // The `person_query_result` function generates the body of the response
     // taking `name` and `height` from the `Person` given as argument.
     let response_body: serde_json::Value = swapi_mock::person_query_result(&luke);
-    // Mount a [Mock](https://docs.rs/wiremock/0.5.14/wiremock/struct.Mock.html)
+    // Mount a [Mock](https://docs.rs/wiremock/0.5.17/wiremock/struct.Mock.html)
     // to the `swapi_server` to return Luke's query result.
     swapi_server
         .mock_people_query(&luke.name, response_body)
         .await;
 
     // Implement the `uri()` function for `SwapiMock` to expose the
-    // [uri](https://docs.rs/wiremock/0.5.14/wiremock/struct.MockServer.html#method.uri)
+    // [uri](https://docs.rs/wiremock/0.5.17/wiremock/struct.MockServer.html#method.uri)
     // function.
     let base_url = swapi_server.uri();
 

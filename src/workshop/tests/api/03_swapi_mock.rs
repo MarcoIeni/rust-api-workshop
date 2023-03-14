@@ -19,14 +19,14 @@ async fn retrieve_luke_height_from_swapi_mock() {
         height: "172".to_string(),
     };
 
-    // Start a [`MockServer`](https://docs.rs/wiremock/0.5.14/wiremock/struct.MockServer.html)
+    // Start a [`MockServer`](https://docs.rs/wiremock/0.5.17/wiremock/struct.MockServer.html)
     // and mock the GET response you get in the `SwapiClient`.
     // You should return the response we have seen in the previous exercise
     // when looking for Luke: a 200 status code and Luke's name and height
     // in the `results` of the body.
     todo!();
 
-    // Use the [uri](https://docs.rs/wiremock/0.5.14/wiremock/struct.MockServer.html#method.uri)
+    // Use the [uri](https://docs.rs/wiremock/0.5.17/wiremock/struct.MockServer.html#method.uri)
     // method to retrieve the base url.
     let base_url = todo!();
     // You can ignore the timeout for this exercise.
@@ -66,7 +66,7 @@ async fn spock_is_not_found_from_swapi_mock() {
 /// Use wiremock to simulate a delay from Swapi.
 ///
 /// ## Useful resources 📚
-/// - [set_delay](https://docs.rs/wiremock/0.5.14/wiremock/struct.ResponseTemplate.html#method.set_delay)
+/// - [set_delay](https://docs.rs/wiremock/0.5.17/wiremock/struct.ResponseTemplate.html#method.set_delay)
 /// - [timeout](https://docs.rs/reqwest/latest/reqwest/struct.ClientBuilder.html#method.timeout)
 #[tokio::test]
 async fn swapi_client_returns_timeout_error_if_timeout() {
