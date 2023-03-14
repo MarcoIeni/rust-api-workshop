@@ -87,8 +87,8 @@ To start the workshop, open the file [`src/workshop/tests/api/main.rs`](src/work
 
 ## Run jaeger
 
-After you finished the workshop, nun [jaeger](https://www.jaegertracing.io/) to see the traces produced
-by your application:
+After you finished the workshop, take a look at the final solution
+(`src/yoda-taller`), run it and see the traces it produces in [jaeger](https://www.jaegertracing.io/):
 
 ```sh
 # start jaeger (and auto remove on stop)
@@ -99,6 +99,10 @@ docker ps
 
 # open the web ui
 open http://localhost:16686/
+
+cargo run -p yoda-taller
+
+curl http://localhost:3000/taller/luke
 ```
 
 ## Credits
