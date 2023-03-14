@@ -24,6 +24,11 @@ async fn retrieve_luke_height_from_swapi_mock() {
     // You should return the response we have seen in the previous exercise
     // when looking for Luke: a 200 status code and Luke's name and height
     // in the `results` of the body.
+    //
+    // 💡 The request should match on:
+    //    - `GET` [method](https://docs.rs/wiremock/0.5.17/wiremock/matchers/fn.method.html)
+    //    - `/api/people/` [path](https://docs.rs/wiremock/0.5.17/wiremock/matchers/fn.path.html)
+    //    - `search` [query_param](https://docs.rs/wiremock/0.5.17/wiremock/matchers/fn.query_param.html)
     todo!();
 
     // Use the [uri](https://docs.rs/wiremock/0.5.17/wiremock/struct.MockServer.html#method.uri)
