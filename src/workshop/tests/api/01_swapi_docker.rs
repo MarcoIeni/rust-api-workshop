@@ -34,9 +34,14 @@
 ///
 /// Now you can also see Swapi docs by opening
 /// `http://127.0.0.1:9992/` in your browser.
+///
+/// If you don't want to use docker, you can still call the Swapi API directly:
+/// ```sh
+/// curl https://swapi.dev/api/people/1/
+/// ```
 #[test]
 fn run_the_swapi_docker_image() {
-    let is_swapi_running = todo!();
+    let swapi_returns_luke_data: bool = todo!();
 
-    assert!(is_swapi_running);
+    assert!(swapi_returns_luke_data);
 }
