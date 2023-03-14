@@ -11,7 +11,7 @@ use workshop::swapi::{Person, SwapiClient};
 /// Luke's height.
 ///
 /// ## Useful resources 📚
-/// - [Swapi docs](https://swapi.dev/documentation)
+/// - [Search query - Swapi docs](https://swapi.dev/documentation#search)
 /// - [Rust HTTP client](https://docs.rs/reqwest/)
 ///
 /// ## Hint 1 💡
