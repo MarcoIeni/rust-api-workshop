@@ -33,10 +33,10 @@ impl YodaTaller {
         Ok(Self { swapi_client })
     }
 
-    /// Is Yoda taller than the person with the given name?
+    /// Is Yoda taller than the person with the given `name`?
     #[instrument(skip(self), fields(height))]
     pub async fn is_taller_than(&self, name: &str) -> Result<YodaTallerOutcome, YodaTallerError> {
-        let yoda_height = 66;
+        let yoda_height = 66; // cm
         let characters = self
             .swapi_client
             .people_by_name(name)
