@@ -2,7 +2,7 @@
 //! However a docker image of the service you are working with
 //! is not always available.
 //! In these cases you can write a mock, i.e. a piece of software
-//! that mimics like the service you are calling.
+//! that mimics the service you are calling.
 //! Let's practice writing a mock using the
 //! [wiremock](https://docs.rs/wiremock/) library!
 
