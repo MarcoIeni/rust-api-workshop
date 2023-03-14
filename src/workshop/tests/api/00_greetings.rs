@@ -25,7 +25,7 @@
 /// ```
 #[test]
 fn first_exercise() {
-    let i_am_ready_to_start = todo!();
+    let i_am_ready_to_start: bool = todo!();
 
     assert!(i_am_ready_to_start);
 }

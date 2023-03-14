@@ -66,10 +66,6 @@ sequenceDiagram
 ## Setup
 
 ```sh
-mkdir workshop
-cd workshop
-# Clone this fork of swapi (it contains an additional person)
-git clone https://github.com/MarcoIeni/swapi
 # Clone this repo
 git clone https://github.com/MarcoIeni/rust-api-workshop
 cd rust-api-workshop
