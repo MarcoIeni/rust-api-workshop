@@ -4,11 +4,11 @@ Write an HTTP API in Rust through a series of test-driven exercises.
 
 The tasks include:
 
-– Call an external HTTP API to retrieve data asynchronously by using [reqwest](https://docs.rs/reqwest/latest/reqwest/).
-– Build an HTTP API by using [axum](https://docs.rs/axum/latest/axum/).
-– Handle errors by using [thiserror](https://docs.rs/thiserror/latest/thiserror/) and [anyhow](https://docs.rs/anyhow/latest/anyhow/).
-– Write tests by mocking external APIs with [wiremock](https://docs.rs/wiremock/latest/wiremock/).
-– Use [tracing](https://docs.rs/tracing/latest/tracing/) for logs and traces. You will visualize traces by running [jaeger](https://www.jaegertracing.io/) locally.
+- Call an external HTTP API to retrieve data asynchronously by using [reqwest](https://docs.rs/reqwest/latest/reqwest/).
+- Build an HTTP API by using [axum](https://docs.rs/axum/latest/axum/).
+- Handle errors by using [thiserror](https://docs.rs/thiserror/latest/thiserror/) and [anyhow](https://docs.rs/anyhow/latest/anyhow/).
+- Write tests by mocking external APIs with [wiremock](https://docs.rs/wiremock/latest/wiremock/).
+- Use [tracing](https://docs.rs/tracing/latest/tracing/) for logs and traces. You will visualize traces by running [jaeger](https://www.jaegertracing.io/) locally.
 
 ## What will you build?
 
