@@ -11,8 +11,10 @@ use workshop::swapi::{Person, SwapiClient};
 /// Luke's height.
 ///
 /// ## Useful resources 📚
-/// - [Search query - Swapi docs](https://swapi.dev/documentation#search)
-/// - [Rust HTTP client](https://docs.rs/reqwest/)
+/// - [Search query - Swapi docs](https://swapi.dev/documentation#search):
+///   documentation of the API call you need to make.
+/// - [reqwest](https://docs.rs/reqwest/): the Rust HTTP client library.
+/// - [serde](https://serde.rs/): the library to deserialize JSON responses from swapi.
 ///
 /// ## Hint 1 💡
 /// Always focus on making the test compile and pass first by mocking your functions.
