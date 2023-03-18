@@ -1,4 +1,4 @@
-use tracing::info;
+use tracing::{info, warn};
 
 /// During your journey, you will need logs to troubleshoot issues.
 /// Let's see how to use the [tracing](https://docs.rs/tracing) crate,
