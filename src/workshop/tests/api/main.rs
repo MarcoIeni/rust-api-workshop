@@ -5,6 +5,9 @@
 // #[path = "00_greetings.rs"]
 // mod greetings;
 
+// #[path = "00_logs.rs"]
+// mod logs;
+
 // #[path = "01_swapi_docker.rs"]
 // mod swapi_docker;
 
