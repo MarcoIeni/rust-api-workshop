@@ -9,25 +9,25 @@ edition = "2021"
 test_fixture = []
 
 [dependencies]
-anyhow = "1.0.69"
-axum = "0.6.11"
-reqwest = { version = "0.11.14", default-features = false, features = ["json", "rustls-tls"] }
-serde = { version = "1.0.156", features = ["derive"] }
-thiserror = "1.0.39"
+anyhow = "1.0.70"
+axum = "0.6.15"
+reqwest = { version = "0.11.16", default-features = false, features = ["json", "rustls-tls"] }
+serde = { version = "1.0.160", features = ["derive"] }
+thiserror = "1.0.40"
 tracing = "0.1.37"
-tokio = { version = "1.26.0", features = ["macros", "rt-multi-thread", "signal"] }
-serde_yaml = "0.9.19"
+tokio = { version = "1.27.0", features = ["macros", "rt-multi-thread", "signal"] }
+serde_yaml = "0.9.21"
 opentelemetry = { version = "0.18.0", features = ["rt-tokio"] }
 axum-tracing-opentelemetry = { version = "0.10", features = ["jaeger", "otlp"] }
 
 tracing-subscriber = { version = "0.3.16", features = ["env-filter"] }
 tracing-log = "0.1.3"
-tracing-bunyan-formatter = "0.3.6"
+tracing-bunyan-formatter = "0.3.7"
 opentelemetry-jaeger = { version = "0.17.0", features = ["rt-tokio"] }
 tracing-opentelemetry = "0.18.0"
 
 [dev-dependencies]
 yoda-taller = { path = ".", features = ["test_fixture"]}
-serde_json = "1.0.94"
-wiremock = "0.5.17"
+serde_json = "1.0.95"
+wiremock = "0.5.18"
 once_cell = "1.17.1"
