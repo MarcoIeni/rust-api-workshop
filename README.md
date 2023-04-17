@@ -113,6 +113,14 @@ cargo run -p yoda-taller
 curl http://localhost:3000/taller/luke
 ```
 
+## Walkthroughs
+
+In the following, you find the recordings of people going through the workshop.
+If you want to add yours, open a PR!
+
+[![Marco-jaga video](https://user-images.githubusercontent.com/11428655/232469076-9e276e28-33f2-4932-a107-4ef4ea32d874.jpg)](https://www.youtube.com/watch?v=8lW68jXHaFI)
+
+
 ## Credits
 
 Some pieces of code, names or conventions are inspired by:
