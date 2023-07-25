@@ -5,13 +5,7 @@ use tracing::{info, warn};
 /// to see the logs of an application.
 #[test]
 fn i_can_see_logs() {
-    // We only want to print logs when the `TEST_LOG` environment variable is set.
-    if std::env::var("TEST_LOG").is_ok() {
-        // Construct a subscriber that prints formatted traces to stdout.
-        let subscriber = tracing_subscriber::FmtSubscriber::new();
-        // Use that subscriber to process traces emitted after this point.
-        tracing::subscriber::set_global_default(subscriber).unwrap();
-    }
+    init_test_logs();
 
     info!("Hello, world!");
     my_fn("Bob");
@@ -24,9 +18,20 @@ fn i_can_see_logs() {
     assert!(i_can_see_logs);
 }
 
+fn init_test_logs() {
+    // We only want to print logs when the `TEST_LOG` environment variable is set.
+    // Otherwise, it would be hard to read the test output.
+    if std::env::var("TEST_LOG").is_ok() {
+        // Construct a subscriber that prints formatted traces to stdout.
+        let subscriber = tracing_subscriber::FmtSubscriber::new();
+        // Use that subscriber to process traces emitted after this point.
+        tracing::subscriber::set_global_default(subscriber).unwrap();
+    }
+}
+
 #[tracing::instrument]
 fn my_fn(_name: &str) {
     warn!("Hello from my_fn!");
 }
 
-// Copy paste the subscriber initialization when you want to inspect the logs in your tests.
+// 💡 When you want to inspect the logs in your tests, copy paste the `init_test_logs()` function.
