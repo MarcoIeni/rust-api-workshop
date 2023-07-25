@@ -3,7 +3,7 @@ use {
     crate::{server::taller_route, settings::Settings},
     anyhow::Context,
     axum::{routing::get, Router},
-    axum_tracing_opentelemetry::opentelemetry_tracing_layer,
+    axum_tracing_opentelemetry::middleware::OtelAxumLayer,
     std::{
         io,
         net::{SocketAddr, TcpListener},
@@ -35,7 +35,7 @@ impl Application {
             .route("/health_check", get(health_check))
             .route("/taller/:name", get(taller_route::taller_than))
             .with_state(yoda_taller)
-            .layer(opentelemetry_tracing_layer());
+            .layer(OtelAxumLayer::default());
 
         axum::Server::from_tcp(self.tcp_listener)
             .context("cannot build server")?
