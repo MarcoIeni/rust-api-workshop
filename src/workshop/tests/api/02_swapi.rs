@@ -20,6 +20,9 @@ async fn retrieve_luke_height_from_swapi() {
     let base_url = "http://127.0.0.1:9992";
     // You can ignore the timeout for this exercise.
     let timeout = Duration::from_secs(2);
+    // The `new` function must return a `Result` (notice we `unwrap` it).
+    // For this test, we don't care about the error: the `new` function will always succeed.
+    // You can use the unit type `()` as the error type: `Result<SwapiClient, ()>`.
     let swapi_client = SwapiClient::new(base_url.to_string(), timeout).unwrap();
     let luke = Person {
         name: "Luke Skywalker".to_string(),
