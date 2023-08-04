@@ -41,13 +41,14 @@ async fn retrieve_luke_height_from_swapi() {
 ///   documentation of the API call you need to make.
 /// - [reqwest](https://docs.rs/reqwest/): the Rust HTTP client library.
 /// - [serde](https://serde.rs/): the library to deserialize JSON responses from swapi.
+#[tokio::test]
 async fn retrieve_rd_d2_height_from_swapi() {
     let base_url = "http://127.0.0.1:9992";
     // You can ignore the timeout for this exercise.
     let timeout = Duration::from_secs(2);
     let swapi_client = SwapiClient::new(base_url.to_string(), timeout).unwrap();
     let luke = Person {
-        name: "r2-d2".to_string(),
+        name: "R2-D2".to_string(),
         height: "96".to_string(),
     };
     let people: Vec<Person> = swapi_client.people_by_name(&luke.name).await.unwrap();
