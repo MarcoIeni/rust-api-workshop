@@ -10,24 +10,23 @@ test_fixture = []
 
 [dependencies]
 anyhow.workspace = true
+axum-tracing-opentelemetry.workspace = true
 axum.workspace = true
+opentelemetry-jaeger.workspace = true
+opentelemetry.workspace = true
 reqwest.workspace = true
+serde_yaml.workspace = true
 serde.workspace = true
 thiserror.workspace = true
-tracing.workspace = true
 tokio.workspace = true
-serde_yaml.workspace = true
-opentelemetry.workspace = true
-axum-tracing-opentelemetry.workspace = true
-
-tracing-subscriber.workspace = true
-tracing-log.workspace = true
 tracing-bunyan-formatter.workspace = true
-opentelemetry-jaeger.workspace = true
+tracing-log.workspace = true
 tracing-opentelemetry.workspace = true
+tracing-subscriber.workspace = true
+tracing.workspace = true
 
 [dev-dependencies]
-yoda-taller = { path = ".", features = ["test_fixture"]}
+once_cell.workspace = true
 serde_json.workspace = true
 wiremock.workspace = true
-once_cell.workspace = true
+yoda-taller = { path = ".", features = ["test_fixture"]}
