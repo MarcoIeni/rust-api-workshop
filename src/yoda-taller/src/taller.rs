@@ -42,7 +42,7 @@ impl YodaTaller {
             .people_by_name(name)
             .await
             .map_err(YodaTallerError::UnexpectedError)?;
-        let first_match = characters.get(0).ok_or(YodaTallerError::PersonNotFound)?;
+        let first_match = characters.first().ok_or(YodaTallerError::PersonNotFound)?;
         let person_height = &first_match.height;
         tracing::Span::current().record("height", person_height);
 
